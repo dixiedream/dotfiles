@@ -57,7 +57,7 @@ URxvt.font: xft:Terminus:bold:size=10
 
 # Perl extensions
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font
-URxvt.url-select.launcher:  chromium
+URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
