@@ -3,7 +3,7 @@
 # Environment variables
 export PATH="${PATH}:~/scripts"
 export WALLPAPER_DIR="$HOME/wallpapers"
-
+export WALLPAPER="$WALLPAPER_DIR/0176.jpg"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -38,6 +38,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Setting thinkpad Screen DPI
-xrandr --dpi 125.37
+xrandr --output LVDS-1 --brightness 0.5 --dpi 125.37
 
 exec awesome
