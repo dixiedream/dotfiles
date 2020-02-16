@@ -4,6 +4,11 @@
 alias ls='ls --color=auto'
 alias ll='ls -la --color=auto'
 
+# Bluetooth
+alias bt="bluetoothctl"
+alias bton="bluetoothctl power on"
+alias btoff="bluetoothctl power off"
+
 # Dotfiles config
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 

@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Environment variables
+export LANG="it_IT"
 export PATH="${PATH}:~/scripts"
-export WALLPAPER_DIR="$HOME/wallpapers"
+export WALLPAPER_DIR="$HOME/wallpapers/"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap

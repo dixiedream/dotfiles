@@ -4,7 +4,6 @@
      github.com/lcpz
 
 --]]
-
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
@@ -14,10 +13,36 @@ local dpi   = require("beautiful.xresources").apply_dpi
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+-- {{{ Function definitions
+
+-- scan directory, and optionally filter outputs
+local function scandir(directory, filter)
+    local i, t, popen = 0, {}, io.popen
+    if not filter then
+        filter = function(s) return true end
+    end
+    print(filter)
+    for filename in popen('ls -a "'..directory..'"'):lines() do
+        if filter(filename) then
+            i = i + 1
+            t[i] = filename
+        end
+    end
+    return t
+end
+
+-- }}}
+
+-- configuration - edit to your liking
+wp_path = os.getenv("WALLPAPER_DIR") or os.getenv("HOME") .. "/wallpapers/"
+wp_filter = function(s) return string.match(s,"%.png$") or string.match(s,"%.jpg$") end
+wp_files = scandir(wp_path, wp_filter)
+wp_index = math.random(1, #wp_files)
+
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
-theme.wallpaperdir				                = os.getenv("WALLPAPER_DIR") or theme.confdir
-theme.wallpaper                                 = os.getenv("WALLPAPER") or theme.wallpaperdir .. "/wall.png"
+--theme.wallpaper                                 = theme.confdir .. "/wall.png"
+theme.wallpaper                                 = wp_path .. wp_files[wp_index]
 theme.font                                      = "Terminus 6"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
