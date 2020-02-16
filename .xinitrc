@@ -3,7 +3,6 @@
 # Environment variables
 export PATH="${PATH}:~/scripts"
 export WALLPAPER_DIR="$HOME/wallpapers"
-export WALLPAPER="$WALLPAPER_DIR/0176.jpg"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
