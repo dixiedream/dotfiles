@@ -75,19 +75,14 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex",          -- 10
+    "multicolor",      -- 1
+    "powerarrow",      -- 2
+    "powerarrow-dark", -- 3
+    "rainbow",         -- 4
+    "steamburn",       -- 5
 }
 
-local chosen_theme = themes[5]
+local chosen_theme = themes[1]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc"
@@ -217,56 +212,6 @@ awful.util.mymainmenu = freedesktop.menu.build({
 -- }}}
 
 -- {{{ Screen
---
--- {{{ Function definitions
-
--- scan directory, and optionally filter outputs
-function scandir(directory, filter)
-    local i, t, popen = 0, {}, io.popen
-    if not filter then
-        filter = function(s) return true end
-    end
-    print(filter)
-    for filename in popen('ls -a "'..directory..'"'):lines() do
-        if filter(filename) then
-            i = i + 1
-            t[i] = filename
-        end
-    end
-    return t
-end
-
--- }}}
-
--- configuration - edit to your liking
-wp_index = 1
-wp_timeout  = 10
-wp_path = string.format("%s/wallpapers/", os.getenv("HOME"))
-wp_filter = function(s) return string.match(s,"%.png$") or string.match(s,"%.jpg$") end
-wp_files = scandir(wp_path, wp_filter)
- 
--- setup the timer
-wp_timer = timer { timeout = wp_timeout }
-wp_timer:connect_signal("timeout", function()
- 
-  -- set wallpaper to current index for all screens
-  for s = 1, screen.count() do
-    gears.wallpaper.maximized(wp_path .. wp_files[wp_index], s, true)
-  end
- 
-  -- stop the timer (we don't need multiple instances running at the same time)
-  wp_timer:stop()
- 
-  -- get next random index
-  wp_index = math.random( 1, #wp_files)
- 
-  --restart the timer
-  wp_timer.timeout = wp_timeout
-  wp_timer:start()
-end)
-
-wp_timer:start()
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
     -- Wallpaper

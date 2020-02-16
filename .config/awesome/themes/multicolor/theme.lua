@@ -16,7 +16,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
-theme.wallpaperdir				= os.getenv("WALLPAPER_DIR") or theme.confdir
+theme.wallpaperdir				                = os.getenv("WALLPAPER_DIR") or theme.confdir
 theme.wallpaper                                 = os.getenv("WALLPAPER") or theme.wallpaperdir .. "/wall.png"
 theme.font                                      = "Terminus 6"
 theme.menu_bg_normal                            = "#000000"
@@ -256,62 +256,12 @@ function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
-    -- {{{ Function definitions
-
-    -- scan directory, and optionally filter outputs
-    function scandir(directory, filter)
-        local i, t, popen = 0, {}, io.popen
-        if not filter then
-            filter = function(s) return true end
-        end
-        print(filter)
-        for filename in popen('ls -a "'..directory..'"'):lines() do
-            if filter(filename) then
-                i = i + 1
-                t[i] = filename
-            end
-        end
-        return t
-    end
-
-    -- }}}
-
-    -- configuration - edit to your liking
-    wp_index = 1
-    wp_timeout  = 10
-    wp_path = "$HOME/wallpapers/"
-    wp_filter = function(s) return string.match(s,"%.png$") or string.match(s,"%.jpg$") end
-    wp_files = scandir(wp_path, wp_filter)
- 
-    -- setup the timer
-    wp_timer = timer { timeout = wp_timeout }
-    wp_timer:connect_signal("timeout", function()
- 
-    -- set wallpaper to current index for all screens
-    for s = 1, screen.count() do
-      gears.wallpaper.maximized(wp_path .. wp_files[wp_index], s, true)
-    end
- 
-    -- stop the timer (we don't need multiple instances running at the same time)
-    wp_timer:stop()
- 
-    -- get next random index
-    wp_index = math.random( 1, #wp_files)
- 
-    --restart the timer
-    wp_timer.timeout = wp_timeout
-    wp_timer:start()
-    end)
-
-    wp_timer:start()
-
-
     -- If wallpaper is a function, call it with the screen
-    --local wallpaper = theme.wallpaper
-    --if type(wallpaper) == "function" then
-    --    wallpaper = wallpaper(s)
-    --end
-    --gears.wallpaper.maximized(wallpaper, s, true)
+    local wallpaper = theme.wallpaper
+    if type(wallpaper) == "function" then
+       wallpaper = wallpaper(s)
+    end
+    gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts)
@@ -328,7 +278,7 @@ function theme.at_screen_connect(s)
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
