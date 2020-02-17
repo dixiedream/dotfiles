@@ -51,7 +51,7 @@ URxvt*scrollTtyKeypress: true
 URxvt.scrollBar: false
 
 ! Font
-URxvt.font: xft:Terminus:bold:size=6
+URxvt.font: xft:Terminus:bold:size=10
 !URxvt.letterSpace: -2
 !
 

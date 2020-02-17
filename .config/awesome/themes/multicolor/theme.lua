@@ -16,7 +16,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 -- {{{ Function definitions
 
 -- scan directory, and optionally filter outputs
-local function scandir(directory, filter)
+function scandir(directory, filter)
     local i, t, popen = 0, {}, io.popen
     if not filter then
         filter = function(s) return true end
@@ -42,8 +42,8 @@ wp_index = math.random(1, #wp_files)
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
 --theme.wallpaper                                 = theme.confdir .. "/wall.png"
-theme.wallpaper                                 = wp_path .. wp_files[wp_index]
-theme.font                                      = "Terminus 6"
+theme.wallpaper                                 = string.format("%s", wp_path .. wp_files[wp_index])
+theme.font                                      = "Terminus 8"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.bg_normal                                 = "#000000"

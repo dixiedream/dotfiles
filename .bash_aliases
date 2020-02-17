@@ -19,5 +19,9 @@ alias grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 # Package manager
 alias uninstall="sudo pacman -Rsu $1"
 
+# Usb sticks
+alias usbconnect="udisksctl mount -b $1"
+alias usbdisconnect="udisksctl unmount -b $1"
+
 # Bootloader stuff
 alias editgrub="sudo $EDITOR /etc/default/grub"

@@ -7,3 +7,5 @@ Download
 .vscode-oss
 .config/Code*
 .local/share/Trash
+.config/pulse
+.local/share

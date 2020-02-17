@@ -454,12 +454,12 @@ globalkeys = my_table.join(
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "m",
-        function ()
-            os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "volume 100%", group = "hotkeys"}),
+    -- awful.key({ altkey, "Control" }, "m",
+    --     function ()
+    --         os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
+    --         beautiful.volume.update()
+    --     end,
+    --     {description = "volume 100%", group = "hotkeys"}),
     awful.key({ altkey, "Control" }, "0",
         function ()
             os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
@@ -527,12 +527,12 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
     --]]
-    --[[ dmenu
-    awful.key({ modkey }, "x", function ()
-            os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
+    -- dmenu
+    awful.key({ modkey }, "d", function ()
+            os.execute(string.format("dmenu_run -i -fn 'Monospace-8' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
             beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
         end,
-        {description = "show dmenu", group = "launcher"})
+        {description = "show dmenu", group = "launcher"}),
     --]]
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
@@ -545,18 +545,18 @@ globalkeys = my_table.join(
     --]]
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+              {description = "run prompt", group = "launcher"})
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
+    --awful.key({ modkey }, "x",
+    --          function ()
+    --              awful.prompt.run {
+    --                prompt       = "Run Lua code: ",
+    --                textbox      = awful.screen.focused().mypromptbox.widget,
+    --                exe_callback = awful.util.eval,
+    --                history_path = awful.util.get_cache_dir() .. "/history_eval"
+    --              }
+    --          end,
+    --          {description = "lua execute prompt", group = "awesome"})
     --]]
 )
 
