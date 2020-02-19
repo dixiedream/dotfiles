@@ -50,12 +50,12 @@ URxvt*scrollTtyKeypress: true
 ! disable scroll bar
 URxvt.scrollBar: false
 
-! Font
+!! Font
 URxvt.font: xft:Terminus:bold:size=10
 !URxvt.letterSpace: -2
 !
 
-# Perl extensions
+!! Perl extensions
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
@@ -63,3 +63,10 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 
+!! Real transparency
+!URxvt*depth:		32
+!URxvt*background: 	rgba:0000/0000/0200/c800
+
+!! Fake transparency
+!URxvt*transparent: 	true
+!URxvt*shading: 		10

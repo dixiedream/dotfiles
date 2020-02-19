@@ -4,6 +4,9 @@
 alias ls='ls --color=auto'
 alias ll='ls -la --color=auto'
 
+# Audio
+alias audio="pavucontrol"
+
 # Bluetooth
 alias bt="bluetoothctl"
 alias bton="bluetoothctl power on"

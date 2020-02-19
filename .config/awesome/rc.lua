@@ -98,9 +98,9 @@ awful.util.tagnames = { "1", "2", "3", "4", "5" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    --awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -454,12 +454,6 @@ globalkeys = my_table.join(
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
-    -- awful.key({ altkey, "Control" }, "m",
-    --     function ()
-    --         os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end,
-    --     {description = "volume 100%", group = "hotkeys"}),
     awful.key({ altkey, "Control" }, "0",
         function ()
             os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
@@ -546,18 +540,6 @@ globalkeys = my_table.join(
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"})
-
-    --awful.key({ modkey }, "x",
-    --          function ()
-    --              awful.prompt.run {
-    --                prompt       = "Run Lua code: ",
-    --                textbox      = awful.screen.focused().mypromptbox.widget,
-    --                exe_callback = awful.util.eval,
-    --                history_path = awful.util.get_cache_dir() .. "/history_eval"
-    --              }
-    --          end,
-    --          {description = "lua execute prompt", group = "awesome"})
-    --]]
 )
 
 clientkeys = my_table.join(
@@ -775,3 +757,15 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- https://github.com/lcpz/awesome-copycats/issues/251
 -- }}}
 --
+--
+-- Autorun
+autorun = true
+autorunApps =
+{
+  "feh --bg-max --randomize $HOME/wallpapers/*"
+}
+if autorun then
+	for app = 1, #autorunApps do
+		awful.util.spawn(autorunApps[app])
+	end
+end
