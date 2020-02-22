@@ -10,3 +10,5 @@ Download
 .config/pulse
 .local/share
 Downloads
+.gnupg
+.pki

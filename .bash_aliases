@@ -19,6 +19,9 @@ alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grubedit="sudo vim /etc/default/grub"
 alias grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
+# Email
+alias email="firefox https://mail.google.com https://outlook.live.com/mail/inbox"
+
 # Package manager
 alias uninstall="sudo pacman -Rsu $1"
 

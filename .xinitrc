@@ -3,7 +3,6 @@
 # Environment variables
 export PATH="${PATH}:~/scripts"
 export WALLPAPER_DIR="$HOME/wallpapers"
-#export WALLPAPER="$WALLPAPER_DIR/arch_layers.png"
 
 files=($WALLPAPER_DIR/*)
 export WALLPAPER=`printf "%s\n" "${files[RANDOM % ${#files[@]}]}"`
