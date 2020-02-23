@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Environment variables
-export PATH="${PATH}:~/scripts"
+export PATH="$PATH:~/.scripts"
 export WALLPAPER_DIR="$HOME/wallpapers"
 
 files=($WALLPAPER_DIR/*)
