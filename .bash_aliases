@@ -50,3 +50,6 @@ alias grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 # Package manager
 alias uninstall="sudo pacman -Rsu $1"
 
+# Usb sticks formatting
+alias format="sudo mkfs.$1 /dev/$2"
+alias mkbootusb="dd bs=4M if=$1 of=/dev/$2 status=progress oflag=sync"
