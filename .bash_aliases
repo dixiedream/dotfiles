@@ -37,6 +37,9 @@ alias audio="pavucontrol"
 # Bluetooth
 alias bt="bluetoothctl"
 
+# Disk
+alias du="ncdu"
+
 # Dotfiles config
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
