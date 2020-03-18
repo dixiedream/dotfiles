@@ -50,6 +50,12 @@ alias dmrefresh="rm -rf ~/.cache/dmenu_run"
 alias grubedit="sudo vim /etc/default/grub"
 alias grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
+# Download .m3u8 video streams
+# https://stackoverflow.com/questions/32528595/ffmpeg-mp4-from-http-live-streaming-m3u8-file
+streamDownload() {
+    ffmpeg -i "$1" -c copy -bsf:a aac_adtstoasc movie.mp4
+}
+
 # Package manager
 alias uninstall="sudo pacman -Rsu $1"
 

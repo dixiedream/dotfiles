@@ -2,7 +2,6 @@
 # ~/.bash_profile
 #
 
-export LANG="it_IT.UTF-8"
 export EDITOR="vim"
 
 
