@@ -68,7 +68,6 @@ run_once({"urxvtd", "unclutter -root"}) -- entries must be separated by commas
 
 -- {{{ Variable definitions
 
-local chosen_theme = "multicolor"
 local modkey = "Mod4"
 local altkey = "Mod1"
 local terminal = "urxvt"
@@ -218,7 +217,7 @@ awful.util.tasklist_buttons =
 -- lain.layout.cascade.tile.nmaster       = 5
 -- lain.layout.cascade.tile.ncol          = 2
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
 -- }}}
 
 -- {{{ Screen
@@ -444,16 +443,6 @@ globalkeys =
             end
         end,
         {description = "show calendar", group = "widgets"}
-    ),
-    awful.key(
-        {altkey},
-        "h",
-        function()
-            if beautiful.fs then
-                beautiful.fs.show(7)
-            end
-        end,
-        {description = "show filesystem", group = "widgets"}
     ),
     -- Brightness
     awful.key(

@@ -1,5 +1,9 @@
 # Common alias file
 
+# AwesomeWM
+alias awesome-config="$EDITOR $HOME/.config/awesome/rc.lua"
+alias awesome-theme-config="$EDITOR $HOME/.config/awesome/theme.lua"
+
 # Listing
 alias ls='ls --color=auto'
 alias ll='ls -la --color=auto'
@@ -30,21 +34,8 @@ ex ()
   fi
 }
 
-
-# Audio
-alias audio="pavucontrol"
-
-# Bluetooth
-alias bt="bluetoothctl"
-
-# Disk
-alias du="ncdu"
-
 # Dotfiles config
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-
-# DMenu
-alias dmrefresh="rm -rf ~/.cache/dmenu_run"
 
 # Grub
 alias grubedit="sudo vim /etc/default/grub"
