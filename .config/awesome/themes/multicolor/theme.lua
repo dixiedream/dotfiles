@@ -5,14 +5,13 @@ local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 
 local os = os
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
+local my_table = awful.util.table
 
+local font = os.getenv("FONT") or "Terminus"
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
 theme.wallpaper                                 = os.getenv("WALLPAPER") or theme.confdir .. "/wall.png"
-theme.font                                      = "Terminus 8"
-theme.menu_bg_normal                            = "#000000"
-theme.menu_bg_focus                             = "#000000"
+theme.font                                      = font .. " 8"
 theme.bg_normal                                 = "#000000"
 theme.bg_focus                                  = "#000000"
 theme.bg_urgent                                 = "#000000"
@@ -24,23 +23,14 @@ theme.border_width                              = dpi(1)
 theme.border_normal                             = "#1c2022"
 theme.border_focus                              = "#606060"
 theme.border_marked                             = "#3ca4d8"
-theme.menu_border_width                         = 0
-theme.menu_width                                = dpi(130)
-theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
-theme.menu_fg_normal                            = "#aaaaaa"
-theme.menu_fg_focus                             = "#ff8c00"
-theme.menu_bg_normal                            = "#050505dd"
-theme.menu_bg_focus                             = "#050505dd"
 theme.widget_temp                               = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.png"
---theme.widget_fs                                 = theme.confdir .. "/icons/fs.png"
 theme.widget_mem                                = theme.confdir .. "/icons/mem.png"
 theme.widget_note                               = theme.confdir .. "/icons/note.png"
 theme.widget_note_on                            = theme.confdir .. "/icons/note_on.png"
 theme.widget_netdown                            = theme.confdir .. "/icons/net_down.png"
 theme.widget_netup                              = theme.confdir .. "/icons/net_up.png"
---theme.widget_mail                               = theme.confdir .. "/icons/mail.png"
 theme.widget_batt                               = theme.confdir .. "/icons/bat.png"
 theme.widget_clock                              = theme.confdir .. "/icons/clock.png"
 theme.widget_vol                                = theme.confdir .. "/icons/spkr.png"
@@ -183,8 +173,6 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
             s.mypromptbox,
-            --mpdicon,
-            --theme.mpd.widget,
         },
         s.mytasklist, -- Middle widget
         --nil,

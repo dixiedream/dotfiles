@@ -1,5 +1,6 @@
 ! Colors
 
+! OneDark
 ! special
 *.foreground:   #ABB2BF
 *.background:   #282C34
@@ -51,8 +52,11 @@ URxvt*scrollTtyKeypress: true
 URxvt.scrollBar: false
 
 !! Font
-URxvt.font: xft:Terminus:bold:size=10:antialias=true
-URxvt.boldFont: xft:Terminus:bold:size=10:antialias=true
+!URxvt.font: xft:Terminus:bold:size=8:antialias=true
+!URxvt.boldFont: xft:Terminus:bold:size=8:antialias=true
+URxvt.font: xft:Inconsolata:size=10:antialias=true
+URxvt.boldFont: xft:Inconsolata:size=10:antialias=true
+!
 !URxvt.letterSpace: -2
 !
 
@@ -71,3 +75,10 @@ URxvt.keysym.M-s:           perl:keyboard-select:search
 !! Fake transparency
 !URxvt*transparent: 	true
 !URxvt*shading: 		10
+!
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb

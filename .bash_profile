@@ -2,10 +2,9 @@
 # ~/.bash_profile
 #
 
+export FONT="Terminus"
+export FONT_MONO="Inconsolata"
 export EDITOR="vim"
-
-
-#[[ -f ~/.scripts/shortcuts.sh ]] && ~/.scripts/shortcuts.sh
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
