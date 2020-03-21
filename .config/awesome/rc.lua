@@ -262,15 +262,6 @@ awful.screen.connect_for_each_screen(
 -- {{{ Key bindings
 globalkeys =
     my_table.join(
-    -- Take a screenshot
-    awful.key(
-        {altkey},
-        "p",
-        function()
-            os.execute("screenshot")
-        end,
-        {description = "take a screenshot", group = "hotkeys"}
-    ),
     -- X screen locker
     awful.key(
         {altkey, modkey},
@@ -432,17 +423,6 @@ globalkeys =
             end
         end,
         {description = "restore minimized", group = "client"}
-    ),
-    -- Widgets popups
-    awful.key(
-        {altkey},
-        "c",
-        function()
-            if beautiful.cal then
-                beautiful.cal.show(7)
-            end
-        end,
-        {description = "show calendar", group = "widgets"}
     ),
     -- Brightness
     awful.key(
