@@ -5,10 +5,10 @@
 export FONT="Terminus"
 export FONT_MONO="Inconsolata"
 export EDITOR="vim"
+export TERMINAL="urxvt"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Start X if not
-if [ "$(tty)" = "/dev/tty1" ]; then
-	pgrep -x awesome || exec startx
-fi
+# Start graphical server on tty1 if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

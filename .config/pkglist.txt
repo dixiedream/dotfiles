@@ -42,6 +42,7 @@ linux
 linux-firmware
 m4
 make
+mpv
 ncdu
 neofetch
 network-manager-applet
@@ -57,6 +58,7 @@ pkgconf
 pulseaudio
 pulseaudio-alsa
 ranger
+rxvt-unicode
 scrot
 sed
 slock
@@ -76,7 +78,6 @@ unrar
 unzip
 urxvt-perls
 vim
-vlc
 which
 xf86-video-intel
 xorg-server

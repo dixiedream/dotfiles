@@ -63,6 +63,7 @@ local function run_once(cmd_arr)
 end
 
 run_once({"urxvtd", "unclutter -root"}) -- entries must be separated by commas
+--run_once({"unclutter -root"})
 
 -- }}}
 
@@ -70,12 +71,12 @@ run_once({"urxvtd", "unclutter -root"}) -- entries must be separated by commas
 
 local modkey = "Mod4"
 local altkey = "Mod1"
-local terminal = "urxvt"
+local terminal = os.getenv("TERMINAL")
 local vi_focus = false -- vi-like client focus - https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle trough all previous client or just the first -- https://github.com/lcpz/awesome-copycats/issues/274
-local font = os.getenv("FONT_MONO") or "Terminus"
-local editor = os.getenv("EDITOR") or "vim"
-local browser = os.getenv("BROWSER") or "firefox"
+local font = os.getenv("FONT_MONO")
+local editor = os.getenv("EDITOR")
+local browser = os.getenv("BROWSER")
 local filemanager = terminal .. " -e ranger"
 local scrlocker = "slock"
 

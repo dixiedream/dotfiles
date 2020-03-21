@@ -37,6 +37,9 @@ ex ()
 # Dotfiles config
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
+# Search
+alias setxt="grep --color=auto -iR '$1' $2"
+
 # Grub
 alias grubedit="sudo vim /etc/default/grub"
 alias grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"

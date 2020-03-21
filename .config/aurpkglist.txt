@@ -1,5 +1,4 @@
 brave-bin
-rxvt-unicode-pixbuf
 urxvt-resize-font-git
 yay
 zoom
