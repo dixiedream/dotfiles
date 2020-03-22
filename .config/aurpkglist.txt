@@ -1,4 +1,3 @@
 brave-bin
 urxvt-resize-font-git
 yay
-zoom

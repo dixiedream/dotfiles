@@ -62,8 +62,8 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({"urxvtd", "unclutter -root"}) -- entries must be separated by commas
---run_once({"unclutter -root"})
+--run_once({"urxvtd", "unclutter -root"}) -- entries must be separated by commas
+run_once({"unclutter -root"})
 
 -- }}}
 
@@ -472,15 +472,6 @@ globalkeys =
         end,
         {description = "toggle mute", group = "hotkeys"}
     ),
-    awful.key(
-        {altkey, "Control"},
-        "0",
-        function()
-            os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "volume 0%", group = "hotkeys"}
-    ),
     -- CMUS controls
     awful.key(
         {altkey, "Control"},
@@ -513,24 +504,6 @@ globalkeys =
             os.execute("cmus-remote --next")
         end,
         {description = "cmus next", group = "cmus"}
-    ),
-    -- Copy primary to clipboard (terminals to gtk)
-    awful.key(
-        {modkey},
-        "c",
-        function()
-            awful.spawn.with_shell("xsel | xsel -i -b")
-        end,
-        {description = "copy terminal to gtk", group = "hotkeys"}
-    ),
-    -- Copy clipboard to primary (gtk to terminals)
-    awful.key(
-        {modkey},
-        "v",
-        function()
-            awful.spawn.with_shell("xsel -b | xsel")
-        end,
-        {description = "copy gtk to terminal", group = "hotkeys"}
     ),
     -- User programs
     awful.key(
@@ -575,15 +548,6 @@ globalkeys =
             )
         end,
         {description = "show dmenu", group = "launcher"}
-    ),
-    -- Prompt
-    awful.key(
-        {modkey},
-        "r",
-        function()
-            awful.screen.focused().mypromptbox:run()
-        end,
-        {description = "run prompt", group = "launcher"}
     )
 )
 
@@ -746,8 +710,6 @@ awful.rules.rules = {
             focus = awful.client.focus.filter,
             raise = true,
             keys = clientkeys,
-            buttons = clientbuttons,
-            screen = awful.screen.preferred,
             buttons = clientbuttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap + awful.placement.no_offscreen,

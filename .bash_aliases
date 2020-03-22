@@ -40,6 +40,9 @@ alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # Search
 alias setxt="grep --color=auto -iR '$1' $2"
 
+# Git
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
 # Grub
 alias grubedit="sudo vim /etc/default/grub"
 alias grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"

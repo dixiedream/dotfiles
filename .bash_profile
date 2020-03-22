@@ -6,6 +6,7 @@ export FONT="Terminus"
 export FONT_MONO="Inconsolata"
 export EDITOR="vim"
 export TERMINAL="urxvt"
+export BROWSER="firefox"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 

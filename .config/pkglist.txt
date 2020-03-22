@@ -1,5 +1,4 @@
 alsa-utils
-android-tools
 arandr
 autoconf
 automake
@@ -63,7 +62,6 @@ scrot
 sed
 slock
 sudo
-telegram-desktop
 terminus-font
 terminus-font-otb
 texinfo

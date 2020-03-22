@@ -52,8 +52,8 @@ URxvt*scrollTtyKeypress: true
 URxvt.scrollBar: false
 
 !! Font
-URxvt.font: xft:Inconsolata:size=10:antialias=true
-URxvt.boldFont: xft:Inconsolata:size=10:antialias=true
+URxvt.font: xft:Inconsolata:size=12:antialias=true
+URxvt.boldFont: xft:Inconsolata:size=12:antialias=true
 
 !! Perl extensions
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font
