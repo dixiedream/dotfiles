@@ -57,7 +57,6 @@ pkgconf
 pulseaudio
 pulseaudio-alsa
 ranger
-rxvt-unicode
 scrot
 sed
 slock
@@ -68,13 +67,9 @@ texinfo
 tlp
 transmission-gtk
 trash-cli
-ttf-inconsolata
-udiskie
-udisks2
 unclutter
 unrar
 unzip
-urxvt-perls
 vim
 which
 xf86-video-intel
@@ -82,4 +77,5 @@ xorg-server
 xorg-xbacklight
 xorg-xinit
 xorg-xrandr
+zathura
 zip

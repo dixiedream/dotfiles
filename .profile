@@ -1,12 +1,11 @@
 #
-# ~/.bash_profile
+# ~/.profile
 #
 
-export FONT="Terminus"
-export FONT_MONO="Inconsolata"
 export EDITOR="vim"
-export TERMINAL="urxvt"
-export BROWSER="firefox"
+export TERMINAL="st"
+export BROWSER="brave"
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 

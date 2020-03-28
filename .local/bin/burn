@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# First attemp to create bootable usb sticks
+
+#dd bs=4M if=path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync
+
+img=$1
+device=$2
+
+dd bs=4M if="$img" of="$device" status=progress oflag=sync

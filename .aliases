@@ -37,6 +37,10 @@ ex ()
 # Dotfiles config
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
+# Docker
+alias dockeron="sudo systemctl start docker"
+alias dockeroff="sudo systemctl stop docker"
+
 # Search
 alias setxt="grep --color=auto -iR '$1' $2"
 
@@ -53,9 +57,8 @@ streamDownload() {
     ffmpeg -i "$1" -c copy -bsf:a aac_adtstoasc movie.mp4
 }
 
-# Package manager
-alias uninstall="sudo pacman -Rsu $1"
-
 # Usb sticks formatting
 alias format="sudo mkfs.$1 /dev/$2"
-alias mkbootusb="dd bs=4M if=$1 of=/dev/$2 status=progress oflag=sync"
+
+# Xorg 
+alias xorgreload="xrdb -load .Xresources"

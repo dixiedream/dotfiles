@@ -9,7 +9,12 @@ Download
 .local/share/Trash
 .config/pulse
 .local/share
+Documents
+documents
 Downloads
+downloads
+sources
+Sources
 .gnupg
 .pki
 .config/pavucontrol.ini

@@ -1,3 +1,4 @@
 brave-bin
-urxvt-resize-font-git
+hfsprogs
+st-luke-git
 yay

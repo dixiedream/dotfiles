@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Extends path
-export PATH=$PATH:~/.scripts
+export PATH=$PATH:~/.local/bin
 
 # Load .Xresources colors and other stuff
 if [ "$TERM" = "linux" ]; then
@@ -62,7 +62,9 @@ fi
 
 
 # Load aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
 fi
 
+# Change directory without cd command
+shopt -s autocd

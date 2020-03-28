@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Save every package installed
+pacman -Qqen > ~/.config/pkglist.txt
+
+# Save every AUR installed package
+pacman -Qqem > ~/.config/aurpkglist.txt

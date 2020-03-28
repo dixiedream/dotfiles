@@ -1,3 +1,6 @@
+!! Set a default font and font size
+*.font: monospace:size=10
+
 ! Colors
 
 ! OneDark
@@ -52,8 +55,9 @@ URxvt*scrollTtyKeypress: true
 URxvt.scrollBar: false
 
 !! Font
-URxvt.font: xft:Inconsolata:size=12:antialias=true
-URxvt.boldFont: xft:Inconsolata:size=12:antialias=true
+URxvt.font: xft:Noto Mono:size=12:antialias=true
+!URxvt.boldFont: xft:Inconsolata:size=12:antialias=true
+URxvt.letterSpace: -1
 
 !! Perl extensions
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font
