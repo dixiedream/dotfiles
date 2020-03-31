@@ -224,17 +224,12 @@ beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
 screen.connect_signal(
     "property::geometry",
     function(s)
-        -- Wallpaper
-        if beautiful.wallpaper then
-            local wallpaper = beautiful.wallpaper
-            -- If wallpaper is a function, call it with the screen
-            if type(wallpaper) == "function" then
-                wallpaper = wallpaper(s)
-            end
-            gears.wallpaper.maximized(wallpaper, s, true)
-        end
+        os.execute(
+            string.format("setbg %s", os.getenv("WALLPAPER_DIR"))
+        )
     end
 )
+--
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal(

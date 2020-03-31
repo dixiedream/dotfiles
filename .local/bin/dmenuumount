@@ -8,7 +8,7 @@ unmountusb() {
 	[ -z "$drives" ] && exit
 	chosen=$(echo "$drives" | dmenu -i -p "Unmount which drive?" | awk '{print $1}')
 	[ -z "$chosen" ] && exit
-	sudo -A umount "$chosen" && notify-send "USB unmounting" "$chosen unmounted."
+	sudo -A umount "$chosen" && (rm -rf "$chosen" || sudo -A rm -rf "$chosen") && notify-send "USB unmounting" "$chosen unmounted."
 	}
 
 unmountandroid() { \

@@ -1,13 +1,9 @@
 #!/bin/sh
 
 # Environment variables
-export PATH="$PATH:~/.scripts"
 export WALLPAPER_DIR="$HOME/wallpapers"
 
-files=($WALLPAPER_DIR/*)
-export WALLPAPER=`printf "%s\n" "${files[RANDOM % ${#files[@]}]}"`
-
-userresources=$HOME/.Xresources
+userresources=$HOME/.config/Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
@@ -38,4 +34,5 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-exec awesome
+exec setbg "$WALLPAPER_DIR" &
+	awesome

@@ -1,4 +1,3 @@
-local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
@@ -13,7 +12,6 @@ local font_mono = "monospace"
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome"
-theme.wallpaper                                 = os.getenv("WALLPAPER") or theme.confdir .. "/wall.png"
 theme.font                                      = "Terminus 8"
 theme.bg_normal                                 = xrdb.background or "#000000"
 theme.bg_focus                                  = xrdb.background or xrdb.color12 or "#000000"
@@ -139,13 +137,6 @@ function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
-    -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-       wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
-    
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts)
 
