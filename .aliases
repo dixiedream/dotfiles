@@ -40,6 +40,7 @@ alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # Docker
 alias dockeron="sudo systemctl start docker"
 alias dockeroff="sudo systemctl stop docker"
+alias dc="docker-compose"
 
 # Search
 alias setxt="grep --color=auto -iR '$1' $2"
@@ -61,4 +62,4 @@ streamDownload() {
 alias format="sudo mkfs.$1 /dev/$2"
 
 # Xorg 
-alias xorgreload="xrdb -load .Xresources"
+alias xorgreload="xrdb -load $HOME/.config/Xresources"
