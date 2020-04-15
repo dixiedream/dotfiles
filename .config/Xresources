@@ -9,6 +9,8 @@
 *.background:   #282C34
 *.cursorColor:  #ABB2BF
 
+!pippo: #FF8C00
+
 ! black
 *.color0:       #5C6370
 *.color8:       #4B5263

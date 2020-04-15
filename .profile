@@ -2,7 +2,7 @@
 # ~/.profile
 #
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="brave"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"

@@ -18,11 +18,11 @@ theme.bg_focus = xrdb.background or xrdb.color12 or "#000000"
 theme.bg_urgent = xrdb.background or xrdb.color9 or "#000000"
 theme.fg_normal = xrdb.foreground or "#aaaaaa"
 theme.fg_focus = "#ff8c00"
-theme.fg_urgent = "#af1d18"
-theme.fg_minimize = "#ffffff"
+theme.fg_urgent = xrdb.color1 or "#af1d18"
+theme.fg_minimize = xrdb.cursorColor or "#ffffff"
 theme.border_width = dpi(1)
 theme.border_normal = xrdb.color0 or "#1c2022"
-theme.border_focus = "#606060"
+theme.border_focus = xrdb.color8 or "#606060"
 theme.border_marked = xrdb.color10 or "#3ca4d8"
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime = theme.confdir .. "/icons/ac.png"
@@ -42,7 +42,6 @@ theme.tasklist_disable_icon = true
 theme.useless_gap = 3
 theme.layout_tile = theme.confdir .. "/icons/tile.png"
 theme.layout_floating = theme.confdir .. "/icons/floating.png"
-theme.layout_centerwork = theme.confdir .. "/icons/max.png"
 
 local markup = lain.util.markup
 

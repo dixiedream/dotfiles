@@ -2,3 +2,4 @@ brave-bin
 hfsprogs
 st-luke-git
 yay
+zoom
