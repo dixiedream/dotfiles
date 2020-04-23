@@ -15,7 +15,7 @@ call plug#end()
 " => Lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'nord',
       \ }
 
 " Always show statusline
