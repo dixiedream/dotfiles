@@ -5,3 +5,6 @@ paccache --remove
 
 # Remove unused packages
 sudo pacman -Rns $(pacman -Qtdq)
+
+# Clean AUR unneeded dependencies
+yay -Yc

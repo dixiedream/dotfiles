@@ -1,5 +1,6 @@
 alsa-utils
 arandr
+atool
 autoconf
 automake
 awesome
@@ -48,6 +49,7 @@ networkmanager
 nm-connection-editor
 ntfs-3g
 openssh
+p7zip
 pacman
 pacman-contrib
 patch
@@ -73,6 +75,8 @@ unclutter
 unrar
 unzip
 which
+wit
+xclip
 xf86-video-intel
 xorg-server
 xorg-xbacklight
