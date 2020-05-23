@@ -1,0 +1,10 @@
+#!/bin/sh
+
+toggle=${1:-on}
+
+if [ "$toggle" = "on" ] ;
+then
+    xset s off -dpms && notify-send "Presentation Mode" "Set to ON"
+else
+    xset s on dpms && notify-send "Presentation Mode" "Set to OFF"
+fi
