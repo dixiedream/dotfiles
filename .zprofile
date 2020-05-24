@@ -21,9 +21,6 @@ export INPUTRC="$HOME/.config/inputrc"
 export PASSWORD_STORE_DIR="$HOME/.local/share/password-store"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
-
-#[[ -f ~/.bashrc ]] && . ~/.bashrc
-
 # Start X if not
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
