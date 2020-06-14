@@ -10,7 +10,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
 
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="brave"
+export BROWSER="firefox"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
 # XDG Standards

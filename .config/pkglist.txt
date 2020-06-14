@@ -13,12 +13,9 @@ blueberry
 bluez
 bluez-utils
 cmus
-code
 dhcpcd
 dialog
 dmenu
-docker
-docker-compose
 fakeroot
 file
 findutils
@@ -47,6 +44,7 @@ neovim
 network-manager-applet
 networkmanager
 nm-connection-editor
+noto-fonts-emoji
 ntfs-3g
 openssh
 p7zip
@@ -64,6 +62,7 @@ sed
 slock
 sudo
 sxiv
+telegram-desktop
 terminus-font
 terminus-font-otb
 texinfo
@@ -87,3 +86,4 @@ youtube-dl
 zathura
 zathura-pdf-mupdf
 zip
+zsh
