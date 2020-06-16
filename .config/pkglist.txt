@@ -13,9 +13,12 @@ blueberry
 bluez
 bluez-utils
 cmus
+code
 dhcpcd
 dialog
 dmenu
+docker
+docker-compose
 fakeroot
 file
 findutils

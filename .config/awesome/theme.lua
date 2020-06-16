@@ -42,6 +42,7 @@ theme.tasklist_disable_icon = true
 theme.useless_gap = 3
 theme.layout_tile = theme.confdir .. "/icons/tile.png"
 theme.layout_floating = theme.confdir .. "/icons/floating.png"
+theme.layout_centerwork = theme.confdir .. "/icons/centerwork.png"
 
 local markup = lain.util.markup
 
