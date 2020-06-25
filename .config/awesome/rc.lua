@@ -584,4 +584,4 @@ client.connect_signal(
     end
 )
 
-awful.spawn.with_shell("setbg $WALLPAPER_DIR")
+awful.spawn.with_shell("setbg")
