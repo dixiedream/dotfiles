@@ -1,3 +1,5 @@
 [user]
 	email = dixiedream@hotmail.it
 	name = Alessandro
+[pull]
+	rebase = false
