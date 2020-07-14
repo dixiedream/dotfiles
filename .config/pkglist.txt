@@ -19,6 +19,8 @@ dialog
 dmenu
 docker
 docker-compose
+dosfstools
+exfat-utils
 fakeroot
 file
 findutils
