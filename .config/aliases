@@ -21,6 +21,8 @@ alias setxt="grep --color=auto -iR '$1' $2"
 
 # Git
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias commit="git commit -m"
+alias pushu="git push -u origin"
 
 # Grub
 alias grubedit="sudo vim /etc/default/grub"
