@@ -35,9 +35,6 @@ streamDownload() {
     ffmpeg -i "$1" -c copy -bsf:a aac_adtstoasc "$filename".mp4
 }
 
-# Usb sticks formatting
-alias format="sudo mkfs.$1 /dev/$2"
-
 # Neovim
 alias vim="nvim"
 
