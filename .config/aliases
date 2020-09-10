@@ -16,9 +16,6 @@ alias dockeron="sudo systemctl start docker"
 alias dockeroff="sudo systemctl stop docker"
 alias dc="docker-compose"
 
-# Search
-alias setxt="grep --color=auto -iR '$1' $2"
-
 # Git
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias commit="git commit -m"
@@ -34,6 +31,9 @@ streamDownload() {
     filename="${2:-movie}"
     ffmpeg -i "$1" -c copy -bsf:a aac_adtstoasc "$filename".mp4
 }
+
+# Trash
+alias trash-empty="rm -rf ~/.local/share/Trash/*"
 
 # Neovim
 alias vim="nvim"

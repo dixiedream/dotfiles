@@ -8,3 +8,6 @@ sudo pacman -Rns $(pacman -Qtdq)
 
 # Clean AUR unneeded dependencies
 yay -Yc
+
+# Clean AUR cache files
+yay -Sc --aur
