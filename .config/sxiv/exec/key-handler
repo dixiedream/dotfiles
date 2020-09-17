@@ -22,17 +22,21 @@ rotate() {
 	done
 }
 
-case "$1" in
-#"C-x")      xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
-#"C-c")      while read file; do xclip -selection clipboard -target image/png "$file"; done ;;
-"C-c")      while read file; do xsel --clipboard < "$file"; done ;;
-"C-e")      while read file; do "$TERMINAL" -bg "#444" -fg "#eee" -sl 0 -title "$file" -e sh -c "exiv2 pr -q -pa '$file' | less" & done ;;
-"C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
-"C-r")      while read file; do rawtherapee "$file" & done ;;
-"C-comma")  rotate 270 ;;
-"C-period") rotate  90 ;;
-"C-slash")  rotate 180 ;;
-"C-d") rm -rf "$file" ;;
-"C-w") setbg "$file" ;;
-esac
+while read file
+do
+        case "$1" in
+        "w") setbg "$file" & ;;
+	    "comma")
+		    rotate 270 ;;
+	    "R")
+		    rotate 90 ;;
+	    "y")
+            xsel --clipboard < "$file" &&
+		    #echo -n "$file" | xclip -selection clipboard &&
+		    notify-send "$file copied to clipboard" & ;;
+	    "d")
+		    [ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
+	    "g")	ifinstalled gimp && gimp "$file" & ;;
+        esac
+done
 
