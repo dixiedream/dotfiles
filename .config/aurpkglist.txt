@@ -1,4 +1,7 @@
 brave-bin
-hfsprogs
+nordic-theme-git
+postman-bin
+slack-desktop
 st-luke-git
+tableplus
 yay
