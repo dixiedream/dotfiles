@@ -1,3 +1,4 @@
+anydesk-bin
 brave-bin
 hfsprogs
 st-luke-git

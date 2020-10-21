@@ -1,4 +1,5 @@
 alsa-utils
+android-tools
 arandr
 atool
 autoconf
@@ -62,12 +63,12 @@ pkgconf
 pulseaudio
 pulseaudio-alsa
 ranger
+s-tui
 scrot
 sed
 slock
 sudo
 sxiv
-telegram-desktop
 terminus-font
 terminus-font-otb
 texinfo
