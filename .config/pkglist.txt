@@ -37,6 +37,7 @@ groff
 grub
 gzip
 htop
+imagemagick
 intel-ucode
 libtool
 linux
