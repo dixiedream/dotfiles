@@ -1,5 +1,5 @@
 anydesk-bin
 brave-bin
-hfsprogs
+nordic-theme-git
 st-luke-git
 yay
