@@ -38,7 +38,7 @@ $menu -p "= $answer")
 
 case $action in
     "Clear") $0 ;;
-    "Copy to clipboard") echo -n "$answer" | xsel ;;
+    "Copy to clipboard") echo -n "$answer" | xclip -selection clipboard ;;
     "Close") ;;
     "") ;;
     *) $0 "$answer $action" ;;

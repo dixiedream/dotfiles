@@ -21,8 +21,8 @@ do
 	    "R")
 		    convert -rotate 90 "$file" "$file" ;;
 	    "y")
-            xsel --clipboard < "$file" &&
-		    #echo -n "$file" | xclip -selection clipboard &&
+            #xsel --clipboard < "$file" &&
+		    echo -n "$file" | xclip -selection clipboard &&
 		    notify-send "$file copied to clipboard" & ;;
 	    "d")
 		    [ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
