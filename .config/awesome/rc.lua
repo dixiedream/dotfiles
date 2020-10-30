@@ -299,6 +299,25 @@ globalkeys =
         end,
         {description = "-10%", group = "hotkeys"}
     ),
+    -- Volume Keys
+    awful.key(
+        {}, 
+        "XF86AudioLowerVolume", 
+        function ()
+            awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
+        end),
+    awful.key(
+        {}, 
+        "XF86AudioRaiseVolume", 
+        function ()
+            awful.util.spawn("amixer -q -D pulse sset Master 5%+", false)
+        end),
+    awful.key(
+        {}, 
+        "XF86AudioMute", 
+        function ()
+            awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
+        end),
     -- ALSA volume control
     awful.key(
         {altkey},

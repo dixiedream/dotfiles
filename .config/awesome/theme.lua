@@ -12,7 +12,7 @@ local font_mono = "monospace"
 
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
-theme.font = "Terminus 8"
+theme.font = font_mono .." 8"  --"Terminus 8"
 theme.bg_normal = xrdb.background or "#000000"
 theme.bg_focus = xrdb.background or xrdb.color12 or "#000000"
 theme.bg_urgent = xrdb.background or xrdb.color9 or "#000000"

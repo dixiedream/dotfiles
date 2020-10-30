@@ -43,10 +43,12 @@ mpv
 ncdu
 neofetch
 neovim
+noto-fonts
 noto-fonts-emoji
 ntfs-3g
 p7zip
 pacman
+pacman-contrib
 patch
 pavucontrol
 php
@@ -60,11 +62,8 @@ sed
 slock
 sudo
 sxiv
-terminus-font
-terminus-font-otb
 texinfo
 transmission-gtk
-ttf-liberation
 unclutter
 unrar
 unzip
