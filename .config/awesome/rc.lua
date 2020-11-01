@@ -185,7 +185,24 @@ globalkeys =
         end,
         {description = "focus the previous screen", group = "screen"}
     ),
-    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
+    awful.key(
+        {modkey}, "u", 
+        awful.client.urgent.jumpto, 
+        {description = "jump to urgent client", group = "client"}),
+    awful.key(
+        { modkey,           }, "j",
+        function ()
+            awful.client.focus.byidx( 1)
+        end,
+        {description = "focus next by index", group = "client"}
+    ),
+    awful.key(
+        { modkey,           }, "k",
+        function ()
+            awful.client.focus.byidx(-1)
+        end,
+        {description = "focus previous by index", group = "client"}
+    ),
     awful.key(
         {modkey},
         "Tab",
@@ -288,35 +305,38 @@ globalkeys =
         "XF86MonBrightnessUp",
         function()
             os.execute("xbacklight -inc 10")
-        end,
-        {description = "+10%", group = "hotkeys"}
+        end
     ),
     awful.key(
         {},
         "XF86MonBrightnessDown",
         function()
             os.execute("xbacklight -dec 10")
-        end,
-        {description = "-10%", group = "hotkeys"}
+        end
     ),
     -- Volume Keys
     awful.key(
         {}, 
         "XF86AudioLowerVolume", 
         function ()
-            awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
+            os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
+            beautiful.volume.update()
         end),
     awful.key(
         {}, 
         "XF86AudioRaiseVolume", 
-        function ()
-            awful.util.spawn("amixer -q -D pulse sset Master 5%+", false)
+        function()
+            os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
+            beautiful.volume.update()
         end),
     awful.key(
         {}, 
         "XF86AudioMute", 
         function ()
-            awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
+            os.execute(
+                string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel)
+            )
+            beautiful.volume.update()
         end),
     -- ALSA volume control
     awful.key(
