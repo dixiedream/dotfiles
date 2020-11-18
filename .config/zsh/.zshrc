@@ -19,6 +19,7 @@ HISTFILE=~/.cache/zsh/history
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliases"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/localAliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/localAliases"
 
 # Basic auto/tab complete:
 autoload -U compinit
