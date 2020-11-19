@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for a in ./*.wav; do
+  < /dev/null ffmpeg -i "$a" -acodec libmp3lame -ac 2 -ar 44100 -ab 320k -f mp3 "${a[@]/%wav/mp3}"
+done
+
