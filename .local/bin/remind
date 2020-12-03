@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# Requires at, libnotify and aplay
+#
+
+sound="/usr/share/sounds/freedesktop/stereo/dialog-information.oga"
+
+whatPrompt="What do you wanna remind?"
+timePrompt="Set time:"
+modifierChoicePrompt="Wanna set date?"
+modifierPrompt="Set date:"
+questions="No\\nYes"
+
+
+askWhat() {
+    what="$(dmenu -p "$whatPrompt" <&-)" || exit 1
+}
+
+askTime() { 
+    time="$(dmenu -p "$timePrompt" <&-)" || exit 1
+}
+
+askModifier() {
+    modifierChoice=$(printf "$questions" | dmenu -i -p "$modifierChoicePrompt") || exit 1    
+    case $modifierChoice in
+        Yes) modifier="$(dmenu -p "$modifierPrompt" <&-)" || exit 1 ;;
+        No) ;;
+    esac
+}
+
+askWhat
+[ -z "$what" ] && echo "You have to remind something" && exit
+
+askTime
+[ -z "$time" ] && echo "No time selected" && exit
+
+askModifier
+if [ -z "$modifier" ]; then
+    at "$time" && notify-send -t 500 "Reminder" "$what" 
+else
+    at "$time $modifier" && notify-send -t 500 "Reminder" "$what" 
+fi
