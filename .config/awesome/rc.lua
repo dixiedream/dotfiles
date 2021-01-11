@@ -401,6 +401,12 @@ globalkeys =
         end,
         {description = "cmus next", group = "cmus"}
     ),
+    -- Screenshot
+    awful.key({}, "Print",
+        function()
+            os.execute("screenshot")
+        end
+    ),
     -- User programs
     awful.key(
         {modkey},
