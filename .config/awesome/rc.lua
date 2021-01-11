@@ -304,14 +304,14 @@ globalkeys =
         {},
         "XF86MonBrightnessUp",
         function()
-            os.execute("xbacklight -inc 10")
+            os.execute("xbacklight -inc 10 || brightnessctl set +10")
         end
     ),
     awful.key(
         {},
         "XF86MonBrightnessDown",
         function()
-            os.execute("xbacklight -dec 10")
+            os.execute("xbacklight -dec 10 || brightnessctl set 10-")
         end
     ),
     -- Volume Keys
