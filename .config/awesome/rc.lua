@@ -304,14 +304,14 @@ globalkeys =
         {},
         "XF86MonBrightnessUp",
         function()
-            os.execute("xbacklight -inc 10")
+            os.execute("xbacklight -inc 10 || brightnessctl set +10")
         end
     ),
     awful.key(
         {},
         "XF86MonBrightnessDown",
         function()
-            os.execute("xbacklight -dec 10")
+            os.execute("xbacklight -dec 10 || brightnessctl set 10-")
         end
     ),
     -- Volume Keys
@@ -400,6 +400,12 @@ globalkeys =
             os.execute("cmus-remote --next")
         end,
         {description = "cmus next", group = "cmus"}
+    ),
+    -- Screenshot
+    awful.key({}, "Print",
+        function()
+            os.execute("screenshot")
+        end
     ),
     -- User programs
     awful.key(
