@@ -1,5 +1,5 @@
 !! Set a default font and font size
-*.font: monospace:size=9
+*.font: monospace:size=10
 
 ! Colors
 
