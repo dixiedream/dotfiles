@@ -1,5 +1,10 @@
 anydesk-bin
 brave-bin
 nordic-theme-git
+postman-bin
+sc-im
+slack-desktop
 st-luke-git
+tableplus
+visual-studio-code-bin
 yay
