@@ -10,7 +10,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local lain = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-require("awful.hotkeys_popup.keys")
 local my_table = awful.util.table
 local dpi = require("beautiful.xresources").apply_dpi
 local xrandr = require("xrandr")
