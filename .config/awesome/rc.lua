@@ -440,7 +440,7 @@ globalkeys =
         function()
             os.execute(
                 string.format(
-                    "dmenu_run -i -fn '%s-10' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
+                    "dmenu_run -i -fn '%s-9' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
                     font,
                     beautiful.bg_normal,
                     beautiful.fg_normal,

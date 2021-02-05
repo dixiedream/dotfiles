@@ -67,29 +67,29 @@ theme.cal =
 )
 
 -- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+--local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu =
     lain.widget.cpu(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
+            widget:set_markup(markup.fontfg(theme.font, "#e33a6e", "CPU " .. cpu_now.usage .. "% "))
         end
     }
 )
 
 -- Coretemp
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
+--local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp =
     lain.widget.temp(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
+            widget:set_markup(markup.fontfg(theme.font, "#f1af5f", "T " .. coretemp_now .. "°C "))
         end
     }
 )
 
 -- Battery
-local baticon = wibox.widget.imagebox(theme.widget_batt)
+--local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat =
     lain.widget.bat(
     {
@@ -100,13 +100,13 @@ local bat =
                 perc = perc .. " plug"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "B " .. perc .. " "))
         end
     }
 )
 
 -- ALSA volume
-local volicon = wibox.widget.imagebox(theme.widget_vol)
+--local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume =
     lain.widget.alsa(
     {
@@ -115,27 +115,27 @@ theme.volume =
                 volume_now.level = volume_now.level .. "M"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
+            widget:set_markup(markup.fontfg(theme.font, "#7493d2", "V " .. volume_now.level .. "% "))
         end
     }
 )
 
 -- Net
-local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
+--local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
-local netupicon = wibox.widget.imagebox(theme.widget_netup)
+--local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netupinfo =
     lain.widget.net(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
-            netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
+            widget:set_markup(markup.fontfg(theme.font, "#e54c62", "U " .. net_now.sent .. " "))
+            netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", "D " .. net_now.received .. " "))
         end
     }
 )
 
 -- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
+--local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory =
     lain.widget.mem(
     {
@@ -200,21 +200,21 @@ function theme.at_screen_connect(s)
             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            netdownicon,
+            --netdownicon,
             netdowninfo,
-            netupicon,
+            --netupicon,
             netupinfo.widget,
-            volicon,
+            --volicon,
             theme.volume.widget,
-            memicon,
+            --memicon,
             memory.widget,
-            cpuicon,
+            --cpuicon,
             cpu.widget,
-            tempicon,
+            --tempicon,
             temp.widget,
-            baticon,
+            --baticon,
             bat.widget,
-            clockicon,
+            --clockicon,
             mytextclock,
             s.mylayoutbox
         }
