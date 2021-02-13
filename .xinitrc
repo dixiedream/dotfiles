@@ -2,6 +2,7 @@
 
 # Environment variables
 export WALLPAPER_DIR="$HOME/wallpapers"
+export AWT_TOOLKIT=MToolkit
 
 userresources=$HOME/.config/Xresources
 usermodmap=$HOME/.Xmodmap
@@ -36,4 +37,4 @@ fi
 
 # Uncomment for debugging
 #exec awesome > ~/.config/awesome/debug.txt 2>&1
-exec awesome
+setbg & unclutter -root & setbg & dwm_status & exec dwm
