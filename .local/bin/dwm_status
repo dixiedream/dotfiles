@@ -2,7 +2,6 @@
 # Network speed stuff stolen from http://linuxclues.blogspot.sg/2009/11/shell-script-show-network-speed.html
 
 print_mem(){
-#	echo $(($(grep -m1 'MemAvailable:' /proc/meminfo | awk '{print $2}') / 1024))
     free -m | awk 'NR==2{printf "%sMb\n", $3 }'
 }
 
@@ -23,16 +22,14 @@ print_cpu(){
 
 print_temp(){
 	test -f /sys/class/thermal/thermal_zone0/temp || return 0
-	echo $(head -c 2 /sys/class/thermal/thermal_zone0/temp)°C
+    printf "%s°C" "$(head -c 2 /sys/class/thermal/thermal_zone0/temp)"
 }
 
 print_bat(){
-	#hash acpi || return 0
-	#onl="$(grep "on-line" <(acpi -V))"
-	#charge="$(awk '{ sum += $1 } END { print sum }' /sys/class/power_supply/BAT*/capacity)"
-    capacity="$(cat /sys/class/power_supply/BAT0/capacity)%"
-    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug/;s/[Uu]nknown/?/;s/[Ff]ull//" /sys/class/power_supply/BAT0/status)
-    printf %s%s "$status " "$capacity"
+    battery="BAT0"
+    capacity="$(cat /sys/class/power_supply/$battery/capacity)%"
+    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/?/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
+    printf "%s%s" "$status" "$capacity"
 }
 
 print_date(){
@@ -43,7 +40,7 @@ print_date(){
 print_volume(){
     volstat="$(pactl list sinks)"
     #volstat="$(amixer get Master)" # ALSA only equivalent.
-    echo "$volstat" | grep -q "Mute: yes" && printf "Muted \\n" && exit
+    echo "$volstat" | grep -q "Mute: yes" && printf "Muted\\n" && exit
     vol="$(echo "$volstat" | grep '[0-9]\+%' | sed "s,.* \([0-9]\+\)%.*,\1,;1q")"
     printf "V %s%%" "$vol"
 }
