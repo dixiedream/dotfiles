@@ -16,7 +16,7 @@ print_network(){
 }
 
 print_cpu(){
-    cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')"
+    cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}' | sed "s/\..*//")"
     printf %s "$cpu%"
 }
 
@@ -33,13 +33,11 @@ print_bat(){
 }
 
 print_date(){
-	#echo $(date "+%a %m-%d %T%:::z") 
     printf '%s - %s%s ' "$(date '+%b %d')" "$(date '+%H:%M')"    
 }
 
 print_volume(){
     volstat="$(pactl list sinks)"
-    #volstat="$(amixer get Master)" # ALSA only equivalent.
     echo "$volstat" | grep -q "Mute: yes" && printf "Muted\\n" && exit
     vol="$(echo "$volstat" | grep '[0-9]\+%' | sed "s,.* \([0-9]\+\)%.*,\1,;1q")"
     printf "V %s%%" "$vol"
