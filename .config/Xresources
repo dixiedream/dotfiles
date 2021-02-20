@@ -43,3 +43,7 @@
 *.color13: nord15
 *.color14: nord7
 *.color15: nord6
+
+herbe.background_color: nord0
+herbe.border_color: nord8
+herbe.font_color: nord8
