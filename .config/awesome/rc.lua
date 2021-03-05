@@ -303,14 +303,14 @@ globalkeys =
         {},
         "XF86MonBrightnessUp",
         function()
-            os.execute("xbacklight -inc 10 || brightnessctl set +10")
+            os.execute("brightnessctl set 10%+")
         end
     ),
     awful.key(
         {},
         "XF86MonBrightnessDown",
         function()
-            os.execute("xbacklight -dec 10 || brightnessctl set 10-")
+            os.execute("brightnessctl set 10%-")
         end
     ),
     -- Volume Keys
@@ -336,6 +336,12 @@ globalkeys =
                 string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel)
             )
             beautiful.volume.update()
+        end),
+    awful.key(
+        {}, 
+        "XF86AudioMicMute", 
+        function ()
+            os.execute("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
         end),
     -- ALSA volume control
     awful.key(
