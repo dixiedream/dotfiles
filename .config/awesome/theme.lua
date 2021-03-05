@@ -12,18 +12,19 @@ local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
 theme.font = "monospace 8" 
 theme.bg_normal = xrdb.background or "#000000"
-theme.bg_focus = xrdb.background or xrdb.color12 or "#000000"
-theme.bg_urgent = xrdb.background or xrdb.color9 or "#000000"
-theme.fg_normal = xrdb.foreground or "#aaaaaa"
-theme.fg_focus = xrdb.color6 or "#ff8c00"
-theme.fg_urgent = xrdb.color1 or "#af1d18"
+theme.bg_focus = xrdb.background or "#000000"
+theme.bg_urgent = xrdb.background or "#000000"
+theme.fg_normal = xrdb.color8 or "#aaaaaa"
+theme.fg_focus = xrdb.foreground or "#ff8c00"
+theme.fg_urgent = xrdb.color5 or "#af1d18"
 theme.fg_minimize = xrdb.cursorColor or "#ffffff"
 theme.border_width = dpi(1)
 theme.border_normal = xrdb.color0 or "#1c2022"
 theme.border_focus = xrdb.color8 or "#606060"
 theme.border_marked = xrdb.color10 or "#3ca4d8"
-theme.taglist_squares_sel = theme.confdir .. "/icons/square_a.png"
-theme.taglist_squares_unsel = theme.confdir .. "/icons/square_b.png"
+theme.taglist_bg_focus = xrdb.color6 or "#ff8c00"
+theme.taglist_fg_focus = xrdb.background or "#000000"
+theme.taglist_fg_occupied = xrdb.foreground or "#ff8c00"
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
 theme.useless_gap = 3
@@ -34,7 +35,7 @@ theme.layout_centerwork = theme.confdir .. "/icons/centerwork.png"
 local markup = lain.util.markup
 
 local colors = {}
-colors.hours = "#d08770"
+colors.hours = xrdb.color5
 colors.clockSeparator = xrdb.color1
 colors.date = xrdb.color6
 
@@ -52,7 +53,7 @@ theme.cal =
         attach_to = {mytextclock},
         notification_preset = {
             font = theme.font .. " 10",
-            fg = theme.fg_normal,
+            fg = theme.fg_focus,
             bg = theme.bg_normal
         }
     }
@@ -89,7 +90,7 @@ local bat =
                 perc = perc .. " plug"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "B " .. perc .. " "))
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_focus, "B " .. perc .. " "))
         end
     }
 )
