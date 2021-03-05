@@ -14,9 +14,9 @@ theme.font = "monospace 8"
 theme.bg_normal = xrdb.background or "#000000"
 theme.bg_focus = xrdb.background or "#000000"
 theme.bg_urgent = xrdb.background or "#000000"
-theme.fg_normal = xrdb.color8 or "#aaaaaa"
-theme.fg_focus = xrdb.foreground or "#ff8c00"
-theme.fg_urgent = xrdb.color5 or "#af1d18"
+theme.fg_normal = xrdb.foreground or "#aaaaaa"
+theme.fg_focus = xrdb.color6 or "#ff8c00"
+theme.fg_urgent = xrdb.color1 or "#af1d18"
 theme.fg_minimize = xrdb.cursorColor or "#ffffff"
 theme.border_width = dpi(1)
 theme.border_normal = xrdb.color0 or "#1c2022"
@@ -53,7 +53,7 @@ theme.cal =
         attach_to = {mytextclock},
         notification_preset = {
             font = theme.font .. " 10",
-            fg = theme.fg_focus,
+            fg = theme.fg_normal,
             bg = theme.bg_normal
         }
     }
@@ -90,7 +90,7 @@ local bat =
                 perc = perc .. " plug"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, theme.fg_focus, "B " .. perc .. " "))
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "B " .. perc .. " "))
         end
     }
 )
