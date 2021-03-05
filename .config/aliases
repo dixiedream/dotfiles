@@ -25,7 +25,7 @@ alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # Docker
 alias \
     dockeron="sudo systemctl start docker" \
-    dockeroff="sudo systemctl stop docker" \
+    dockeroff="sudo systemctl stop docker && sudo systemctl stop docker.socket" \
     dc="docker-compose"
 
 # Git

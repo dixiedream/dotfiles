@@ -8,11 +8,9 @@ local xrdb = xresources.get_current_theme()
 local os = os
 local my_table = awful.util.table
 
-local font_mono = "monospace"
-
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
-theme.font = font_mono .." 8"  --"Terminus 8"
+theme.font = "monospace 8" 
 theme.bg_normal = xrdb.background or "#000000"
 theme.bg_focus = xrdb.background or xrdb.color12 or "#000000"
 theme.bg_urgent = xrdb.background or xrdb.color9 or "#000000"
@@ -24,8 +22,6 @@ theme.border_width = dpi(1)
 theme.border_normal = xrdb.color0 or "#1c2022"
 theme.border_focus = xrdb.color8 or "#606060"
 theme.border_marked = xrdb.color10 or "#3ca4d8"
-theme.widget_note = theme.confdir .. "/icons/note.png"
-theme.widget_note_on = theme.confdir .. "/icons/note_on.png"
 theme.taglist_squares_sel = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel = theme.confdir .. "/icons/square_b.png"
 theme.tasklist_plain_task_name = true
@@ -50,7 +46,7 @@ theme.cal =
     {
         attach_to = {mytextclock},
         notification_preset = {
-            font = font_mono .. " 10",
+            font = theme.font .. " 10",
             fg = theme.fg_normal,
             bg = theme.bg_normal
         }
