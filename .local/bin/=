@@ -1,5 +1,11 @@
 #!/bin/sh
 
+sbColor="$(xrdb -query -all | grep color6 | awk '{print $2}')"
+sfColor="$(xrdb -query -all | grep color0 | awk '{print $2}')"
+nfColor="$(xrdb -query -all | grep foreground | awk '{print $2}')"
+nbColor="$(xrdb -query -all | grep background | awk '{print $2}')"
+dOptions="-sb "$sbColor" -sf "$sfColor" -nf "$nfColor" -nb "$nbColor""
+
 usage() {
     echo "    $(tput bold)menu calc$(tput sgr0)
     A calculator for use with Rofi or dmenu(2)
@@ -22,19 +28,16 @@ case $1 in
 esac
 
 # Path to menu application
-if [[ -n $(command -v rofi) ]]; then
-    menu="$(command -v rofi) -dmenu"
-elif [[ -n $(command -v dmenu) ]]; then
-    menu="$(command -v dmenu)"
+if [[ -n $(command -v dmenu) ]]; then
+    menu="$(command -v dmenu) $dOptions"
 else
-    echo >&2 "Rofi or dmenu not found"
+    echo >&2 "Dmenu not found"
     exit
 fi
 
 answer=$(echo "$@" | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
 
-action=$(echo -e "Copy to clipboard\nClear\nClose" |
-$menu -p "= $answer")
+action=$(echo -e "Copy to clipboard\nClear\nClose" | $menu -p "= $answer")
 
 case $action in
     "Clear") $0 ;;

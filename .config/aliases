@@ -25,7 +25,7 @@ alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # Docker
 alias \
     dockeron="sudo systemctl start docker" \
-    dockeroff="sudo systemctl stop docker" \
+    dockeroff="sudo systemctl stop docker && sudo systemctl stop docker.socket" \
     dc="docker-compose"
 
 # Git
@@ -36,7 +36,7 @@ alias \
 
 # Grub
 alias \
-    grubedit="sudo vim /etc/default/grub" \
+    grubedit="sudo $EDITOR /etc/default/grub" \
     grubsave="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 # Download .m3u8 video streams

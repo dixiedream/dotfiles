@@ -8,35 +8,23 @@ local xrdb = xresources.get_current_theme()
 local os = os
 local my_table = awful.util.table
 
-local font_mono = "monospace"
-
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
-theme.font = font_mono .." 8"  --"Terminus 8"
+theme.font = "monospace 8" 
 theme.bg_normal = xrdb.background or "#000000"
-theme.bg_focus = xrdb.background or xrdb.color12 or "#000000"
-theme.bg_urgent = xrdb.background or xrdb.color9 or "#000000"
+theme.bg_focus = xrdb.background or "#000000"
+theme.bg_urgent = xrdb.background or "#000000"
 theme.fg_normal = xrdb.foreground or "#aaaaaa"
-theme.fg_focus = "#ff8c00"
+theme.fg_focus = xrdb.color6 or "#ff8c00"
 theme.fg_urgent = xrdb.color1 or "#af1d18"
 theme.fg_minimize = xrdb.cursorColor or "#ffffff"
 theme.border_width = dpi(1)
 theme.border_normal = xrdb.color0 or "#1c2022"
 theme.border_focus = xrdb.color8 or "#606060"
 theme.border_marked = xrdb.color10 or "#3ca4d8"
-theme.widget_temp = theme.confdir .. "/icons/temp.png"
-theme.widget_uptime = theme.confdir .. "/icons/ac.png"
-theme.widget_cpu = theme.confdir .. "/icons/cpu.png"
-theme.widget_mem = theme.confdir .. "/icons/mem.png"
-theme.widget_note = theme.confdir .. "/icons/note.png"
-theme.widget_note_on = theme.confdir .. "/icons/note_on.png"
-theme.widget_netdown = theme.confdir .. "/icons/net_down.png"
-theme.widget_netup = theme.confdir .. "/icons/net_up.png"
-theme.widget_batt = theme.confdir .. "/icons/bat.png"
-theme.widget_clock = theme.confdir .. "/icons/clock.png"
-theme.widget_vol = theme.confdir .. "/icons/spkr.png"
-theme.taglist_squares_sel = theme.confdir .. "/icons/square_a.png"
-theme.taglist_squares_unsel = theme.confdir .. "/icons/square_b.png"
+theme.taglist_bg_focus = xrdb.color6 or "#ff8c00"
+theme.taglist_fg_focus = xrdb.background or "#000000"
+theme.taglist_fg_occupied = xrdb.foreground or "#ff8c00"
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
 theme.useless_gap = 3
@@ -46,11 +34,16 @@ theme.layout_centerwork = theme.confdir .. "/icons/centerwork.png"
 
 local markup = lain.util.markup
 
+local colors = {}
+colors.hours = xrdb.color5
+colors.clockSeparator = xrdb.color1
+colors.date = xrdb.color6
+
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local mytextclock =
-    wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+    wibox.widget.textclock(markup(colors.date, "%A %d %B ") .. markup(colors.clockSeparator, ">") .. markup(colors.hours, " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -59,7 +52,7 @@ theme.cal =
     {
         attach_to = {mytextclock},
         notification_preset = {
-            font = font_mono .. " 10",
+            font = theme.font .. " 10",
             fg = theme.fg_normal,
             bg = theme.bg_normal
         }
@@ -67,29 +60,26 @@ theme.cal =
 )
 
 -- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu =
     lain.widget.cpu(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color1, "CPU " .. cpu_now.usage .. "% "))
         end
     }
 )
 
 -- Coretemp
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp =
     lain.widget.temp(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color2, "T " .. coretemp_now .. "°C "))
         end
     }
 )
 
 -- Battery
-local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat =
     lain.widget.bat(
     {
@@ -100,13 +90,12 @@ local bat =
                 perc = perc .. " plug"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "B " .. perc .. " "))
         end
     }
 )
 
 -- ALSA volume
-local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume =
     lain.widget.alsa(
     {
@@ -115,32 +104,29 @@ theme.volume =
                 volume_now.level = volume_now.level .. "M"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
+            widget:set_markup(markup.fontfg(theme.font, "#5e81ac", "V " .. volume_now.level .. "% "))
         end
     }
 )
 
 -- Net
-local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
-local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netupinfo =
     lain.widget.net(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
-            netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color14, "U " .. net_now.sent .. " "))
+            netdowninfo:set_markup(markup.fontfg(theme.font, xrdb.color1, "D " .. net_now.received .. " "))
         end
     }
 )
 
 -- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory =
     lain.widget.mem(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color3, mem_now.used .. "M "))
         end
     }
 )
@@ -200,21 +186,13 @@ function theme.at_screen_connect(s)
             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            netdownicon,
             netdowninfo,
-            netupicon,
             netupinfo.widget,
-            volicon,
             theme.volume.widget,
-            memicon,
             memory.widget,
-            cpuicon,
             cpu.widget,
-            tempicon,
             temp.widget,
-            baticon,
             bat.widget,
-            clockicon,
             mytextclock,
             s.mylayoutbox
         }

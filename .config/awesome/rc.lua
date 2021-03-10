@@ -10,7 +10,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local lain = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-require("awful.hotkeys_popup.keys")
 local my_table = awful.util.table
 local dpi = require("beautiful.xresources").apply_dpi
 local xrandr = require("xrandr")
@@ -304,14 +303,14 @@ globalkeys =
         {},
         "XF86MonBrightnessUp",
         function()
-            os.execute("xbacklight -inc 10")
+            os.execute("brightnessctl set 10%+")
         end
     ),
     awful.key(
         {},
         "XF86MonBrightnessDown",
         function()
-            os.execute("xbacklight -dec 10")
+            os.execute("brightnessctl set 10%-")
         end
     ),
     -- Volume Keys
@@ -337,6 +336,12 @@ globalkeys =
                 string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel)
             )
             beautiful.volume.update()
+        end),
+    awful.key(
+        {}, 
+        "XF86AudioMicMute", 
+        function ()
+            os.execute("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
         end),
     -- ALSA volume control
     awful.key(
@@ -401,6 +406,12 @@ globalkeys =
         end,
         {description = "cmus next", group = "cmus"}
     ),
+    -- Screenshot
+    awful.key({}, "Print",
+        function()
+            os.execute("screenshot")
+        end
+    ),
     -- User programs
     awful.key(
         {modkey},
@@ -434,7 +445,7 @@ globalkeys =
         function()
             os.execute(
                 string.format(
-                    "dmenu_run -i -fn '%s-10' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
+                    "dmenu_run -i -fn '%s-9' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
                     font,
                     beautiful.bg_normal,
                     beautiful.fg_normal,

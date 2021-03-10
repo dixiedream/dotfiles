@@ -1,5 +1,0 @@
-anydesk-bin
-brave-bin
-nordic-theme-git
-st-luke-git
-yay
