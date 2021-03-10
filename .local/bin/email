@@ -2,5 +2,4 @@
 
 
 # Email
-#exec $BROWSER https://mail.google.com https://outlook.live.com/mail/inbox
 exec firefox https://mail.google.com https://outlook.live.com/mail/inbox

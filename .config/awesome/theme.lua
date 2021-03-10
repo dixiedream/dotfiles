@@ -8,26 +8,23 @@ local xrdb = xresources.get_current_theme()
 local os = os
 local my_table = awful.util.table
 
-local font_mono = "monospace"
-
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
-theme.font = font_mono .." 8"  --"Terminus 8"
+theme.font = "monospace 8" 
 theme.bg_normal = xrdb.background or "#000000"
-theme.bg_focus = xrdb.background or xrdb.color12 or "#000000"
-theme.bg_urgent = xrdb.background or xrdb.color9 or "#000000"
+theme.bg_focus = xrdb.background or "#000000"
+theme.bg_urgent = xrdb.background or "#000000"
 theme.fg_normal = xrdb.foreground or "#aaaaaa"
-theme.fg_focus = "#ff8c00"
+theme.fg_focus = xrdb.color6 or "#ff8c00"
 theme.fg_urgent = xrdb.color1 or "#af1d18"
 theme.fg_minimize = xrdb.cursorColor or "#ffffff"
 theme.border_width = dpi(1)
 theme.border_normal = xrdb.color0 or "#1c2022"
 theme.border_focus = xrdb.color8 or "#606060"
 theme.border_marked = xrdb.color10 or "#3ca4d8"
-theme.widget_note = theme.confdir .. "/icons/note.png"
-theme.widget_note_on = theme.confdir .. "/icons/note_on.png"
-theme.taglist_squares_sel = theme.confdir .. "/icons/square_a.png"
-theme.taglist_squares_unsel = theme.confdir .. "/icons/square_b.png"
+theme.taglist_bg_focus = xrdb.color6 or "#ff8c00"
+theme.taglist_fg_focus = xrdb.background or "#000000"
+theme.taglist_fg_occupied = xrdb.foreground or "#ff8c00"
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
 theme.useless_gap = 3
@@ -37,11 +34,16 @@ theme.layout_centerwork = theme.confdir .. "/icons/centerwork.png"
 
 local markup = lain.util.markup
 
+local colors = {}
+colors.hours = xrdb.color5
+colors.clockSeparator = xrdb.color1
+colors.date = xrdb.color6
+
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local mytextclock =
-    wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+    wibox.widget.textclock(markup(colors.date, "%A %d %B ") .. markup(colors.clockSeparator, ">") .. markup(colors.hours, " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -50,7 +52,7 @@ theme.cal =
     {
         attach_to = {mytextclock},
         notification_preset = {
-            font = font_mono .. " 10",
+            font = theme.font .. " 10",
             fg = theme.fg_normal,
             bg = theme.bg_normal
         }
@@ -62,7 +64,7 @@ local cpu =
     lain.widget.cpu(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e33a6e", "CPU " .. cpu_now.usage .. "% "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color1, "CPU " .. cpu_now.usage .. "% "))
         end
     }
 )
@@ -72,7 +74,7 @@ local temp =
     lain.widget.temp(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#f1af5f", "T " .. coretemp_now .. "°C "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color2, "T " .. coretemp_now .. "°C "))
         end
     }
 )
@@ -102,7 +104,7 @@ theme.volume =
                 volume_now.level = volume_now.level .. "M"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, "#7493d2", "V " .. volume_now.level .. "% "))
+            widget:set_markup(markup.fontfg(theme.font, "#5e81ac", "V " .. volume_now.level .. "% "))
         end
     }
 )
@@ -113,8 +115,8 @@ local netupinfo =
     lain.widget.net(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e54c62", "U " .. net_now.sent .. " "))
-            netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", "D " .. net_now.received .. " "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color14, "U " .. net_now.sent .. " "))
+            netdowninfo:set_markup(markup.fontfg(theme.font, xrdb.color1, "D " .. net_now.received .. " "))
         end
     }
 )
@@ -124,7 +126,7 @@ local memory =
     lain.widget.mem(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
+            widget:set_markup(markup.fontfg(theme.font, xrdb.color3, mem_now.used .. "M "))
         end
     }
 )
