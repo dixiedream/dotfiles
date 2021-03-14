@@ -23,6 +23,8 @@
 
 *.foreground:   nord4
 *.background:   nord0
+*.selbackground: nord8
+*.selforeground: nord1
 *.cursorColor:  nord4
 *fading: 35
 *fadeColor: nord3
