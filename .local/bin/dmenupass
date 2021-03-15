@@ -5,6 +5,6 @@
 
 sbColor="$(xrdb -query -all | grep color11 | awk '{print $2}')"
 sfColor="$(xrdb -query -all | grep color0 | awk '{print $2}')"
-nfColor="$(xrdb -query -all | grep background | awk '{print $2}')"
+nfColor="$(xrdb -query -all | grep -F '*.background' | awk '{print $2}')"
 
 dmenu -sb "$sbColor" -sf "$sfColor" -nf "$nfColor" -nb "$nfColor" -p "$1" <&- && echo

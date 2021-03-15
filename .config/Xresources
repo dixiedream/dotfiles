@@ -1,5 +1,6 @@
 !! Set a default font and font size
 *.font: monospace:size=10
+dmenu.font: monospace:size=9
 
 ! Colors
 
