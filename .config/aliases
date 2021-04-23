@@ -17,7 +17,7 @@ alias \
     ls='ls --color=auto' \
     ll='ls -lh --color=auto' \
     grep="grep --color=auto" \
-    diff="diff --color=auto"
+    diff="diff --color"
 
 # Dotfiles config
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
