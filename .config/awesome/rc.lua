@@ -12,7 +12,6 @@ local lain = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table = awful.util.table
 local dpi = require("beautiful.xresources").apply_dpi
-local xrandr = require("xrandr")
 -- }}}
 
 -- {{{ Error handling
@@ -428,15 +427,6 @@ globalkeys =
             awful.spawn(filemanager)
         end,
         {description = "run file manager", group = "launcher"}
-    ),
-    -- Multiple screen switch
-    awful.key(
-        {modkey},
-        "p",
-        function()
-            xrandr.xrandr()
-        end,
-        {description = "switch monitor layout", group = "hotkeys"}
     ),
     -- dmenu
     awful.key(
