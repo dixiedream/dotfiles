@@ -1,11 +1,5 @@
 #!/bin/sh
 
-sbColor="$(xrdb -query -all | grep color6 | awk '{print $2}')"
-sfColor="$(xrdb -query -all | grep color0 | awk '{print $2}')"
-nfColor="$(xrdb -query -all | grep foreground | awk '{print $2}')"
-nbColor="$(xrdb -query -all | grep background | awk '{print $2}')"
-dOptions="-sb "$sbColor" -sf "$sfColor" -nf "$nfColor" -nb "$nbColor""
-
 usage() {
     echo "    $(tput bold)menu calc$(tput sgr0)
     A calculator for use with Rofi or dmenu(2)
@@ -29,7 +23,7 @@ esac
 
 # Path to menu application
 if [[ -n $(command -v dmenu) ]]; then
-    menu="$(command -v dmenu) $dOptions"
+    menu="$(command -v dmenu)"
 else
     echo >&2 "Dmenu not found"
     exit
