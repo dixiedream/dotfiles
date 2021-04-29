@@ -5,14 +5,22 @@ print_mem(){
     free -m | awk 'NR==2{printf "%sMb\n", $3 }'
 }
 
+net_update() {
+    sum=0
+    for arg; do
+        read -r i < "$arg"
+        sum=$(( sum + i ))
+    done
+    cache=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
+    [ -f "$cache" ] && read -r old < "$cache" || old=0
+    printf %d\\n "$sum" > "$cache"
+    printf %d\\n $(( sum - old ))
+}
+
 print_network(){
-	logfile=/dev/shm/netlog
-	[ -f "$logfile" ] || echo "0 0" > "$logfile"
-	read -r rxprev txprev < "$logfile"
-	rxcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/rx_bytes)))"
-	txcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/tx_bytes)))"
-	echo "$(bc <<< "scale=2; ($rxcurrent-$rxprev) / 10^6")" "$(bc <<< "scale=2; ($txcurrent-$txprev) / 10^6")"
-	echo "$rxcurrent $txcurrent" > "$logfile"
+    rx=$(net_update /sys/class/net/[ew]*/statistics/rx_bytes)
+    tx=$(net_update /sys/class/net/[ew]*/statistics/tx_bytes)
+    printf "D%4sB U%4sB\\n" $(numfmt --to=iec $rx) $(numfmt --to=iec $tx)
 }
 
 print_cpu(){
