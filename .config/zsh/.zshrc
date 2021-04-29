@@ -36,10 +36,6 @@ _fix_cursor() {
 }
 precmd_functions+=(_fix_cursor)
 
-bindkey -s '^a' 'bc -l\n'
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
-bindkey '^[[P' delete-char
-
 # Load syntax highlighting; should be last.
 #source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 

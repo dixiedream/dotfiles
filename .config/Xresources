@@ -1,5 +1,6 @@
 !! Set a default font and font size
 *.font: monospace:size=10
+dmenu.font: monospace:size=9
 
 ! Colors
 
@@ -23,6 +24,8 @@
 
 *.foreground:   nord4
 *.background:   nord0
+*.selbackground: nord8
+*.selforeground: nord1
 *.cursorColor:  nord4
 *fading: 35
 *fadeColor: nord3

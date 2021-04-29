@@ -4,28 +4,22 @@
 # Provides you with mounted partitions, select one to unmount.
 # Drives mounted at /, /boot and /home will not be options to unmount.
 
-sbColor="$(xrdb -query -all | grep color6 | awk '{print $2}')"
-sfColor="$(xrdb -query -all | grep color0 | awk '{print $2}')"
-nfColor="$(xrdb -query -all | grep foreground | awk '{print $2}')"
-nbColor="$(xrdb -query -all | grep background | awk '{print $2}')"
-dOptions="-sb "$sbColor" -sf "$sfColor" -nf "$nfColor" -nb "$nbColor""
-
 unmountusb() {
 	[ -z "$drives" ] && exit
-    chosen="$(echo "$drives" | dmenu $dOptions -i -p "Unmount which drive?")" || exit 1
+	chosen="$(echo "$drives" | dmenu -i -p "Unmount which drive?")" || exit 1
 	chosen="$(echo "$chosen" | awk '{print $1}')"
 	[ -z "$chosen" ] && exit
 	sudo -A umount "$chosen" && notify-send "USB unmounting" "$chosen unmounted."
 	}
 
 unmountandroid() { \
-    chosen="$(awk '/simple-mtpfs/ {print $2}' /etc/mtab | dmenu $dOptions -i -p "Unmount which device?")" || exit 1
+	chosen="$(awk '/simple-mtpfs/ {print $2}' /etc/mtab | dmenu -i -p "Unmount which device?")" || exit 1
 	[ -z "$chosen" ] && exit
 	sudo -A umount -l "$chosen" && notify-send "Android unmounting" "$chosen unmounted."
 	}
 
 asktype() { \
-    choice="$(printf "USB\\nAndroid" | dmenu $dOptions -i -p "Unmount a USB drive or Android device?")" || exit 1
+	choice="$(printf "USB\\nAndroid" | dmenu -i -p "Unmount a USB drive or Android device?")" || exit 1
 	case "$choice" in
 		USB) unmountusb ;;
 		Android) unmountandroid ;;
@@ -42,7 +36,7 @@ else
 	if [ -z "$drives" ]
 	then
 		echo "Unmountable Android device detected."
-	    unmountandroid
+	       	unmountandroid
 	else
 		echo "Unmountable USB drive(s) and Android device(s) detected."
 		asktype
