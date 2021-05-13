@@ -27,15 +27,3 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
-
-# vi mode
-export KEYTIMEOUT=1
-
-_fix_cursor() {
-   echo -ne '\e[1 q'
-}
-precmd_functions+=(_fix_cursor)
-
-# Load syntax highlighting; should be last.
-#source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
-
