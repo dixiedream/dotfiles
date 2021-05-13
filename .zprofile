@@ -34,5 +34,4 @@ export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
 # Start X if not
 # Start graphical server on tty1 if not already running.
-#[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx

@@ -3,3 +3,5 @@
 	name = Alessandro
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
