@@ -1,0 +1,7 @@
+[user]
+	email = alessandro.lucarini@smanapp.com 
+	name = Alessandro
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
