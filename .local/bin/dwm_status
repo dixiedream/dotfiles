@@ -5,24 +5,6 @@ print_mem(){
     free -m | awk 'NR==2{printf "%sMb\n", $3 }'
 }
 
-net_update() {
-    sum=0
-    for arg; do
-        read -r i < "$arg"
-        sum=$(( sum + i ))
-    done
-    cache=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
-    [ -f "$cache" ] && read -r old < "$cache" || old=0
-    printf %d\\n "$sum" > "$cache"
-    printf %d\\n $(( sum - old ))
-}
-
-print_network(){
-    rx=$(net_update /sys/class/net/[ew]*/statistics/rx_bytes)
-    tx=$(net_update /sys/class/net/[ew]*/statistics/tx_bytes)
-    printf "D%4sB U%4sB\\n" $(numfmt --to=iec $rx) $(numfmt --to=iec $tx)
-}
-
 print_cpu(){
     cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}' | sed "s/\..*//")"
     printf %s "$cpu%"
@@ -53,6 +35,6 @@ print_volume(){
 
 while true
 do
-    xsetroot -name "M $(print_mem) | $(print_network) | CPU $(print_cpu) $(print_temp) | B $(print_bat) | $(print_volume) | $(print_date)"
+    xsetroot -name "M $(print_mem) | CPU $(print_cpu) $(print_temp) | B $(print_bat) | $(print_volume) | $(print_date)"
 	sleep 1
 done
