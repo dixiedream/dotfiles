@@ -164,8 +164,6 @@ globalkeys =
     ),
     -- Hotkeys
     awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
-    -- Tag browsing
-    awful.key({modkey}, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
     -- Default client focus
     awful.key(
         {modkey, "Control"},
