@@ -3,5 +3,5 @@
 output="${1:-$HOME/scan.jpg}"
 
 notify-send "Scanning" "Begin scan of $output"
-scanimage --format=jpeg --output-file $output --progress
+scanimage --resolution 150 --format=jpeg --output-file $output --progress
 notify-send "Scanning" "Image saved to $output"
