@@ -1,7 +1,8 @@
 #!/bin/sh
 
 output="${1:-$HOME/scan.jpg}"
+scanner=$(scanimage -L | grep airscan | sed 's/`//g' | awk '{print $2; exit}')
 
 notify-send "Scanning" "Begin scan of $output"
-scanimage --resolution 150 --format=jpeg --output-file $output --progress
+scanimage --resolution 150 --format=jpeg --device $scanner --output-file $output --progress
 notify-send "Scanning" "Image saved to $output"
