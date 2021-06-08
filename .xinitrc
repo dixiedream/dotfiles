@@ -37,4 +37,4 @@ fi
 
 # Uncomment for debugging
 #exec awesome > ~/.config/awesome/debug.txt 2>&1
-setbg & unclutter -root & setbg & dwm_status & exec dwm
+setbg & xcompmgr & unclutter -root & dwm_status & exec dwm
