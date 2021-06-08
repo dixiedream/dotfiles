@@ -17,6 +17,7 @@ local tconcat  = table.concat
 local type     = type
 local tonumber = tonumber
 local tostring = tostring
+local utf8     = utf8
 
 -- Calendar notification
 -- lain.widget.cal
@@ -37,7 +38,15 @@ local function factory(args)
     }
 
     function cal.get_week_number(m, st_day, x)
-        return string.format(cal.week_number_format, os.date("%V", m) + (x ~= 0 and floor((x + st_day) / 7) - 1 or 0))
+        local date = os.date("*t", m)
+
+        local week_step = (x ~= 0 and floor((x + st_day) / 7) - 1 or 0);
+
+        local display_time = os.time {
+            year = date.year, month = date.month, day = date.day + 7 * week_step
+        }
+
+        return string.format(cal.week_number_format, os.date("%V", display_time))
     end
 
     function cal.sum_week_days(x, y)
@@ -52,7 +61,7 @@ local function factory(args)
         local d = os.date("*t", t)
         local mth_days, st_day, this_month = d.day, (d.wday-d.day-cal.week_start+1)%7, os.date("%B %Y", t)
         local notifytable = { [1] = string.format("%s%s\n", string.rep(" ", floor((28 - this_month:len())/2)), markup.bold(this_month)) }
-        for x = 0,6 do notifytable[#notifytable+1] = os.date("%a", os.time { year=2006, month=1, day=x+cal.week_start }):sub(1, 3) .. " " end
+        for x = 0,6 do notifytable[#notifytable+1] = os.date("%a", os.time { year=2006, month=1, day=x+cal.week_start }):sub(1, utf8.offset(1, 3)) .. " " end
         notifytable[#notifytable] = string.format("%s\n%s", notifytable[#notifytable]:sub(1, -2), string.rep(" ", st_day*4))
         local strx
         for x = 1,mth_days do
@@ -68,7 +77,7 @@ local function factory(args)
         cal.month, cal.year = d.month, d.year
 
         if cal.week_number ~= "none" then
-            local m = os.time { year = year or current_year, month = month and month or current_month, day = 0 }
+            local m = os.time { year = year or current_year, month = month and month or current_month, day = 1 }
             local head_prepend = string.rep(" ", tostring(string.format(cal.week_number_format, 0)):len())
 
             if cal.week_number == "left" then
@@ -138,7 +147,12 @@ local function factory(args)
             cal.month, cal.year = current_month, current_year
         end
 
-        cal.hide()
+        if cal.notification then
+            local title = cal.notification_preset.title or nil
+            naughty.replace_text(cal.notification, title, text)
+            return
+        end
+
         cal.notification = naughty.notify {
             preset  = cal.notification_preset,
             screen  = cal.followtag and awful.screen.focused() or scr or 1,
@@ -174,3 +188,4 @@ local function factory(args)
 end
 
 return factory
+
