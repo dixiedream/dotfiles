@@ -10,6 +10,16 @@ print_cpu(){
     printf %s "$cpu%"
 }
 
+print_network(){
+	logfile=/dev/shm/netlog
+	[ -f "$logfile" ] || echo "0 0" > "$logfile"
+	read -r rxprev txprev < "$logfile"
+	rxcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/rx_bytes)))"
+	txcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/tx_bytes)))"
+	echo "$(bc <<< "scale=2; ($rxcurrent-$rxprev) / 10^6")" "$(bc <<< "scale=2; ($txcurrent-$txprev) / 10^6")"
+	echo "$rxcurrent $txcurrent" > "$logfile"
+}
+
 print_temp(){
 	test -f /sys/class/thermal/thermal_zone0/temp || return 0
     printf "%s°C" "$(head -c 2 /sys/class/thermal/thermal_zone0/temp)"
@@ -35,6 +45,6 @@ print_volume(){
 
 while true
 do
-    xsetroot -name "M $(print_mem) | CPU $(print_cpu) $(print_temp) | B $(print_bat) | $(print_volume) | $(print_date)"
+    xsetroot -name "${print_network} | M $(print_mem) | CPU $(print_cpu) $(print_temp) | B $(print_bat) | $(print_volume) | $(print_date)"
 	sleep 1
 done
