@@ -185,7 +185,7 @@ function theme.at_screen_connect(s)
         {
             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
+            --wibox.widget.systray(),
             netdowninfo,
             netupinfo.widget,
             theme.volume.widget,
