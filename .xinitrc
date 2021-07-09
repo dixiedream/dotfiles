@@ -36,4 +36,4 @@ fi
 
 # Uncomment for debugging
 #exec awesome > ~/.config/awesome/debug.txt 2>&1
-exec awesome
+xcompmgr & exec awesome
