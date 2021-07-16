@@ -36,5 +36,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Uncomment for debugging
-#exec awesome > ~/.config/awesome/debug.txt 2>&1
 setbg & xcompmgr & unclutter -root & dwm_status & exec dwm
