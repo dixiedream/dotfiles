@@ -395,7 +395,7 @@ globalkeys =
             os.execute("playerctl play-pause")
         end,
         {description = "play - pause", group = "music"}
-    ),,
+    ),
     awful.key(
         {altkey, "Control"},
         "Left",
