@@ -385,16 +385,14 @@ globalkeys =
         "XF86AudioStop",
         function()
             os.execute("playerctl play-pause")
-        end,
-        {description = "play - pause", group = "music"}
+        end
     ),
     awful.key(
         {},
         "XF86AudioPlay",
         function()
             os.execute("playerctl play-pause")
-        end,
-        {description = "play - pause", group = "music"}
+        end
     ),
     awful.key(
         {altkey, "Control"},
@@ -409,8 +407,7 @@ globalkeys =
         "XF86AudioPrev",
         function()
             os.execute("playerctl previous")
-        end,
-        {description = "previous song", group = "music"}
+        end
     ),
     awful.key(
         {altkey, "Control"},
@@ -425,8 +422,7 @@ globalkeys =
         "XF86AudioNext",
         function()
             os.execute("playerctl next")
-        end,
-        {description = "next song", group = "music"}
+        end
     ),
     -- Screenshot
     awful.key({}, "Print",
