@@ -14,6 +14,7 @@ alias \
 
 # Listing and random coloring
 alias \
+    df='df -h' \
     ls='ls --color=auto' \
     ll='ls -lh --color=auto' \
     grep="grep --color=auto" \

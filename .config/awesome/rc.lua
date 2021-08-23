@@ -371,38 +371,58 @@ globalkeys =
         end,
         {description = "toggle mute", group = "hotkeys"}
     ),
-    -- CMUS controls
+    -- Music player controls (requires playerctl package)
     awful.key(
         {altkey, "Control"},
         "Up",
         function()
-            os.execute("cmus-remote --pause")
+            os.execute("playerctl play-pause")
         end,
-        {description = "cmus toggle", group = "cmus"}
+        {description = "play - pause", group = "music"}
     ),
     awful.key(
-        {altkey, "Control"},
-        "Down",
+        {},
+        "XF86AudioStop",
         function()
-            os.execute("cmus-remote --stop")
-        end,
-        {description = "cmus stop", group = "cmus"}
+            os.execute("playerctl play-pause")
+        end
+    ),
+    awful.key(
+        {},
+        "XF86AudioPlay",
+        function()
+            os.execute("playerctl play-pause")
+        end
     ),
     awful.key(
         {altkey, "Control"},
         "Left",
         function()
-            os.execute("cmus-remote --prev")
+            os.execute("playerctl previous")
         end,
-        {description = "cmus prev", group = "cmus"}
+        {description = "previous song", group = "music"}
+    ),
+    awful.key(
+        {},
+        "XF86AudioPrev",
+        function()
+            os.execute("playerctl previous")
+        end
     ),
     awful.key(
         {altkey, "Control"},
         "Right",
         function()
-            os.execute("cmus-remote --next")
+            os.execute("playerctl next")
         end,
-        {description = "cmus next", group = "cmus"}
+        {description = "next song", group = "music"}
+    ),
+    awful.key(
+        {},
+        "XF86AudioNext",
+        function()
+            os.execute("playerctl next")
+        end
     ),
     -- Screenshot
     awful.key({}, "Print",
