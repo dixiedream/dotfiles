@@ -30,4 +30,4 @@ x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/chrome=firefox.desktop;
 x-scheme-handler/magnet=transmission-gtk.desktop;
-x-scheme-handler/postman=Postman.desktop;
+x-scheme-handler/postman=Postman.desktop
