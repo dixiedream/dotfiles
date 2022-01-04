@@ -28,5 +28,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-# emacs mode
+
+#------------------------------
+# Keybindings
+#------------------------------
 bindkey -e
+typeset -g -A key
+bindkey "^[[H" beginning-of-line
+bindkey "\033[1~" beginning-of-line
+bindkey "\033[4~" end-of-line
