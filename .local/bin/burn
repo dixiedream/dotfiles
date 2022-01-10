@@ -4,4 +4,7 @@ img=$1
 device=$2
 
 #sudo dd bs=4M if="$img" of="$device" status=progress oflag=direct conv=fsync
-sudo cat $img > $device
+#sudo cat $img > $device
+sudo cp $img $device
+
+notify-send "Bootable USB" "$img burned to $device"
