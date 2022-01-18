@@ -53,5 +53,8 @@ alias trash-empty="rm -rf ~/.local/share/Trash/*"
 # Neovim
 alias vim="nvim"
 
+# Virtualbox
+alias vboxOn="sudo modprobe vboxdrv && sudo modprobe vboxnetadp && sudo modprobe vboxnetflt"
+
 # Xorg 
 alias xorgreload="xrdb -load $HOME/.config/Xresources"

@@ -27,3 +27,13 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+
+
+#------------------------------
+# Keybindings
+#------------------------------
+bindkey -e
+typeset -g -A key
+bindkey "^[[H" beginning-of-line
+bindkey "\033[1~" beginning-of-line
+bindkey "\033[4~" end-of-line
