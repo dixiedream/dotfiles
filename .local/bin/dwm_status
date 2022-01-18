@@ -2,49 +2,58 @@
 # Network speed stuff stolen from http://linuxclues.blogspot.sg/2009/11/shell-script-show-network-speed.html
 
 print_mem(){
-    free -m | awk 'NR==2{printf "%sMb\n", $3 }'
+    free -m | awk 'NR==2{printf "%s%sM\n", "^c#EBCB8B^", $3 }'
 }
 
 print_cpu(){
+    color="^c#bf616a^"
     cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}' | sed "s/\..*//")"
-    printf %s "$cpu%"
+    printf "%sCPU %s%%" $color $cpu
 }
 
 print_network(){
+    downColor="^c#BF616A^"
+    upColor="^c#88c0d0^"
 	logfile=/dev/shm/netlog
 	[ -f "$logfile" ] || echo "0 0" > "$logfile"
 	read -r rxprev txprev < "$logfile"
 	rxcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/rx_bytes)))"
 	txcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/tx_bytes)))"
-	echo "$(bc <<< "scale=2; ($rxcurrent-$rxprev) / 10^6")" "$(bc <<< "scale=2; ($txcurrent-$txprev) / 10^6")"
+	printf "%sD %s %sU %s" $downColor $(bc <<< "scale=2; ($rxcurrent-$rxprev) / 10^6") $upColor $(bc <<< "scale=2; ($txcurrent-$txprev) / 10^6")
 	echo "$rxcurrent $txcurrent" > "$logfile"
 }
 
 print_temp(){
+    color="^c#a3be8c^"
 	test -f /sys/class/thermal/thermal_zone0/temp || return 0
-    printf "%s°C" "$(head -c 2 /sys/class/thermal/thermal_zone0/temp)"
+    printf "%sT %s°C" $color $(head -c 2 /sys/class/thermal/thermal_zone0/temp)
 }
 
 print_bat(){
+    color="^c#eceff4^"
     battery="BAT0"
     capacity="$(cat /sys/class/power_supply/$battery/capacity)%"
     status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/?/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
-    printf "%s%s" "$status" "$capacity"
+    printf "%sB %s%s" $color $status $capacity
 }
 
 print_date(){
-    printf '%s - %s%s ' "$(date '+%b %d')" "$(date '+%H:%M')"    
+    dateColor="^c#8fbcbb^"
+    separatorColor="^c#bf616a^"
+    timeColor="^c#b48ead^"
+    printf "%s%s %s- %s%s" "$dateColor" "$(date '+%b %d')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
 }
 
 print_volume(){
+    color="^c#5e81ac^"
     volstat="$(pactl list sinks)"
     echo "$volstat" | grep -q "Mute: yes" && printf "Muted\\n" && exit
     vol="$(echo "$volstat" | grep '[0-9]\+%' | sed "s,.* \([0-9]\+\)%.*,\1,;1q")"
-    printf "V %s%%" "$vol"
+    printf "%sV %s%%" $color "$vol"
 }
 
 while true
 do
-    xsetroot -name "$(print_network) | M $(print_mem) | CPU $(print_cpu) $(print_temp) | B $(print_bat) | $(print_volume) | $(print_date)"
+    xsetroot -name "$(print_network) $(print_volume) $(print_mem) $(print_cpu) $(print_temp) $(print_bat) $(print_date) "
 	sleep 1
 done
