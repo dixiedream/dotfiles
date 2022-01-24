@@ -41,7 +41,7 @@ print_date(){
     dateColor="^c#8fbcbb^"
     separatorColor="^c#bf616a^"
     timeColor="^c#b48ead^"
-    printf "%s%s %s> %s%s" "$dateColor" "$(date '+%B %d')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
+    printf "%s%s %s> %s%s" "$dateColor" "$(date '+%A %d %B')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
 }
 
 print_volume(){
