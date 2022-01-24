@@ -33,7 +33,7 @@ print_bat(){
     color="^c#eceff4^"
     battery="BAT0"
     capacity="$(cat /sys/class/power_supply/$battery/capacity)%"
-    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/?/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
+    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/~/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
     printf "%sB %s%s" $color $status $capacity
 }
 
@@ -41,13 +41,13 @@ print_date(){
     dateColor="^c#8fbcbb^"
     separatorColor="^c#bf616a^"
     timeColor="^c#b48ead^"
-    printf "%s%s %s- %s%s" "$dateColor" "$(date '+%b %d')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
+    printf "%s%s %s> %s%s" "$dateColor" "$(date '+%A %d %B')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
 }
 
 print_volume(){
     color="^c#5e81ac^"
     volstat="$(pactl list sinks)"
-    echo "$volstat" | grep -q "Mute: yes" && printf "Muted\\n" && exit
+    echo "$volstat" | grep -q "Mute: yes" && printf "%sMuted\\n" $color && exit
     vol="$(echo "$volstat" | grep '[0-9]\+%' | sed "s,.* \([0-9]\+\)%.*,\1,;1q")"
     printf "%sV %s%%" $color "$vol"
 }
