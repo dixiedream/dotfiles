@@ -33,7 +33,7 @@ print_bat(){
     color="^c#eceff4^"
     battery="BAT0"
     capacity="$(cat /sys/class/power_supply/$battery/capacity)%"
-    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/?/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
+    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/~/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
     printf "%sB %s%s" $color $status $capacity
 }
 
@@ -41,7 +41,7 @@ print_date(){
     dateColor="^c#8fbcbb^"
     separatorColor="^c#bf616a^"
     timeColor="^c#b48ead^"
-    printf "%s%s %s- %s%s" "$dateColor" "$(date '+%b %d')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
+    printf "%s%s %s> %s%s" "$dateColor" "$(date '+%B %d')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
 }
 
 print_volume(){
