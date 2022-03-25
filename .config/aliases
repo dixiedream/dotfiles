@@ -60,8 +60,6 @@ alias vim="nvim"
 
 # Virtualbox
 alias \
-    qemuOn="sudo systemctl start libvirtd" \
-    qemuStatus="sudo systemctl status libvirtd" \
     vboxOn="sudo modprobe vboxdrv && sudo modprobe vboxnetadp && sudo modprobe vboxnetflt"
 
 # Xorg 
