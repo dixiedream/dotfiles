@@ -26,6 +26,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 
 
 # Other
+export DOCKER_BUILDKIT=0
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
