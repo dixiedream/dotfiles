@@ -9,6 +9,15 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
+
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'mbbill/undotree'
+" Plug 'tpope/vim-fugitive'
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim' 
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,8 +101,20 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Removes pipes | that act as seperators on splits
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fillchars+=vert:\ 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General stuff
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set relativenumber 
+set nu
+set hidden " keeps buffers in memory
+set noerrorbells
+
+"
+" Some stuff for local projects to be ported
+" set colorcolumn=80
+" set signcolumn=yes
