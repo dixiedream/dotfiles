@@ -57,5 +57,4 @@ set noerrorbells
 
 "
 " Some stuff for local projects to be ported
-set colorcolumn=80
 set signcolumn=yes
