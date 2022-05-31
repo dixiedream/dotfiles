@@ -55,7 +55,7 @@ x-scheme-handler/http=brave.desktop;
 x-scheme-handler/https=brave.desktop;
 x-scheme-handler/magnet=transmission-gtk.desktop;
 x-scheme-handler/postman=Postman.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-KUOHA1.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-DNADL1.desktop
 
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-KUOHA1.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-KUOHA1.desktop;userapp-Telegram Desktop-DNADL1.desktop;
