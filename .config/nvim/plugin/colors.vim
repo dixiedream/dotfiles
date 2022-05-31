@@ -1,6 +1,5 @@
-"let g:lightline = {
-"      \ 'colorscheme': 'wombat',
-"      \ }
+let g:nord_italic = v:false
+colorscheme nord
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors

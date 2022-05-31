@@ -7,6 +7,9 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+" Colorscheme
+Plug 'shaunsingh/nord.nvim'
+
 " Status bar
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -23,6 +26,11 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make' }
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+
 call plug#end()
 
 let mapleader = " "
