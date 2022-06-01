@@ -16,9 +16,6 @@ Plug 'itchyny/vim-gitbranch'
 
 Plug 'ap/vim-css-color'
 
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'mbbill/undotree'
-
 " Telescope
 Plug 'nvim-lua/plenary.nvim' 
 Plug 'nvim-telescope/telescope.nvim'

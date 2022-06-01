@@ -1,23 +1,13 @@
 set laststatus=2
-
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
-
 set number
-
-" Uncomment to prevent non-normal modes showing in powerline and below powerline.
 set noshowmode
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
 set expandtab
-
-" Be smart when using tabs ;)
 set smarttab
-
-" 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
 
@@ -54,7 +44,5 @@ set relativenumber
 set nu
 set hidden " keeps buffers in memory
 set noerrorbells
-
-"
-" Some stuff for local projects to be ported
 set signcolumn=yes
+set nohlsearch
