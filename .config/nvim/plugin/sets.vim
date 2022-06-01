@@ -42,7 +42,7 @@ set fillchars+=vert:\
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set relativenumber 
 set nu
-set hidden " keeps buffers in memory
+"set hidden " keeps buffers in memory
 set noerrorbells
 set signcolumn=yes
 set nohlsearch

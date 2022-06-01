@@ -1,0 +1,15 @@
+#!/bin/sh
+# Change the current directory fuzzy finding it
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~/src ~/.config ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+cd $selected
+clear

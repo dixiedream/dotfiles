@@ -37,3 +37,8 @@ typeset -g -A key
 bindkey "^[[H" beginning-of-line
 bindkey "\033[1~" beginning-of-line
 bindkey "\033[4~" end-of-line
+
+# ------------------------------
+# Custom commands
+# ------------------------------
+bindkey -s ^f ". initSession\n" 
