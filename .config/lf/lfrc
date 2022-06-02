@@ -1,5 +1,5 @@
 # Basic vars
-#set shellopts '-eu'
+set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 set period 1
@@ -8,23 +8,23 @@ set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 # cmds/functions
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*|application/json|inode/x-empty) $EDITOR $fx;;
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-	image/svg+xml) display -- $f ;;
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
-		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
-			[ -z "$file" ] && continue
-			lf -remote "send select \"$file\""
-			lf -remote "send toggle"
-		done &
-		;;
-	audio/*) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-    application/java-archive) java -jar $fx ;;
-	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-	application/pgp-encrypted) $EDITOR $fx ;;
+	    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+	    image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+            text/*|application/json|inode/x-empty) $EDITOR $fx;;
+	    image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	    image/svg+xml) display -- $f ;;
+	    image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
+	    	setsid -f sxiv -aio 2>/dev/null | while read -r file; do
+	    		[ -z "$file" ] && continue
+	    		lf -remote "send select \"$file\""
+	    		lf -remote "send toggle"
+	    	done &
+	    	;;
+	    audio/*) mpv --audio-display=no $f ;;
+	    video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+        application/java-archive) java -jar $fx ;;
+	    application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+	    application/pgp-encrypted) $EDITOR $fx ;;
         *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
 }}
@@ -49,40 +49,27 @@ cmd delete ${{
 	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
-cmd moveto ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	clear; echo "Move to where?"
-	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
-	for x in $fx; do
-		eval mv -iv \"$x\" \"$dest\"
-	done &&
-	notify-send "File(s) moved." "File(s) moved to $dest."
-}}
-
-cmd copyto ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	clear; echo "Copy to where?"
-	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
-	for x in $fx; do
-		eval cp -ivr \"$x\" \"$dest\"
-	done &&
-	notify-send "File(s) copied." "File(s) copies to $dest."
-}}
-
 cmd bulkrename $vidir
 
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+
 # Bindings
-map <c-f> $lf -remote "send $id select '$(fzf)'"
+map <c-f> :fzf_jump
 map D delete
 map E extract
-map C copyto
-map M moveto
 map <c-n> push :mkdir<space>
 map <c-r> reload
-map <c-s> set hidden!
-map <backspace> set hidden!
+map <backspace2> set hidden!
 map <enter> shell
 map x $$f
 map X !$f
@@ -91,21 +78,14 @@ map O $mimeopen --ask $f
 
 map A rename # at the very end
 map c push A<c-u> # new rename
-map I push A<c-a> # at the very beginning
-map i push A<a-b><a-b><a-f> # before extension
-map a push A<a-b> # after extension
 map B bulkrename
 
-map <c-e> down
-map <c-y> up
-map V push :!nvim<space>
+map V push :!nvim<space> # Create file
 
-map W $setsid -f $TERMINAL >/dev/null 2>&1
+map W $setsid -f $TERMINAL >/dev/null 2>&1 # Open current folder in terminal
 
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 
-# Source Bookmarks
-# source "~/.config/lf/shortcutrc"
 # Shortcuts
 map gh cd # go home
 map gc cd ~/.config
