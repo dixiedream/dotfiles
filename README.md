@@ -19,20 +19,20 @@ Here are some details about my setup:
 ### Window management
 The only one to begin with is
 | Keybinding                | Action                                                                   |
-|---------------------------+--------------------------------------------------------------------------|
+|---------------------------|--------------------------------------------------------------------------|
 | MODKEY + S               | opens the helper with all the WM shortcuts     |
 
 ### Shell
 
 | Keybinding                | Action                                                                   |
-|---------------------------+--------------------------------------------------------------------------|
+|---------------------------|--------------------------------------------------------------------------|
 | CTRL + F               | fuzzy find my way to most common used directories  |
 
 ### Editor 
 Leader set as ```space```
 
 | Keybinding                | Action                                                                   |
-|---------------------------+--------------------------------------------------------------------------|
+|---------------------------|--------------------------------------------------------------------------|
 | leader + y               | yank into registry (clipboard stuff) |
 | leader + CarriageReturn | source out init.vim conf |
 | leader + pv | open the explorer |
