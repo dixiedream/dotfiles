@@ -1,5 +1,9 @@
 local telescope = require('telescope')
-telescope.setup {}
+telescope.setup {
+    defaults = {
+        preview = false -- Preview disabled
+    }
+}
 telescope.load_extension('fzf')
 
 local M = {}
