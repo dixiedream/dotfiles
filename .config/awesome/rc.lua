@@ -74,7 +74,7 @@ local cycle_prev = true -- cycle trough all previous client or just the first --
 local font = "monospace"
 local editor = os.getenv("EDITOR") or "vim"
 local browser = os.getenv("BROWSER") or "firefox"
-local filemanager = terminal .. " -e ranger"
+local filemanager = terminal .. " -e lf"
 local scrlocker = "slock"
 
 awful.util.terminal = terminal
