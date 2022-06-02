@@ -33,18 +33,18 @@ Leader set as ```space```
 
 | Keybinding                | Action                                                                   |
 |---------------------------|--------------------------------------------------------------------------|
-| leader + y               | yank into registry (clipboard stuff) |
-| leader + CarriageReturn | source out init.vim conf |
-| leader + pv | open the explorer |
-| leader + + | add split size |
-| leader + - | reduce split size |
+| LEADER + y               | yank into registry (clipboard stuff) |
+| LEADER + CarriageReturn | source out init.vim conf |
+| LEADER + pv | open the explorer |
+| LEADER + + | add split size |
+| LEADER + - | reduce split size |
 | CTRL + c               | exit from insert mode without press Esc |
-| leader + ps | toggle project search | 
+| LEADER + ps | toggle project search | 
 | CTRL + p | toggle fuzzy find file opening | 
-| leader + e               | open diagnostics |
+| LEADER + e               | open diagnostics |
 | gd               | go to definition |
 | K               | toggle hover helper |
-| leader + rn               | rename var |
-| leader + ca               | code actions |
+| LEADER + rn               | rename var |
+| LEADER + ca               | code actions |
 | gr               | open references |
-| leader + f               | format |
+| LEADER + f               | format |
