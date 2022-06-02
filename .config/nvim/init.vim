@@ -12,25 +12,26 @@ Plug 'shaunsingh/nord.nvim'
 
 " Status bar
 Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
 
 Plug 'ap/vim-css-color'
 
-" Telescope
+" Dev stuff (telescope, lsp, highlighting, autocompletion)
 Plug 'nvim-lua/plenary.nvim' 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make' }
-
-" LSP
+"
 Plug 'neovim/nvim-lspconfig'
-
-" Autocompletion
+"
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+"
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
