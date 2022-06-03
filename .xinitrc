@@ -5,7 +5,6 @@ export WALLPAPER_DIR="$HOME/wallpapers"
 export AWT_TOOLKIT=MToolkit
 
 userresources=$HOME/.config/Xresources
-usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
@@ -22,12 +21,12 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
+# Make caps lock a control
+setxkbmap -option ctrl:nocaps
+# Turn off caps lock if on since there is no longer a key for it.
+xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 
 # start some nice programs
-
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
@@ -35,5 +34,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Uncomment for debugging
 setbg & xcompmgr & unclutter -root & dwm_status & exec dwm

@@ -74,7 +74,7 @@ local cycle_prev = true -- cycle trough all previous client or just the first --
 local font = "monospace"
 local editor = os.getenv("EDITOR") or "vim"
 local browser = os.getenv("BROWSER") or "firefox"
-local filemanager = terminal .. " -e ranger"
+local filemanager = terminal .. " -e lf"
 local scrlocker = "slock"
 
 awful.util.terminal = terminal
@@ -260,22 +260,6 @@ globalkeys =
         {description = "decrease master width factor", group = "layout"}
     ),
     awful.key(
-        {modkey, "Control"},
-        "h",
-        function()
-            awful.tag.incncol(1, nil, true)
-        end,
-        {description = "increase the number of columns", group = "layout"}
-    ),
-    awful.key(
-        {modkey, "Control"},
-        "l",
-        function()
-            awful.tag.incncol(-1, nil, true)
-        end,
-        {description = "decrease the number of columns", group = "layout"}
-    ),
-    awful.key(
         {modkey},
         "space",
         function()
@@ -346,7 +330,7 @@ globalkeys =
         {altkey},
         "Up",
         function()
-            os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+            os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}
@@ -355,7 +339,7 @@ globalkeys =
         {altkey},
         "Down",
         function()
-            os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+            os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}

@@ -7,7 +7,7 @@ vim.g.lightline = {
        },
    },
    component_function = {
-        gitbranch = 'gitbranch#name'
+        gitbranch = 'FugitiveHead'
     },
 }
 
