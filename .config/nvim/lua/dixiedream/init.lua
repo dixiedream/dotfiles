@@ -1,3 +1,4 @@
+require('dixiedream/pluginDisabler')
 require('dixiedream/lightline')
 require('dixiedream/cmp')
 require('dixiedream/lspconfig')
