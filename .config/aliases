@@ -56,7 +56,9 @@ streamDownload() {
 alias trash-empty="rm -rf ~/.local/share/Trash/*"
 
 # Neovim
-alias vim="nvim"
+alias \
+    vim="nvim" \
+    visudo="sudo EDITOR=$EDITOR visudo"
 
 # Virtualbox
 alias \
