@@ -167,16 +167,16 @@ globalkeys =
     awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
     -- Default client focus
     awful.key(
-        {modkey, "Control"},
-        "j",
+        {modkey, "Shift"},
+        "h",
         function()
             awful.screen.focus_relative(1)
         end,
         {description = "focus the next screen", group = "screen"}
     ),
     awful.key(
-        {modkey, "Control"},
-        "k",
+        {modkey, "Shift"},
+        "l",
         function()
             awful.screen.focus_relative(-1)
         end,
