@@ -1,10 +1,6 @@
 " Copy to register remap
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-nmap <leader>Y "+Y
-
-" Shout out init vim config 
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 " paste something and keep it available for further pasting.
 xnoremap <leader>p "_dP 
