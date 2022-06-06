@@ -1,5 +1,5 @@
 require('dixiedream/pluginDisabler')
-require('dixiedream/lightline')
+require('dixiedream/statusbar')
 require('dixiedream/cmp')
 require('dixiedream/comments')
 require('dixiedream/lspconfig')

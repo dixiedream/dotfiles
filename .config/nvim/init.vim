@@ -11,7 +11,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'shaunsingh/nord.nvim'
 
 " Status bar
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'ap/vim-css-color'
 
@@ -31,7 +32,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 "
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "
 Plug 'numToStr/Comment.nvim'
 
