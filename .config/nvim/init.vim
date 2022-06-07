@@ -43,7 +43,7 @@ let mapleader = " "
 lua require('dixiedream')
 
 syntax enable   
-let g:rehash256 = 1
-let g:minimap_highlight='Visual'
-let g:python_highlight_all = 1
+" let g:rehash256 = 1
+" let g:minimap_highlight='Visual'
+" let g:python_highlight_all = 1
 
