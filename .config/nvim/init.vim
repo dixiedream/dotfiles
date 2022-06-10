@@ -1,6 +1,5 @@
 """"""""""" VimPlug - Vim plugin manager """""""""""""""""""
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ~/.config/nvim/autoload/
 	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 	autocmd VimEnter * PlugInstall
@@ -28,10 +27,13 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+"
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 "
 Plug 'numToStr/Comment.nvim'
+"
+Plug 'ThePrimeagen/harpoon'
 
 call plug#end()
 
@@ -43,7 +45,4 @@ let mapleader = " "
 lua require('dixiedream')
 
 syntax enable   
-let g:rehash256 = 1
-let g:minimap_highlight='Visual'
-let g:python_highlight_all = 1
 

@@ -21,13 +21,6 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-setKeyMap() {
-    # Make caps lock a control
-    setxkbmap -option ctrl:nocaps
-    # Turn off caps lock if on since there is no longer a key for it.
-    xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
-}
-
 # start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
@@ -36,4 +29,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-setbg & xcompmgr & setKeyMap & unclutter -root & dwm_status & exec dwm
+setbg & xcompmgr & unclutter -root & dwm_status & exec dwm

@@ -19,17 +19,26 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
+
+-- GoLang
+nvim_lsp.gopls.setup{
+    on_attach = on_attach
+}
+
+-- PHP
 nvim_lsp.intelephense.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     filetypes = { 'php' }
 }
 
+-- Typescript
 nvim_lsp.tsserver.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
+-- VueJs
 nvim_lsp.volar.setup {
     capabilities = capabilities,
     on_attach = on_attach,
