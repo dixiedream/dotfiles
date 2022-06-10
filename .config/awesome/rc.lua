@@ -167,6 +167,14 @@ globalkeys =
     awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
     -- Default client focus
     awful.key(
+        {modkey},
+        "p",
+        function()
+            os.execute("autorandr --cycle")
+        end,
+        {description = "cycle through display arrangements", group = "screen"}
+    ),
+    awful.key(
         {modkey, "Shift"},
         "h",
         function()
