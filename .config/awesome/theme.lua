@@ -89,7 +89,12 @@ local bat =
                 perc = perc .. " plug"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "B " .. perc .. " "))
+            local message = "B " .. perc .. " "
+            if perc == "N/A" then
+                message = ""
+            end
+
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, message))
         end
     }
 )
