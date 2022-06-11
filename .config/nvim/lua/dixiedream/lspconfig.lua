@@ -1,7 +1,5 @@
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 local on_attach = function(client, bufnr)
@@ -23,6 +21,31 @@ local nvim_lsp = require('lspconfig')
 -- GoLang
 nvim_lsp.gopls.setup{
     on_attach = on_attach
+}
+
+-- Lua
+nvim_lsp.sumneko_lua.setup {
+  -- settings = {
+  --   Lua = {
+  --     runtime = {
+  --       -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+  --       version = 'LuaJIT',
+  --     },
+  --     diagnostics = {
+  --       -- Get the language server to recognize the `vim` global
+  --       globals = {'vim'},
+  --     },
+  --     workspace = {
+  --       -- Make the server aware of Neovim runtime files
+  --       library = vim.api.nvim_get_runtime_file("", true),
+  --     },
+  --     -- Do not send telemetry data containing a randomized but unique identifier
+  --     telemetry = {
+  --       enable = false,
+  --     },
+  --   },
+  -- },
+  on_attach = on_attach
 }
 
 -- PHP
