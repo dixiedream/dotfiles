@@ -1,5 +1,5 @@
 #!/bin/sh
 ## Autorandr hook script executed after a mode switch has taken place.
 
-notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"
+notify-send "Display profile" "$AUTORANDR_CURRENT_PROFILE"
 exec setbg

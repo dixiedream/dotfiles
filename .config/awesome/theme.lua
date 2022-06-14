@@ -10,7 +10,7 @@ local my_table = awful.util.table
 
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
-theme.font = "monospace 8" 
+theme.font = "monospace 8"
 theme.bg_normal = xrdb.background or "#000000"
 theme.bg_focus = xrdb.background or "#000000"
 theme.bg_urgent = xrdb.background or "#000000"
@@ -41,7 +41,6 @@ colors.date = xrdb.color6
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local mytextclock =
     wibox.widget.textclock(markup(colors.date, "%A %d %B ") .. markup(colors.clockSeparator, ">") .. markup(colors.hours, " %H:%M "))
 mytextclock.font = theme.font
@@ -90,7 +89,12 @@ local bat =
                 perc = perc .. " plug"
             end
 
-            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "B " .. perc .. " "))
+            local message = "B " .. perc .. " "
+            if perc == "N/A" then
+                message = ""
+            end
+
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, message))
         end
     }
 )
