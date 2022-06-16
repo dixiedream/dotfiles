@@ -12,6 +12,7 @@ local options = {
     wildmenu = true,
     incsearch = true,
     swapfile = false,
+    termguicolors = true,
     relativenumber = true,
     nu = true,
     errorbells = false,
