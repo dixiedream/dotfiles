@@ -4,6 +4,7 @@ telescope.setup {
         preview = false -- Preview disabled
     }
 }
+
 telescope.load_extension('fzf')
 
 local project_search = function()
