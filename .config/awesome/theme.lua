@@ -100,9 +100,9 @@ lain.widget.bat(
 )
 
 -- Volume
-theme.volume = lain.widget.pulse {
+theme.volume = lain.widget.pipewire {
     settings = function()
-        vlevel = "V " .. volume_now.left .. "% "
+        vlevel = "V " .. volume_now.value .. "% "
         if volume_now.muted == "yes" then
             vlevel = vlevel .. "M"
         end
