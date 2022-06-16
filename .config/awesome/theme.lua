@@ -42,14 +42,14 @@ colors.date = xrdb.color6
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local mytextclock =
-    wibox.widget.textclock(markup(colors.date, "%A %d %B ") .. markup(colors.clockSeparator, ">") .. markup(colors.hours, " %H:%M "))
+wibox.widget.textclock(markup(colors.date, "%A %d %B ") ..
+    markup(colors.clockSeparator, ">") .. markup(colors.hours, " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
-theme.cal =
-    lain.widget.cal(
+theme.cal = lain.widget.cal(
     {
-        attach_to = {mytextclock},
+        attach_to = { mytextclock },
         notification_preset = {
             font = theme.font .. " 10",
             fg = theme.fg_normal,
@@ -60,7 +60,7 @@ theme.cal =
 
 -- CPU
 local cpu =
-    lain.widget.cpu(
+lain.widget.cpu(
     {
         settings = function()
             widget:set_markup(markup.fontfg(theme.font, xrdb.color1, "CPU " .. cpu_now.usage .. "% "))
@@ -70,7 +70,7 @@ local cpu =
 
 -- Coretemp
 local temp =
-    lain.widget.temp(
+lain.widget.temp(
     {
         settings = function()
             widget:set_markup(markup.fontfg(theme.font, xrdb.color2, "T " .. coretemp_now .. "°C "))
@@ -80,7 +80,7 @@ local temp =
 
 -- Battery
 local bat =
-    lain.widget.bat(
+lain.widget.bat(
     {
         settings = function()
             local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
@@ -99,24 +99,22 @@ local bat =
     }
 )
 
--- ALSA volume
-theme.volume =
-    lain.widget.alsa(
-    {
-        settings = function()
-            if volume_now.status == "off" then
-                volume_now.level = volume_now.level .. "M"
-            end
-
-            widget:set_markup(markup.fontfg(theme.font, "#5e81ac", "V " .. volume_now.level .. "% "))
+-- Volume
+theme.volume = lain.widget.pipewire {
+    settings = function()
+        vlevel = "V " .. volume_now.value .. "% "
+        if volume_now.muted == "yes" then
+            vlevel = vlevel .. "M"
         end
-    }
-)
+        widget:set_markup(lain.util.markup("#7493d2", vlevel .. " "))
+    end
+}
+
 
 -- Net
 local netdowninfo = wibox.widget.textbox()
 local netupinfo =
-    lain.widget.net(
+lain.widget.net(
     {
         settings = function()
             widget:set_markup(markup.fontfg(theme.font, xrdb.color14, "U " .. net_now.sent .. " "))
@@ -127,7 +125,7 @@ local netupinfo =
 
 -- MEM
 local memory =
-    lain.widget.mem(
+lain.widget.mem(
     {
         settings = function()
             widget:set_markup(markup.fontfg(theme.font, xrdb.color3, mem_now.used .. "M "))
@@ -137,7 +135,7 @@ local memory =
 
 function theme.at_screen_connect(s)
     -- Quake application
-    s.quake = lain.util.quake({app = awful.util.terminal})
+    s.quake = lain.util.quake({ app = awful.util.terminal })
 
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.suit.tile)
@@ -172,8 +170,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox =
-        awful.wibar({position = "top", screen = s, height = dpi(19), bg = theme.bg_normal, fg = theme.fg_normal})
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(19), bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {

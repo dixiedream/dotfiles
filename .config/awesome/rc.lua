@@ -289,23 +289,21 @@ globalkeys = my_table.join(
         {},
         "XF86AudioLowerVolume",
         function()
-            os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
+            os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%")
             beautiful.volume.update()
         end),
     awful.key(
         {},
         "XF86AudioRaiseVolume",
         function()
-            os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
+            os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%")
             beautiful.volume.update()
         end),
     awful.key(
         {},
         "XF86AudioMute",
         function()
-            os.execute(
-                string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel)
-            )
+            os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle")
             beautiful.volume.update()
         end),
     awful.key(
@@ -319,7 +317,7 @@ globalkeys = my_table.join(
         { altkey },
         "Up",
         function()
-            os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
+            os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%")
             beautiful.volume.update()
         end,
         { description = "volume up", group = "hotkeys" }
@@ -328,7 +326,7 @@ globalkeys = my_table.join(
         { altkey },
         "Down",
         function()
-            os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
+            os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%")
             beautiful.volume.update()
         end,
         { description = "volume down", group = "hotkeys" }
@@ -337,9 +335,7 @@ globalkeys = my_table.join(
         { altkey },
         "m",
         function()
-            os.execute(
-                string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel)
-            )
+            os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle")
             beautiful.volume.update()
         end,
         { description = "toggle mute", group = "hotkeys" }
