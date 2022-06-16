@@ -1,27 +1,32 @@
+# Dunst setup
+
 [global]
+    ### GLOBAL
     monitor = 0
     follow = keyboard
-    width = 370
-    height = 350
-    offset = 0x19
-    padding = 2
-    horizontal_padding = 2
-    transparency = 25
-    font = Monospace 12
+    offset = 10x30
+    padding = 10
+    horizontal_padding = 10 
+    font = Monospace 10
     format = "<b>%s</b>\n%b"
+    # Border width
+    frame_width = 1
 
 [urgency_low]
-    background = "#1d2021"
-    foreground = "#928374"
+    # Configuration for Low urgency
+    foreground = "#D8DEE9"
+    frame_color = "#D8DEE9"
+    background = "#2E3440"
     timeout = 3
 
 [urgency_normal]
-    foreground = "#ebdbb2"
-    background = "#458588"
+    foreground = "#D8DEE9"
+    frame_color = "#D8DEE9"
+    background = "#3B4252"
     timeout = 5
 
 [urgency_critical]
-    background = "#1cc24d"
-    foreground = "#ebdbb2"
-    frame_color = "#fabd2f"
+    background = "#BF616A"
+    foreground = "#EBDBB2"
+    frame_color = "#D08770"
     timeout = 10
