@@ -16,5 +16,5 @@ end
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<Leader>ps', function() builtin.live_grep() end, opts)
-vim.keymap.set('n', '<Leader>e', function() builtin.diagnostics() end, opts)
+vim.keymap.set('n', '<Leader>E', function() builtin.diagnostics() end, opts)
 vim.keymap.set('n', '<C-p>', project_files, opts)
