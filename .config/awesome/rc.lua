@@ -61,8 +61,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "xcompmgr" })
-run_once({ "unclutter -root" })
+run_once({ "xcompmgr", "unclutter -root" })
 
 -- }}}
 
