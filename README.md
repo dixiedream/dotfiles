@@ -3,7 +3,7 @@ My arch dotfiles
 
 ## Information 
 
-Here are some details about my setup:
+Here are some details about the setup:
 
 - **OS:** [Arch Linux](https://archlinux.org)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)
@@ -17,7 +17,7 @@ Here are some details about my setup:
 ## Keybindings
 
 ### Window management
-The only one to begin with is
+Modkey set as Super (Win/Mac Cmd) key
 | Keybinding                | Action                                                                   |
 |---------------------------|--------------------------------------------------------------------------|
 | MODKEY + S               | opens the helper with all the WM shortcuts     |

@@ -7,15 +7,14 @@ telescope.setup {
 
 telescope.load_extension('fzf')
 
-local project_search = function()
-   require('telescope.builtin').live_grep()
-end
-
+local builtin = require("telescope.builtin")
 local project_files = function()
     local opts = {}
-    local ok = pcall(require('telescope.builtin').git_files, opts)
-    if not ok then require('telescope.builtin').find_files(opts) end
+    local ok = pcall(builtin.git_files, opts)
+    if not ok then builtin.find_files(opts) end
 end
 
-vim.keymap.set('n', '<Leader>ps', project_search, {noremap = true, silent = true})
-vim.keymap.set('n', '<C-p>', project_files, {noremap = true, silent = true})
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<Leader>ps', function() builtin.live_grep() end, opts)
+vim.keymap.set('n', '<Leader>e', function() builtin.diagnostics() end, opts)
+vim.keymap.set('n', '<C-p>', project_files, opts)
