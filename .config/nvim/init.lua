@@ -1,6 +1,7 @@
 require "dixiedream.options"
 require "dixiedream.keymaps"
 require "dixiedream.pluginDisabler"
+require "dixiedream.netrw"
 require "dixiedream.plugins"
 require "dixiedream.colors"
 require "dixiedream.statusbar"
