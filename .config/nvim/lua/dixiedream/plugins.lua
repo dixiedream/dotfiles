@@ -47,6 +47,7 @@ return packer.startup(function(use)
     use 'nvim-lualine/lualine.nvim'
 
     -- Dev stuff (telescope, lsp, highlighting, autocompletion)
+    use 'windwp/nvim-autopairs'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
