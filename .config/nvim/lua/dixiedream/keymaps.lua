@@ -1,4 +1,3 @@
--- vim.keymap.set('n', '<leader>1', function() harpoonUI.nav_file(1) end, {desc = "Go to file 1", silent = true, noremap = true })
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
@@ -13,10 +12,10 @@ vim.g.maplocalleader = " "
 
 -- NORMAL --
 -- Easier moving between splits
-keymap("n", "<C-j>", "<C-w>j>", opts)
-keymap("n", "<C-k>", "<C-w>k>", opts)
-keymap("n", "<C-l>", "<C-w>l>", opts)
-keymap("n", "<C-h>", "<C-w>h>", opts)
+keymap("n", "<C-j>", "<C-w><C-j>", opts)
+keymap("n", "<C-k>", "<C-w><C-k>", opts)
+keymap("n", "<C-l>", "<C-w><C-l>", opts)
+keymap("n", "<C-h>", "<C-w><C-h>", opts)
 
 -- Split window management
 keymap("n", "<leader>+", ":vertical resize +5<cr>", opts)
@@ -35,7 +34,3 @@ keymap("i", "<C-c>", "<esc>", opts)
 -- VISUAL --
 keymap("v", "<leader>y", "\"+y", opts)
 
--- TERMINAL --
--- Make esc leave the terminal mode
-keymap("t", "<leader><esc>", "<C-\\><C-n>", term_opts)
-keymap("t", "<esc><esc>", "<C-\\><C-n>", term_opts)

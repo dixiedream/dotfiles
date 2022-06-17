@@ -47,6 +47,7 @@ return packer.startup(function(use)
     use 'nvim-lualine/lualine.nvim'
 
     -- Dev stuff (telescope, lsp, highlighting, autocompletion)
+    use 'windwp/nvim-autopairs'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -65,6 +66,8 @@ return packer.startup(function(use)
     --
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
+    --
+    use 'jose-elias-alvarez/null-ls.nvim'
     --
     use 'numToStr/Comment.nvim'
     --

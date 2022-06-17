@@ -36,10 +36,6 @@ vim.cmd "set guioptions-=T" -- remove toolbar
 vim.cmd "set guioptions-=r" -- remove right-hand scrollbar
 vim.cmd "set guioptions-=L" -- remove left-hand scrollbar
 
--- Explorer 
-vim.cmd "let g:netrw_banner = 0" -- Disable explorer banner
-vim.cmd "let g:netrw_winsize = 25"
-
 -- Ignores
 vim.cmd "set wildignore+=*.pyc"
 vim.cmd "set wildignore+=*_build/*"
