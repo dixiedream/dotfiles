@@ -31,7 +31,6 @@ local function factory(args)
         followtag           = args.followtag or false,
         week_number         = args.week_number or "none",
         week_number_format  = args.week_number_format or args.week_number == "left" and "%3d | " or "| %-3d",
-        icons               = args.icons or helpers.icons_dir .. "cal/white/",
         notification_preset = args.notification_preset or {
             font = "Monospace 10", fg = "#FFFFFF", bg = "#000000"
         }
@@ -73,7 +72,6 @@ local function factory(args)
             strx = string.format("%s%s", string.rep(" ", 3 - tostring(x):len()), strx)
             notifytable[#notifytable+1] = string.format("%-4s%s", strx, (x+st_day)%7==0 and x ~= mth_days and "\n" or "")
         end
-        if string.len(cal.icons or "") > 0 and today then cal.icon = cal.icons .. today .. ".png" end
         cal.month, cal.year = d.month, d.year
 
         if cal.week_number ~= "none" then
@@ -156,7 +154,6 @@ local function factory(args)
         cal.notification = naughty.notify {
             preset  = cal.notification_preset,
             screen  = cal.followtag and awful.screen.focused() or scr or 1,
-            icon    = cal.icon,
             timeout = type(seconds) == "number" and seconds or cal.notification_preset.timeout or 5,
             text    = text
         }
