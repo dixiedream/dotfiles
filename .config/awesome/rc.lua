@@ -5,14 +5,11 @@ local ipairs, string, os, table, tostring, type = ipairs, string, os, table, tos
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local lain = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table = awful.util.table
--- local dpi = require("beautiful.xresources").apply_dpi
--- require("beautiful.xresources").apply_dpi
 -- }}}
 
 -- {{{ Error handling
@@ -61,19 +58,17 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "xcompmgr", "unclutter -root" })
+run_once({ "setbg", "xcompmgr", "unclutter -root" })
 
 -- }}}
 
 -- {{{ Variable definitions
-local modkey = "Mod4"
+local modkey = "Mod4" -- Win / Mac Cmd button
 local altkey = "Mod1"
-local terminal = os.getenv("TERMINAL") or "st"
+local terminal = os.getenv("TERMINAL")
 local vi_focus = false -- vi-like client focus - https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle trough all previous client or just the first -- https://github.com/lcpz/awesome-copycats/issues/274
-local font = "monospace"
-local editor = os.getenv("EDITOR") or "vim"
-local browser = os.getenv("BROWSER") or "firefox"
+local browser = os.getenv("BROWSER")
 local filemanager = terminal .. " -e lf"
 local scrlocker = "slock"
 
@@ -119,12 +114,22 @@ beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
 
 -- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal(
-    "property::geometry",
-    function(s)
-        os.execute("setbg")
+-- screen.connect_signal(
+--     "property::geometry",
+--     function(s)
+--         os.execute("setbg")
+--     end
+-- )
+screen.connect_signal("property::geometry", function(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
     end
-)
+end)
 --
 
 -- No borders when rearranging only 1 non-floating or maximized client
@@ -149,28 +154,48 @@ awful.screen.connect_for_each_screen(
 )
 -- }}}
 
+-- {{{ Keybinds functions }}}
+local function raiseVolume()
+    os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%")
+    beautiful.volume.update()
+end
+
+local function lowerVolume()
+    os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%")
+    beautiful.volume.update()
+end
+
+local function toggleMute()
+    os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    beautiful.volume.update()
+end
+
+local function toggleMicMute()
+    os.execute("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+end
+
+local function playPauseAudio()
+    os.execute("playerctl play-pause")
+end
+
+local function previousSong()
+    os.execute("playerctl previous")
+end
+
+local function nextSong()
+    os.execute("playerctl next")
+end
+
 -- {{{ Key bindings
 globalkeys = my_table.join(
--- X screen locker
-    awful.key(
-        { altkey, modkey },
-        "l",
-        function()
-            os.execute(scrlocker)
-        end,
-        { description = "lock screen", group = "hotkeys" }
-    ),
+-- Screen locker
+    awful.key({ altkey, modkey }, "l", function() os.execute(scrlocker) end,
+        { description = "lock screen", group = "hotkeys" }),
     -- Hotkeys
     awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
     -- Default client focus
-    awful.key(
-        { modkey },
-        "p",
-        function()
-            os.execute("autorandr --cycle")
-        end,
-        { description = "cycle through display arrangements", group = "screen" }
-    ),
+    awful.key({ modkey }, "p", function() os.execute("autorandr --cycle") end,
+        { description = "cycle through display arrangements", group = "screen" }),
     awful.key(
         { modkey, "Shift" },
         "h",
@@ -234,14 +259,8 @@ globalkeys = my_table.join(
         { description = "decrement useless gaps", group = "tag" }
     ),
     -- Standard program
-    awful.key(
-        { modkey },
-        "Return",
-        function()
-            awful.spawn(terminal)
-        end,
-        { description = "open a terminal", group = "launcher" }
-    ),
+    awful.key({ modkey }, "Return", function() awful.spawn(terminal) end,
+        { description = "open a terminal", group = "launcher" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
     awful.key(
@@ -250,7 +269,7 @@ globalkeys = my_table.join(
         function()
             awful.tag.incmwfact(0.05)
         end,
-        { description = "increase master width factor", group = "layout" }
+        { description = "increase master width", group = "layout" }
     ),
     awful.key(
         { altkey, "Shift" },
@@ -258,172 +277,38 @@ globalkeys = my_table.join(
         function()
             awful.tag.incmwfact(-0.05)
         end,
-        { description = "decrease master width factor", group = "layout" }
+        { description = "decrease master width", group = "layout" }
     ),
-    awful.key(
-        { modkey },
-        "space",
-        function()
-            awful.layout.inc(1)
-        end,
-        { description = "select next", group = "layout" }
-    ),
+    awful.key({ modkey }, "space", function() awful.layout.inc(1) end, { description = "select next", group = "layout" })
+    ,
     -- Brightness
-    awful.key(
-        {},
-        "XF86MonBrightnessUp",
-        function()
-            os.execute("brightnessctl set 10%+")
-        end
-    ),
-    awful.key(
-        {},
-        "XF86MonBrightnessDown",
-        function()
-            os.execute("brightnessctl set 10%-")
-        end
-    ),
+    awful.key({}, "XF86MonBrightnessUp", function() os.execute("brightnessctl set 10%+") end),
+    awful.key({}, "XF86MonBrightnessDown", function() os.execute("brightnessctl set 10%-") end),
     -- Volume Keys
-    awful.key(
-        {},
-        "XF86AudioLowerVolume",
-        function()
-            os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%")
-            beautiful.volume.update()
-        end),
-    awful.key(
-        {},
-        "XF86AudioRaiseVolume",
-        function()
-            os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%")
-            beautiful.volume.update()
-        end),
-    awful.key(
-        {},
-        "XF86AudioMute",
-        function()
-            os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-            beautiful.volume.update()
-        end),
-    awful.key(
-        {},
-        "XF86AudioMicMute",
-        function()
-            os.execute("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
-        end),
-    -- ALSA volume control
-    awful.key(
-        { altkey },
-        "Up",
-        function()
-            os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%")
-            beautiful.volume.update()
-        end,
-        { description = "volume up", group = "hotkeys" }
-    ),
-    awful.key(
-        { altkey },
-        "Down",
-        function()
-            os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%")
-            beautiful.volume.update()
-        end,
-        { description = "volume down", group = "hotkeys" }
-    ),
-    awful.key(
-        { altkey },
-        "m",
-        function()
-            os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-            beautiful.volume.update()
-        end,
-        { description = "toggle mute", group = "hotkeys" }
-    ),
+    awful.key({}, "XF86AudioLowerVolume", lowerVolume),
+    awful.key({}, "XF86AudioRaiseVolume", raiseVolume),
+    awful.key({}, "XF86AudioMute", toggleMute),
+    awful.key({}, "XF86AudioMicMute", toggleMicMute),
+    awful.key({ altkey }, "Up", raiseVolume, { description = "volume up", group = "hotkeys" }),
+    awful.key({ altkey }, "Down", lowerVolume, { description = "volume down", group = "hotkeys" }),
+    awful.key({ altkey }, "m", toggleMute, { description = "toggle mute", group = "hotkeys" }),
     -- Music player controls (requires playerctl package)
-    awful.key(
-        { altkey, "Control" },
-        "Up",
-        function()
-            os.execute("playerctl play-pause")
-        end,
-        { description = "play - pause", group = "music" }
-    ),
-    awful.key(
-        {},
-        "XF86AudioStop",
-        function()
-            os.execute("playerctl play-pause")
-        end
-    ),
-    awful.key(
-        {},
-        "XF86AudioPlay",
-        function()
-            os.execute("playerctl play-pause")
-        end
-    ),
-    awful.key(
-        { altkey, "Control" },
-        "Left",
-        function()
-            os.execute("playerctl previous")
-        end,
-        { description = "previous song", group = "music" }
-    ),
-    awful.key(
-        {},
-        "XF86AudioPrev",
-        function()
-            os.execute("playerctl previous")
-        end
-    ),
-    awful.key(
-        { altkey, "Control" },
-        "Right",
-        function()
-            os.execute("playerctl next")
-        end,
-        { description = "next song", group = "music" }
-    ),
-    awful.key(
-        {},
-        "XF86AudioNext",
-        function()
-            os.execute("playerctl next")
-        end
-    ),
+    awful.key({ altkey, "Control" }, "Up", playPauseAudio, { description = "play - pause", group = "music" }),
+    awful.key({}, "XF86AudioStop", playPauseAudio),
+    awful.key({}, "XF86AudioPlay", playPauseAudio),
+    awful.key({ altkey, "Control" }, "Left", previousSong, { description = "previous song", group = "music" }),
+    awful.key({}, "XF86AudioPrev", previousSong),
+    awful.key({ altkey, "Control" }, "Right", nextSong, { description = "next song", group = "music" }),
+    awful.key({}, "XF86AudioNext", nextSong),
     -- Screenshot
-    awful.key({}, "Print",
-        function()
-            os.execute("screenshot")
-        end
-    ),
+    awful.key({}, "Print", function() os.execute("screenshot") end),
     -- User programs
-    awful.key(
-        { modkey },
-        "q",
-        function()
-            awful.spawn(browser)
-        end,
-        { description = "run browser", group = "launcher" }
-    ),
-    awful.key(
-        { modkey },
-        "n",
-        function()
-            awful.spawn(filemanager)
-        end,
-        { description = "run file manager", group = "launcher" }
-    ),
+    awful.key({ modkey }, "q", function() awful.spawn(browser) end, { description = "browser", group = "launcher" }),
+    awful.key({ modkey }, "n", function() awful.spawn(filemanager) end,
+        { description = "file manager", group = "launcher" }),
     -- dmenu
-    awful.key(
-        { modkey },
-        "d",
-        function()
-            os.execute("dmenu_run -i")
-        end,
-        { description = "show dmenu", group = "launcher" }
-    )
+    awful.key({ modkey }, "d", function() os.execute("dmenu_run -i") end,
+        { description = "launcher", group = "launcher" })
 )
 
 clientkeys = my_table.join(
@@ -592,4 +477,4 @@ client.connect_signal(
     end
 )
 
-awful.spawn.with_shell("setbg")
+-- awful.spawn.with_shell("setbg")
