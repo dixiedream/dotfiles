@@ -4,8 +4,7 @@ My dotfiles, theme heavily inspired by [AwesomeWM multicolor](https://github.com
 ![screenshot](https://github.com/dixiedream/dixiedream/blob/main/rice.png)
 
 ## Information 
-
-Here are some details about the setup:
+Some details about the setup:
 
 - **OS:** [Arch Linux](https://archlinux.org)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)
@@ -14,6 +13,7 @@ Here are some details about the setup:
 - **Editor:** [neovim](https://github.com/neovim/neovim) 
 - **Compositor:** [xcompmgr](https://wiki.archlinux.org/title/Xcompmgr)
 - **Application Launcher:** [dmenu](https://github.com/dixiedream/dmenu)
+- **Rice colorscheme:** [nord](https://www.nordtheme.com/)
 
 
 ## Keybindings
