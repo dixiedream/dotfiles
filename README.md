@@ -1,5 +1,7 @@
-# dotfiles
-My arch dotfiles
+# .dotfiles
+My dotfiles, theme heavily inspired by [AwesomeWM multicolor](https://github.com/lcpz/awesome-copycats#gallery)
+
+![screenshot](https://github.com/dixiedream/dixiedream/blob/main/rice.png)
 
 ## Information 
 
