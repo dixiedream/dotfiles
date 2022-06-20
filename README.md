@@ -1,9 +1,10 @@
-# dotfiles
-My arch dotfiles
+# .dotfiles
+My dotfiles, theme heavily inspired by [AwesomeWM multicolor](https://github.com/lcpz/awesome-copycats#gallery)
+
+![screenshot](https://github.com/dixiedream/dixiedream/blob/main/rice.png)
 
 ## Information 
-
-Here are some details about my setup:
+Some details about the setup:
 
 - **OS:** [Arch Linux](https://archlinux.org)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)
@@ -12,12 +13,13 @@ Here are some details about my setup:
 - **Editor:** [neovim](https://github.com/neovim/neovim) 
 - **Compositor:** [xcompmgr](https://wiki.archlinux.org/title/Xcompmgr)
 - **Application Launcher:** [dmenu](https://github.com/dixiedream/dmenu)
+- **Rice colorscheme:** [nord](https://www.nordtheme.com/)
 
 
 ## Keybindings
 
 ### Window management
-The only one to begin with is
+Modkey set as Super (Win/Mac Cmd) key
 | Keybinding                | Action                                                                   |
 |---------------------------|--------------------------------------------------------------------------|
 | MODKEY + S               | opens the helper with all the WM shortcuts     |

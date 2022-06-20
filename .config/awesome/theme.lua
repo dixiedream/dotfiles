@@ -1,3 +1,4 @@
+local gears = require("gears")
 local lain = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
@@ -10,6 +11,7 @@ local my_table = awful.util.table
 
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome"
+theme.wallpaper = os.getenv("HOME") .. "/.config/wall.png" or ""
 theme.font = "monospace 8"
 theme.bg_normal = xrdb.background or "#000000"
 theme.bg_focus = xrdb.background or "#000000"
@@ -134,11 +136,12 @@ lain.widget.mem(
 )
 
 function theme.at_screen_connect(s)
-    -- Quake application
-    s.quake = lain.util.quake({ app = awful.util.terminal })
+    -- If wallpaper is a function, call it with the screen
+    local wallpaper = theme.wallpaper
+    gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.suit.tile)
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
