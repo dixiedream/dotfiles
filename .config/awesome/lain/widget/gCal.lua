@@ -29,7 +29,7 @@ local function factory(args)
     }
 
     function cal.launchCalendar()
-        awful.spawn(browser .. " https://calendar.google.com/calendar")
+        awful.spawn(browser .. " " .. "https://calendar.google.com/calendar/u/0/r/year")
     end
 
     function cal.attach(widget)
