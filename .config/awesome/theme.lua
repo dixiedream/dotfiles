@@ -49,16 +49,9 @@ wibox.widget.textclock(markup(colors.date, "%A %d %B ") ..
 mytextclock.font = theme.font
 
 -- Calendar
-theme.cal = lain.widget.cal(
-    {
-        attach_to = { mytextclock },
-        notification_preset = {
-            font = theme.font .. " 10",
-            fg = theme.fg_normal,
-            bg = theme.bg_normal
-        }
-    }
-)
+theme.cal = lain.widget.gCal({
+    attach_to = { mytextclock }
+})
 
 -- CPU
 local cpu =

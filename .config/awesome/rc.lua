@@ -113,13 +113,6 @@ beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
 -- }}}
 
 -- {{{ Screen
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
--- screen.connect_signal(
---     "property::geometry",
---     function(s)
---         os.execute("setbg")
---     end
--- )
 screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
     if beautiful.wallpaper then
