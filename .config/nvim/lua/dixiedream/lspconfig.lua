@@ -23,11 +23,20 @@ local nvim_lsp = require('lspconfig')
 
 -- GoLang
 nvim_lsp.gopls.setup {
+    capabilities = capabilities,
     on_attach = on_attach
+}
+
+-- HTML
+nvim_lsp.html.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = { 'html' }
 }
 
 -- Lua
 nvim_lsp.sumneko_lua.setup {
+    capabilities = capabilities,
     settings = {
         Lua = { diagnostics = { globals = { 'vim' }, }, },
     },
