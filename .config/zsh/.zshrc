@@ -33,8 +33,7 @@ _comp_options+=(globdots)		# Include hidden files.
 #------------------------------
 # Keybindings
 #------------------------------
-export KEYTIMEOUT=1
-
+bindkey -e # Set EmacsMode, Zsh vi mode actually sucks
 typeset -g -A key
 bindkey "^[[H" beginning-of-line
 bindkey "\033[1~" beginning-of-line
