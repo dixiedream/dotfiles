@@ -12,6 +12,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table = awful.util.table
 -- }}}
 
+-- Xrandr script
+local xrandr = require("xrandr")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -187,7 +190,8 @@ globalkeys = my_table.join(
     -- Hotkeys
     awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
     -- Default client focus
-    awful.key({ modkey }, "p", function() os.execute("autorandr --cycle") end,
+    -- awful.key({ modkey }, "p", function() os.execute("autorandr --cycle") end,
+    awful.key({ modkey }, "p", function() xrandr.xrandr() end,
         { description = "cycle through display arrangements", group = "screen" }),
     awful.key(
         { modkey, "Shift" },

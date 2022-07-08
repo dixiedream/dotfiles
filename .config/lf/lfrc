@@ -67,7 +67,6 @@ cmd fzf_jump ${{
 map <c-f> :fzf_jump
 map D delete
 map E extract
-map <c-n> push :mkdir<space>
 map <c-r> reload
 map <backspace2> set hidden!
 map <enter> shell
@@ -79,10 +78,6 @@ map O $mimeopen --ask $f
 map A rename # at the very end
 map c push A<c-u> # new rename
 map B bulkrename
-
-map V push :!nvim<space> # Create file
-
-map W $setsid -f $TERMINAL >/dev/null 2>&1 # Open current folder in terminal
 
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 
