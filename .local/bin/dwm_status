@@ -55,5 +55,5 @@ print_volume(){
 while true
 do
     xsetroot -name "$(print_network) $(print_volume) $(print_mem) $(print_cpu) $(print_temp) $(print_bat) $(print_date) "
-	sleep 1
+	sleep 3
 done
