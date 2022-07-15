@@ -77,7 +77,6 @@ map O $mimeopen --ask $f
 
 map A rename # at the very end
 map c push A<c-u> # new rename
-map B bulkrename
 
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 
