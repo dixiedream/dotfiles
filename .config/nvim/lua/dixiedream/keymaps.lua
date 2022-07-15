@@ -16,6 +16,7 @@ keymap("n", "<C-j>", "<C-w><C-j>", opts)
 keymap("n", "<C-k>", "<C-w><C-k>", opts)
 keymap("n", "<C-l>", "<C-w><C-l>", opts)
 keymap("n", "<C-h>", "<C-w><C-h>", opts)
+keymap("n", "q:", "<nop>", opts) -- Disable the command history!!
 
 -- Split window management
 keymap("n", "<leader>+", ":vertical resize +5<cr>", opts)
