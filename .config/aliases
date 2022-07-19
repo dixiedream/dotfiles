@@ -5,6 +5,10 @@ alias \
     awesome-config="$EDITOR $HOME/.config/awesome/rc.lua" \
     awesome-theme-config="$EDITOR $HOME/.config/awesome/theme.lua"
 
+alias \
+    btOn="sudo systemctl start bluetooth" \
+    btOff="sudo systemctl stop bluetooth"
+
 # Copying and moving
 alias \
     cp="cp -iv" \
