@@ -1,27 +1,30 @@
 local options = {
-    laststatus = 2,  -- set last window to always have status line
-    number = true,  -- set numbered lines
-    showmode = false, -- we don't need to see -- INSERT -- anymore
+    errorbells = false,
     expandtab = true, -- convert tabs to spaces
-    smarttab = true, -- a Tab in front of a line inserts blanks
-    shiftwidth = 4, -- number of spaces inserted for indentation
-    tabstop = 4, -- insert spaces for tab
+    guifont = "monospace:12",
+    hlsearch = false,
+    incsearch = true,
+    laststatus = 2,  -- set last window to always have status line
     mouse = "a", -- allow the mouse to be used in neovim
+    nu = true,
+    number = true,  -- set numbered lines
+    relativenumber = true,
+    scrolloff = 8,
+    shiftwidth = 4, -- number of spaces inserted for indentation
+    showmode = false, -- we don't need to see -- INSERT -- anymore
+    sidescrolloff = 8,
+    signcolumn = "yes",
+    smartindent = true,
+    smarttab = true, -- a Tab in front of a line inserts blanks
+    softtabstop = 4,
     splitbelow = true,
     splitright = true,
-    wildmenu = true,
-    incsearch = true,
     swapfile = false,
+    tabstop = 4, -- insert spaces for tab
     termguicolors = true,
-    relativenumber = true,
-    nu = true,
-    errorbells = false,
-    signcolumn = "yes",
-    hlsearch = false,
-    sidescrolloff = 8,
-    scrolloff = 8,
+    wildmenu = true,
+    wrap = false,
     writebackup = false,
-    guifont = "monospace:12",
 }
 
 for k, v in pairs(options) do
