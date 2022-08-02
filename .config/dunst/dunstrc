@@ -5,8 +5,8 @@
     monitor = 0
     follow = keyboard
     offset = 10x30
-    padding = 10
-    horizontal_padding = 10 
+    padding = 5
+    horizontal_padding = 5
     font = Monospace 10
     format = "<b>%s</b>\n%b"
     # Border width
