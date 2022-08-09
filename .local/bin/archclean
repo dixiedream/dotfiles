@@ -1,13 +1,18 @@
 #!/bin/sh
-
-# Clean package cache
-paccache --remove
-
-# Remove unused packages
-sudo pacman -Rns $(pacman -Qtdq)
-
-# Clean AUR unneeded dependencies
-yay -Yc
-
-# Clean AUR cache files
-yay -Sc --aur
+release=$(lsb_release -is)
+if [ "$release" == "Arch" ]; then
+    # Clean package cache
+    paccache --remove
+    
+    # Remove unused packages
+    sudo pacman -Rns $(pacman -Qtdq)
+    
+    # Clean AUR unneeded dependencies
+    yay -Yc
+    
+    # Clean AUR cache files
+    yay -Sc --aur
+else
+    sudo apt autoclean
+    sudo apt autopurge
+fi
