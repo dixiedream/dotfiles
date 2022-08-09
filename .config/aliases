@@ -16,6 +16,11 @@ alias \
     rm="rm -vI" \
     mkdir="mkdir -pv"
 
+# Debian stuff
+alias \
+    poweroff="systemctl poweroff" \
+    reboot="systemctl reboot"
+
 # Listing and random coloring
 alias \
     df='df -h' \
