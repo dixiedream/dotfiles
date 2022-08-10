@@ -51,7 +51,7 @@ alias \
 
 # Pacman & AUR
 alias \
-    u="sudo pacman -Syu" \
+    u="archupdate" \
     a="yay -Syu"
 
 # Download .m3u8 video streams

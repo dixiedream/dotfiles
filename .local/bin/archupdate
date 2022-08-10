@@ -1,0 +1,7 @@
+#!/bin/sh
+release=$(lsb_release -is)
+if [ "$release" = "Arch" ]; then
+    pacman -Syu
+else 
+    sudo apt autoremove -y && sudo apt update && sudo apt upgrade
+fi
