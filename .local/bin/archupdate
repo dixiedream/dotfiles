@@ -3,5 +3,5 @@ release=$(lsb_release -is)
 if [ "$release" = "Debian" ]; then
     sudo apt autoremove -y && sudo apt update && sudo apt upgrade
 else 
-    pacman -Syu
+    sudo pacman -Syu
 fi
