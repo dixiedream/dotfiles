@@ -1,11 +1,11 @@
 #!/bin/sh
 release=$(lsb_release -is)
-if [ "$release" = "Arch" ]; then
+if [ "$release" = "Debian" ]; then
+    apt list --installed > ~/.config/pkglist.txt
+else 
     # Save every package installed
     pacman -Qqen > ~/.config/pkglist.txt
     
     # Save every AUR installed package
     pacman -Qqem > ~/.config/aurpkglist.txt
-else 
-    apt list --installed > ~/.config/pkglist.txt
 fi

@@ -1,6 +1,9 @@
 #!/bin/sh
 release=$(lsb_release -is)
-if [ "$release" == "Arch" ]; then
+if [ "$release" == "Debian" ]; then
+    sudo apt autoclean
+    sudo apt autopurge
+else
     # Clean package cache
     paccache --remove
     
@@ -12,7 +15,4 @@ if [ "$release" == "Arch" ]; then
     
     # Clean AUR cache files
     yay -Sc --aur
-else
-    sudo apt autoclean
-    sudo apt autopurge
 fi
