@@ -3,5 +3,6 @@ release=$(grep ID= /etc/os-release | awk 'NR == 1 {print $0}' | sed 's/ID=//')
 if [ "$release" = "arch" ]; then
     sudo pacman -Syu
 else 
-    sudo apt autoremove -y && sudo apt update && sudo apt upgrade
+    # sudo apt autoremove -y && sudo apt update && sudo apt upgrade
+    sudo apt full-upgrade
 fi
