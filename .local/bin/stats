@@ -1,7 +1,0 @@
-#!/bin/sh
-
-pkill herbe & \
-herbe "$(date +'%I:%M %P')" " "\
-      "$(date +'%a, %d %b')" " "\
-      "$(set -- $(sensors | grep -i core); printf '%s\n' "CPU: $4")" " "\
-      "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%";

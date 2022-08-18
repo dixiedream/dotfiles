@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Network speed stuff stolen from http://linuxclues.blogspot.sg/2009/11/shell-script-show-network-speed.html
 
 print_mem(){

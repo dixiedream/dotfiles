@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 usage() {
     echo "    $(tput bold)menu calc$(tput sgr0)
