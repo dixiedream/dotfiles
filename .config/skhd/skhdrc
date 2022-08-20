@@ -1,18 +1,18 @@
 # client
-lcmd + ctrl - enter : yabai -m window --swap recent
+lcmd + ctrl - "enter" : yabai -m window --swap recent
 lcmd - f : yabai -m window --toggle native-fullscreen # zoom-parent zoom-fullscreen native-fullscreen expose
 lcmd - j : yabai -m window --focus next
 lcmd - k : yabai -m window --focus prev
 lcmd - o : yabai -m window --display recent; yabai -m display --focus recent
-lcmd - tab : yabai -m window --focus recent
+lcmd - "tab" : yabai -m window --focus recent
 
 # launcher
-lcmd - return : open -a Alacritty
+lcmd - "return" : open -a Alacritty
 alt - q : open -a 'Brave Browser'
 alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e lf
 
 # balance size of windows
-shift + alt - 0 : yabai -m space --balance
+# shift + alt - 0 : yabai -m space --balance
 
 # move window and focus desktop
 shift + lcmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
