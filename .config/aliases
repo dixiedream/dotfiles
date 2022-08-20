@@ -71,7 +71,9 @@ alias \
 
 # Virtualbox
 alias \
-    vboxOn="sudo modprobe vboxdrv && sudo modprobe vboxnetadp && sudo modprobe vboxnetflt"
+    vboxOn="sudo modprobe vboxdrv && sudo modprobe vboxnetadp && sudo modprobe vboxnetflt" \
+    virtOn="sudo systemctl start libvirtd" \
+    virtOff="sudo systemctl stop libvirtd"
 
-# Xorg 
+# Xorg
 alias xorgreload="xrdb -load $HOME/.config/Xresources"
