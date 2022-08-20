@@ -6,7 +6,8 @@ parse_git_branch() {
 }
 
 function precmd {
-    PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$fg[green]%}$(parse_git_branch)%{$reset_color%}$ "
+    NEWLINE=$'\n'
+    PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE> "
 }
 
 setopt autocd		# Automatically cd into typed directory.
@@ -42,4 +43,4 @@ bindkey "\033[4~" end-of-line
 # ------------------------------
 # Custom commands
 # ------------------------------
-bindkey -s ^f ". initSession\n" 
+bindkey -s ^f ". initSession\n"
