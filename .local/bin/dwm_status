@@ -31,17 +31,22 @@ print_temp(){
 
 print_bat(){
     color="^c#eceff4^"
-    battery="BAT0"
-    capacity="$(cat /sys/class/power_supply/$battery/capacity)%"
-    status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/~/;s/[Ff]ull//" /sys/class/power_supply/$battery/status)
-    printf "%sB %s%s" $color $status $capacity
+    batteries=( "BAT0" "BAT1" )
+    for b in "${batteries[@]}"
+    do
+        if [ -d "/sys/class/power_supply/$b" ]; then
+            capacity="$(cat /sys/class/power_supply/$b/capacity)%"
+            status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/~/;s/[Ff]ull//" /sys/class/power_supply/$b/status)
+            printf "%sB %s%s " $color $status $capacity
+        fi
+    done
 }
 
 print_date(){
     dateColor="^c#8fbcbb^"
     separatorColor="^c#bf616a^"
     timeColor="^c#b48ead^"
-    printf "%s%s %s> %s%s" "$dateColor" "$(date '+%A %d %B')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"    
+    printf "%s%s %s> %s%s" "$dateColor" "$(date '+%A %d %B')" "$separatorColor" "$timeColor" "$(date '+%H:%M')"
 }
 
 print_volume(){
@@ -54,6 +59,6 @@ print_volume(){
 
 while true
 do
-    xsetroot -name "$(print_network) $(print_volume) $(print_mem) $(print_cpu) $(print_temp) $(print_bat) $(print_date) "
+    xsetroot -name "$(print_network) $(print_volume) $(print_mem) $(print_cpu) $(print_temp) $(print_bat)$(print_date) "
 	sleep 3
 done
