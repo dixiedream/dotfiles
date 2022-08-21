@@ -8,6 +8,13 @@ window:
   dynamic_padding: false
   decorations: buttonless #none
 
+font:
+  normal:
+    family: "SFMono Nerd Font"
+    style: Regular
+  size: 22.0
+  use_thin_strokes: true
+
 colors:
   primary:
     background: '#2e3440'
