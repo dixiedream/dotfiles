@@ -1,13 +1,13 @@
 # client
-lcmd + ctrl - "enter" : yabai -m window --swap recent
-lcmd - f : yabai -m window --toggle native-fullscreen # zoom-parent zoom-fullscreen native-fullscreen expose
-lcmd - j : yabai -m window --focus next
-lcmd - k : yabai -m window --focus prev
-lcmd - o : yabai -m window --display recent; yabai -m display --focus recent
-lcmd - "tab" : yabai -m window --focus recent
+alt + ctrl - return : yabai -m window --swap recent
+alt - f : yabai -m window --toggle native-fullscreen
+alt - j : yabai -m window --focus next
+alt - k : yabai -m window --focus prev
+alt - o : yabai -m window --display recent; yabai -m display --focus recent
+alt - tab : yabai -m window --focus recent
 
 # launcher
-lcmd - "return" : open -a Alacritty
+alt - return : open -na Alacritty
 alt - q : open -a 'Brave Browser'
 alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e lf
 
@@ -15,21 +15,17 @@ alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e lf
 # shift + alt - 0 : yabai -m space --balance
 
 # move window and focus desktop
-shift + lcmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
-shift + lcmd - 2 : yabai -m window --space 2; yabai -m space --focus 2
-shift + lcmd - 3 : yabai -m window --space 3; yabai -m space --focus 3
-shift + lcmd - 4 : yabai -m window --space 4; yabai -m space --focus 4
-shift + lcmd - 5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-shift + lcmd - n : yabai -m space --create && \
+shift + alt - n : yabai -m space --create && \
                    index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
                    yabai -m window --space "${index}" && \
                    yabai -m space --focus "${index}"
-
-# send window to monitor and follow focus
-# shift + lcmd - n : yabai -m window --display next; yabai -m display --focus next
-# shift + lcmd - p : yabai -m window --display previous; yabai -m display --focus previous
 
 # increase window size
 shift + alt - h : yabai -m window --resize top:0:-20
