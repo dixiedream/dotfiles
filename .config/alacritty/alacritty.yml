@@ -5,7 +5,8 @@ window:
   padding:
     x: 6
     y: 6
-  decorations: none
+  dynamic_padding: false
+  decorations: buttonless #none
 
 colors:
   primary:
