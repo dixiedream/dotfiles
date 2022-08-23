@@ -2,13 +2,13 @@
 autoload -U colors && colors	# Load colors
 
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/λ \1/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 function precmd {
     NEWLINE=$'\n'
     # PROMPT="%B%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[red]%}>%{$reset_color%} "
-    PROMPT="%B%{$fg[blue]%}%n%{$fg[cyan]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[yellow]%}>%{$reset_color%} "
+    PROMPT="%B%F{red}%n%F{3}@%F{11}%M %F{green}%~ %F{magenta}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%F{14}>%{$reset_color%} "
 }
 
 setopt autocd		# Automatically cd into typed directory.
