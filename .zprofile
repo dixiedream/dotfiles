@@ -7,7 +7,8 @@
 
 # Adds `~/.local/bin` to $PATH
 # export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+# export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR="nvim"
 export TERMINAL="st"
@@ -44,7 +45,7 @@ export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
 export LESS_TERMCAP_se="$(printf '%b' '[0m')"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
-#export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # Start X if not
 # Start graphical server on tty1 if not already running.

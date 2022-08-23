@@ -2,11 +2,13 @@
 autoload -U colors && colors	# Load colors
 
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/λ \1/'
 }
 
 function precmd {
-    PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$fg[green]%}$(parse_git_branch)%{$reset_color%}$ "
+    NEWLINE=$'\n'
+    # PROMPT="%B%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[red]%}>%{$reset_color%} "
+    PROMPT="%B%{$fg[blue]%}%n%{$fg[cyan]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[yellow]%}>%{$reset_color%} "
 }
 
 setopt autocd		# Automatically cd into typed directory.
@@ -42,4 +44,4 @@ bindkey "\033[4~" end-of-line
 # ------------------------------
 # Custom commands
 # ------------------------------
-bindkey -s ^f ". initSession\n" 
+bindkey -s ^f ". initSession\n"

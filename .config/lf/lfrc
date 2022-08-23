@@ -29,8 +29,6 @@ cmd open ${{
     esac
 }}
 
-cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
-
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
@@ -68,6 +66,7 @@ map <c-f> :fzf_jump
 map D delete
 map E extract
 map <c-r> reload
+map <c-l> clear
 map <backspace2> set hidden!
 map <enter> shell
 map x $$f
@@ -77,7 +76,6 @@ map O $mimeopen --ask $f
 
 map A rename # at the very end
 map c push A<c-u> # new rename
-map B bulkrename
 
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 
