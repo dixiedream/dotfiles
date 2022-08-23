@@ -6,7 +6,7 @@ My dotfiles, theme heavily inspired by [AwesomeWM multicolor](https://github.com
 ## Information
 Some details about the setup:
 
-- **OS:** [Arch Linux](https://archlinux.org)
+- **OS:** [Arch Linux](https://archlinux.org) (although the repo works on Debian too)
 - **WM:** [dwm](https://github.com/dixiedream/dwm)
 - **Terminal:** [st](https://github.com/dixiedream/st)
 - **Shell:** [zsh](https://www.zsh.org/)
@@ -14,7 +14,6 @@ Some details about the setup:
 - **Compositor:** [xcompmgr](https://wiki.archlinux.org/title/Xcompmgr)
 - **Application Launcher:** [dmenu](https://github.com/dixiedream/dmenu)
 - **Rice colorscheme:** [nord](https://www.nordtheme.com/)
-
 
 ## Keybindings
 
