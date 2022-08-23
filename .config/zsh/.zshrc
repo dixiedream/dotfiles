@@ -7,7 +7,8 @@ parse_git_branch() {
 
 function precmd {
     NEWLINE=$'\n'
-    PROMPT="%B%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[red]%}>%{$reset_color%} "
+    # PROMPT="%B%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[red]%}>%{$reset_color%} "
+    PROMPT="%B%{$fg[blue]%}%n@%M %{$fg[magenta]%}%~ %{$fg[green]%}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%{$fg[yellow]%}>%{$reset_color%} "
 }
 
 setopt autocd		# Automatically cd into typed directory.
