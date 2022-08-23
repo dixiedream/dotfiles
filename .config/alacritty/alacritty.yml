@@ -3,14 +3,14 @@ env:
 
 window:
   padding:
-    x: 6
-    y: 6
+    x: 3
+    y: 3
   dynamic_padding: false
-  decorations: buttonless #none
+  decorations: none
 
 font:
   normal:
-    family: "SFMono Nerd Font"
+    # family: "SFMono Nerd Font"
     style: Regular
   size: 22.0
   use_thin_strokes: true
