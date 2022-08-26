@@ -30,7 +30,7 @@ export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 
 # GoLang stuff
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 
 # Other
 export DOCKER_BUILDKIT=0 # temp fix for compose not building images
