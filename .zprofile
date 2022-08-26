@@ -33,7 +33,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 
 # Other
-export DOCKER_BUILDKIT=0 # temp fix for compose not building images
+# export DOCKER_BUILDKIT=0 # temp fix for compose not building images
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
