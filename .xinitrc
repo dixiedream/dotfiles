@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Environment variables
-export WALLPAPER_DIR="$HOME/wallpapers"
 export AWT_TOOLKIT=MToolkit
 
 userresources=$HOME/.config/Xresources
