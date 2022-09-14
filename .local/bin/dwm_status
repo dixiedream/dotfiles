@@ -31,14 +31,19 @@ print_temp(){
 
 print_bat(){
     color="^c#eceff4^"
-    batteries=( "BAT0" "BAT1" )
-    for b in "${batteries[@]}"
-    do
-        if [ -d "/sys/class/power_supply/$b" ]; then
-            capacity="$(cat /sys/class/power_supply/$b/capacity)%"
-            status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging/plug /;s/[Uu]nknown/~/;s/[Ff]ull//" /sys/class/power_supply/$b/status)
-            printf "%sB %s%s " $color $status $capacity
-        fi
+    for battery in /sys/class/power_supply/BAT?*; do
+	    [ -n "${capacity+x}" ] && printf " "
+	    case "$(cat "$battery/status" 2>&1)" in
+	    	"Full") status="" ;;
+	    	"Discharging") status="discharging" ;;
+	    	"Charging") status="plug " ;;
+	    	"Not charging") status="X" ;;
+	    	"Unknown") status="~" ;;
+	    	*) exit 1 ;;
+	    esac
+	    capacity="$(cat "$battery/capacity" 2>&1)"
+	    [ "$status" = "discharging" ] && [ "$capacity" -le 18 ] && status="" && dunstify -h string:x-dunst-stack-tag:low-battery -u CRITICAL "Help" "Low battery!"
+        printf "%sB %s%s%% " $color $status $capacity
     done
 }
 
