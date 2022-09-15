@@ -35,14 +35,14 @@ print_bat(){
 	    [ -n "${capacity+x}" ] && printf " "
 	    case "$(cat "$battery/status" 2>&1)" in
 	    	"Full") status="" ;;
-	    	"Discharging") status="discharging" ;;
+	    	"Discharging") isDischarging="yes" ;;
 	    	"Charging") status="plug " ;;
 	    	"Not charging") status="X" ;;
 	    	"Unknown") status="~" ;;
 	    	*) exit 1 ;;
 	    esac
 	    capacity="$(cat "$battery/capacity" 2>&1)"
-	    [ "$status" = "discharging" ] && [ "$capacity" -le 18 ] && status="" && dunstify -h string:x-dunst-stack-tag:low-battery -u CRITICAL "Help" "Low battery!"
+	    [ "$isDischarging" = "yes" ] && [ "$capacity" -le 18 ] && unset isDischarging && dunstify -h string:x-dunst-stack-tag:low-battery -u CRITICAL "Help" "Low battery!"
         printf "%sB %s%s%% " $color $status $capacity
     done
 }
