@@ -10,6 +10,10 @@ function precmd {
     PROMPT="%B%F{red}%n%F{11}@%F{3}%M %F{green}%~ %F{magenta}$(parse_git_branch)%{$reset_color%}$NEWLINE%B%F{14}>%{$reset_color%} "
 }
 
+# NVM stuff
+export NVM_LAZY_LOAD=true
+source ~/.config/zsh/zsh-nvm/zsh-nvm.plugin.zsh
+
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
