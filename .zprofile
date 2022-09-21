@@ -6,8 +6,6 @@
 #
 
 # Adds `~/.local/bin` to $PATH
-# export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
-# export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR="nvim"
@@ -33,7 +31,6 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 
 # Other
-# export DOCKER_BUILDKIT=0 # temp fix for compose not building images
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
@@ -48,6 +45,5 @@ export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
-# Start X if not
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx
