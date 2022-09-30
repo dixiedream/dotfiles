@@ -31,19 +31,35 @@ dmenu.font: monospace:size=9
 *fading: 35
 *fadeColor: nord3
 
+! Black
 *.color0: nord1
+! Red
 *.color1: nord11
+! Green
 *.color2: nord14
+! Yellow
 *.color3: nord13
+! Dark blue
 *.color4: nord9
+! Magenta
 *.color5: nord15
+! Cyan
 *.color6: nord8
+! Gray
 *.color7: nord5
+! Light black
 *.color8: nord3
+! Light red
 *.color9: nord11
+! light green
 *.color10: nord14
+! light yellow
 *.color11: nord12
+! light blue
 *.color12: nord9
+! light magenta
 *.color13: nord15
+! light cyan
 *.color14: nord7
+! light gray
 *.color15: nord6
