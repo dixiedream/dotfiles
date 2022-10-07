@@ -1,0 +1,8 @@
+#!/bin/sh
+# When you want to completely erase an HD/USB/...
+# ... just before sell
+
+device=$1
+bytes=${2:-4096}
+
+dd if=/dev/urandom of="$device" bs="$bytes" status=progress
