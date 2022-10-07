@@ -32,10 +32,9 @@ print_temp(){
 print_bat(){
     color="^c#eceff4^"
     for battery in /sys/class/power_supply/BAT?*; do
-	    # [ -n "${capacity+x}" ] && printf " "
 	    case "$(cat "$battery/status" 2>&1)" in
 	    	"Full") status="" ;;
-	    	"Discharging") isDischarging="yes" ;;
+	    	"Discharging") isDischarging="yes" && status="" ;;
 	    	"Charging") status="plug " ;;
 	    	"Not charging") status="X" ;;
 	    	"Unknown") status="~" ;;
