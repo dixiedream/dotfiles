@@ -31,6 +31,7 @@ print_temp(){
 
 print_bat(){
     color="^c#eceff4^"
+    maxCapacity=0
     for battery in /sys/class/power_supply/BAT?*; do
 	    case "$(cat "$battery/status" 2>&1)" in
 	    	"Full") status="" ;;
@@ -41,7 +42,8 @@ print_bat(){
 	    	*) exit 1 ;;
 	    esac
 	    capacity="$(cat "$battery/capacity" 2>&1)"
-	    [ "$isDischarging" = "yes" ] && [ "$capacity" -le 18 ] && unset isDischarging && dunstify -h string:x-dunst-stack-tag:low-battery -u CRITICAL "Help" "Low battery!"
+      [ "$maxCapacity" -le "$capacity" ] && maxCapacity=$capacity
+	    [ "$isDischarging" = "yes" ] && [ "$maxCapacity" -le 18 ] && unset isDischarging && dunstify -h string:x-dunst-stack-tag:low-battery -u CRITICAL "Help" "Low battery!"
         printf "%sB %s%s%% " $color $status $capacity
     done
 }
