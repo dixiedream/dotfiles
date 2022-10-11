@@ -10,9 +10,8 @@ window:
 
 font:
   normal:
-    # family: "SFMono Nerd Font"
     style: Regular
-  size: 22.0
+  size: 16.0
   use_thin_strokes: true
 
 colors:
@@ -86,4 +85,5 @@ key_bindings:
   - { key: D,              mods: Alt,                               action: ScrollPageDown }
   - { key: C,              mods: Alt,                               action: Copy }
   - { key: V,              mods: Alt,                               action: Paste }
-
+  - { key: K,              mods: Alt,                               action: ScrollLineUp }
+  - { key: J,              mods: Alt,                               action: ScrollLineDown }
