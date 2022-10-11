@@ -81,3 +81,9 @@ key_bindings:
   - { key: J,              mods: Alt|Shift,                         action: DecreaseFontSize }
   - { key: F,              mods: Alt,                               action: ToggleFullscreen }
   - { key: C,              mods: Alt|Shift,                         action: Quit }
+  - { key: Return,         mods: Control|Shift,                     action: SpawnNewInstance }
+  - { key: U,              mods: Alt,                               action: ScrollPageUp }
+  - { key: D,              mods: Alt,                               action: ScrollPageDown }
+  - { key: C,              mods: Alt,                               action: Copy }
+  - { key: V,              mods: Alt,                               action: Paste }
+
