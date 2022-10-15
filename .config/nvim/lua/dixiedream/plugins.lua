@@ -42,7 +42,8 @@ packer.init {
 return packer.startup(function(use)
     use "wbthomason/packer.nvim" -- Have packer manage itself
     -- Colorscheme
-    use 'shaunsingh/nord.nvim'
+    -- use 'shaunsingh/nord.nvim'
+    use 'folke/tokyonight.nvim'
     -- Status bar
     use 'nvim-lualine/lualine.nvim'
 
