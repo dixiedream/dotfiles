@@ -12,6 +12,10 @@
     # Border width
     frame_width = 1
 
+[play_sound]
+    summary = "*"
+    script = ~/.config/dunst/alert.sh
+
 [urgency_low]
     # Configuration for Low urgency
     foreground = "#D8DEE9"
