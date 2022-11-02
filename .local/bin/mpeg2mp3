@@ -1,5 +1,5 @@
 #!/bin/sh
 
 for a in ./*.mpeg; do
-  < /dev/null ffmpeg -i "$a" -qscale:a 0 "${a[@]/%mpeg/mp3}"
+  < /dev/null ffmpeg -i "$a" -acodec libmp3lame -ac 2 -ar 44100 -ab 320k -f mp3 "${a[@]/%mpeg/mp3}"
 done
