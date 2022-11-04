@@ -7,9 +7,7 @@ else
     selected=$(find ~/src ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
+if [[ -n $selected ]]; then
+  cd $selected
+  clear
 fi
-
-cd $selected
-clear

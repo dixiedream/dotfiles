@@ -1,3 +1,3 @@
 #!/bin/sh
 
-paplay ~/.config/dunst/alert.wav
+[ "$(dunstctl is-paused)" = "false" ] && paplay ~/.config/dunst/alert.wav
