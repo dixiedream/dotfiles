@@ -1,5 +1,8 @@
 #!/bin/sh
 
-[ "$(dunstctl is-paused)" = "false" ] && \
-  [ "$DUNST_STACK_TAG" != "low-battery" ] && \
+isPaused=$(dunstctl is-paused)
+stackTag=$DUNST_STACK_TAG
+
+[ "$isPaused" = "false" ] && \
+  [ "$stackTag" != "low-battery" ] && \
     paplay ~/.config/dunst/alert.wav
