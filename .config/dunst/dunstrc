@@ -9,6 +9,8 @@
     horizontal_padding = 5
     font = Monospace 10
     format = "<b>%s</b>\n%b"
+    #sticky_history = true
+    #dmenu = "/usr/bin/dmenu -p dunst"
     # Border width
     frame_width = 1
 
