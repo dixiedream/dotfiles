@@ -46,6 +46,7 @@ return packer.startup(function(use)
     use 'folke/tokyonight.nvim'
     -- Status bar
     use 'nvim-lualine/lualine.nvim'
+    use 'lewis6991/impatient.nvim'
 
     -- Dev stuff (telescope, lsp, highlighting, autocompletion)
     use 'windwp/nvim-autopairs'
