@@ -43,3 +43,6 @@ Leader set as ```space```
 | LEADER + ca               | code actions |
 | gr               | open references |
 | LEADER + f               | format |
+
+## Install
+The best way to install is through my [ansible scripts](https://github.com/dixiedream/ansible.git)
