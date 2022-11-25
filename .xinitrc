@@ -9,4 +9,11 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-setbg & dunst & xcompmgr & unclutter -root & dwm_status & exec dwm
+setbg &
+
+autostart="dunst xcompmgr unclutter pipewire pipewire-pulse wireplumber dwm_status"
+for program in $autostart; do
+  pidof -s "$program" || "$program" &
+done >/dev/null 2>&1
+
+exec dwm
