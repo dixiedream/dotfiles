@@ -11,7 +11,7 @@ fi
 
 setbg &
 
-autostart="dunst xcompmgr unclutter pipewire pipewire-pulse wireplumber dwm_status"
+autostart="dunst xcompmgr unclutter pipewire dwm_status"
 for program in $autostart; do
   pidof -s "$program" || "$program" &
 done >/dev/null 2>&1
