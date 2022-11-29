@@ -1,16 +1,8 @@
 #!/bin/sh
-release=$(grep ID= /etc/os-release | awk 'NR == 1 {print $0}' | sed 's/ID=//')
-if [ "$release" = "arch" ]; then
-    # Clean package cache
+if [ -x "$(command -v "pacman")" ]; then
     paccache --remove
-    
-    # Remove unused packages
     sudo pacman -Rns $(pacman -Qtdq)
-    
-    # Clean AUR unneeded dependencies
     yay -Yc
-    
-    # Clean AUR cache files
     yay -Sc --aur
 else
     sudo apt autoclean
