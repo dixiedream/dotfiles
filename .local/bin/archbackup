@@ -1,6 +1,5 @@
 #!/bin/sh
-release=$(grep ID= /etc/os-release | awk 'NR == 1 {print $0}' | sed 's/ID=//')
-if [ "$release" = "arch" ]; then
+if [ -x "$(command -v "pacman")" ]; then
     # Save every package installed
     pacman -Qqen > ~/.config/pkglist.txt
 
@@ -8,4 +7,8 @@ if [ "$release" = "arch" ]; then
     pacman -Qqem > ~/.config/aurpkglist.txt
 else
     apt list --installed | cut -d'/' -f1 > ~/.config/pkglist.txt
+
+    if [ -x "$(command -v "dconf")" ]; then
+      dconf dump / > ~/.config/dconf.txt
+    fi
 fi
