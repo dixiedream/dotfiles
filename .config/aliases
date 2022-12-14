@@ -42,8 +42,9 @@ alias \
 alias \
     ga="git add ." \
     gf="git flow" \
+    gp="git pull" \
     gs="git status" \
-    gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" \
+    gl="git log --graph --full-history --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" \
     commit="git commit -m" \
     pushu="git push -u origin"
 
