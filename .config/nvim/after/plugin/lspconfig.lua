@@ -67,5 +67,10 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.volar.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { 'vue' }
+  filetypes = { 'vue' },
+  init_options = {
+    typescript = {
+      tsdk = '/usr/lib/node_modules/typescript/lib'
+    }
+  }
 }
