@@ -42,6 +42,7 @@ export HISTFILE="${XDG_DATA_HOME}/history"
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export LESSHISTFILE="-"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export npm_config_prefix="$HOME/.local"
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
