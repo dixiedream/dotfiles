@@ -36,7 +36,7 @@ nvim_lsp.html.setup {
 }
 
 -- Lua
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
   settings = {
     Lua = { diagnostics = { globals = { 'vim' }, }, },
