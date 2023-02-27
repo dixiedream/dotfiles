@@ -70,7 +70,7 @@ nvim_lsp.volar.setup {
   filetypes = { 'vue' },
   init_options = {
     typescript = {
-      tsdk = '/usr/lib/node_modules/typescript/lib'
+      tsdk = '/home/ale/.local/lib/node_modules/typescript/lib'
     }
   }
 }
