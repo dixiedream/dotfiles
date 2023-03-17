@@ -2,4 +2,4 @@
 ## Autorandr hook script executed after a mode switch has taken place.
 
 dunstify -h string:x-dunst-stack-tag:autorandr "Display profile" "$AUTORANDR_CURRENT_PROFILE"
-exec setbg
+setbg

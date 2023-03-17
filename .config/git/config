@@ -1,7 +1,9 @@
 [user]
-	email = dixiedream@hotmail.it 
+	email = dixiedream@hotmail.it
 	name = Alessandro
 [pull]
 	rebase = false
 [init]
 	defaultBranch = main
+[core]
+  editor = nvim
