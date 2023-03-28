@@ -30,7 +30,9 @@ alias \
     diff="diff --color"
 
 # Dotfiles config
-alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias \
+  config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME" \
+  lg-config="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # Docker
 alias \
