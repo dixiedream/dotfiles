@@ -37,6 +37,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME}/android"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export GTK_THEME="Nordic"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc-2.0"
 export HISTFILE="${XDG_DATA_HOME}/history"
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
