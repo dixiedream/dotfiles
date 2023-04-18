@@ -1,0 +1,13 @@
+#!/bin/sh
+
+mode=${1:-0}
+file="/sys/class/leds/platform::micmute/brightness"
+current=$(sudo cat $file)
+
+if [[ $current = 0 ]]; then
+  mode=1
+else
+  mode=0
+fi
+
+echo $mode | sudo tee $file

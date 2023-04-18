@@ -1,5 +1,7 @@
 #!/bin/sh
 
+launcher=$LAUNCHER
+
 usage() {
     echo "    $(tput bold)menu calc$(tput sgr0)
     A calculator for use with bemenu or dmenu(2)
@@ -13,7 +15,7 @@ usage() {
     The answer can be used for further calculations
 
     The expression may need quotation marks if
-    launched outside of Rofi/dmenu"
+    launched outside of bemenu/dmenu"
     exit
 }
 
@@ -35,7 +37,8 @@ action=$(echo -e "Copy to clipboard\nClear\nClose" | $menu -p "= $answer")
 
 case $action in
     "Clear") $0 ;;
-    "Copy to clipboard") echo -n "$answer" | xclip -selection clipboard ;;
+    # "Copy to clipboard") echo -n "$answer" | xclip -selection clipboard ;;
+    "Copy to clipboard") echo -n "$answer" | wl-copy ;;
     "Close") ;;
     "") ;;
     *) $0 "$answer $action" ;;

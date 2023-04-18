@@ -5,7 +5,7 @@
 
 if [ "$LAUNCHER" == "bemenu" ]; then
   # Wayland
-  $LAUNCHER -p "$1" --password --no-exec </dev/null
+  $LAUNCHER -p "$1" -x hide --no-exec </dev/null
 else
   # Xorg
   sbColor="$(xrdb -query -all | grep color11 | awk '{print $2}')"
