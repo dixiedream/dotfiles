@@ -31,8 +31,8 @@ alias \
 
 # Dotfiles config
 alias \
-  config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME" \
-  lg-config="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+    config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME" \
+    lg-config="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # Docker
 alias \
