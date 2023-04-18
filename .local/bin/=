@@ -1,8 +1,10 @@
 #!/bin/bash
 
+launcher=$LAUNCHER
+
 usage() {
     echo "    $(tput bold)menu calc$(tput sgr0)
-    A calculator for use with Rofi or dmenu(2)
+    A calculator for use with bemenu or dmenu(2)
     Basic usage:
     = 4+2
     = (4+2)/(4+3)
@@ -13,7 +15,7 @@ usage() {
     The answer can be used for further calculations
 
     The expression may need quotation marks if
-    launched outside of Rofi/dmenu"
+    launched outside of bemenu/dmenu"
     exit
 }
 
@@ -22,10 +24,10 @@ case $1 in
 esac
 
 # Path to menu application
-if [[ -n $(command -v dmenu) ]]; then
-    menu="$(command -v dmenu)"
+if [[ -n $(command -v $LAUNCHER) ]]; then
+    menu="$(command -v $LAUNCHER)"
 else
-    echo >&2 "Dmenu not found"
+    echo >&2 "$LAUNCHER not found"
     exit
 fi
 
@@ -35,7 +37,8 @@ action=$(echo -e "Copy to clipboard\nClear\nClose" | $menu -p "= $answer")
 
 case $action in
     "Clear") $0 ;;
-    "Copy to clipboard") echo -n "$answer" | xclip -selection clipboard ;;
+    # "Copy to clipboard") echo -n "$answer" | xclip -selection clipboard ;;
+    "Copy to clipboard") echo -n "$answer" | wl-copy ;;
     "Close") ;;
     "") ;;
     *) $0 "$answer $action" ;;

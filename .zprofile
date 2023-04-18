@@ -8,9 +8,9 @@
 export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 
 export EDITOR="nvim"
-export TERMINAL="st"
-export BROWSER="brave"
-export LAUNCHER="dmenu"
+export TERMINAL="alacritty"
+export BROWSER="firefox"
+export LAUNCHER="bemenu"
 
 # Colorful less
 export LESS=-R
@@ -33,6 +33,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 
 # App specs
+export BEMENU_OPTS="--cw 1 --hp 10 --nb '#24283b' --tf '#24283b' --tb '#7aa2f7' --fb '#24283b' --hb '#7aa2f7' --hf '#24283b' --ab '#24283b'"
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME}/android"
 export AWT_TOOLKIT=MToolkit
@@ -43,13 +44,20 @@ export HISTFILE="${XDG_DATA_HOME}/history"
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export LESSHISTFILE="-"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export MOZ_ENABLE_WAYLAND=1
 export npm_config_prefix="$HOME/.local"
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export SDL_VIDEODRIVER=wayland
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 # Start graphical server on tty1 if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  export XDG_CURRENT_DESKTOP="Hyprland"
+  export XDG_SESSION_TYPE="wayland"
+  export XDG_SESSION_DESKTOP="Hyprland"
+  exec Hyprland
+fi

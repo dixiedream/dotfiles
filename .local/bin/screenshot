@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# Requires maim. It lets you
+# Requires grim, slurp and wl-copy. It lets you
 # choose the kind of screenshot to take, including copying the image or even
 # highlighting an area to copy. scrotcucks on suicidewatch right now.
 
-case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
-	"a selected area") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
-	"full screen") maim pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
-	"a selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
-	"full screen (copy)") maim | xclip -selection clipboard -t image/png ;;
+case "$(printf "a selected area\\nfull screen\\na selected area (copy)\\nfull screen (copy)" | bemenu -l 4 -i -p "Screenshot which area?")" in
+  "a selected area") grim -g "$(slurp)" pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"full screen") grim pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"a selected area (copy)") grim -g "$slurp" - | wl-copy  ;;
+	"full screen (copy)") grim | wl-copy ;;
 esac

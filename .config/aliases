@@ -31,8 +31,8 @@ alias \
 
 # Dotfiles config
 alias \
-  config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME" \
-  lg-config="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+    config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME" \
+    lg-config="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # Docker
 alias \
@@ -67,6 +67,9 @@ streamDownload() {
     filename="${2:-movie}"
     ffmpeg -i "$1" -c copy -bsf:a aac_adtstoasc "$filename".mp4
 }
+
+# Sway
+alias sway-config="$EDITOR ~/.config/sway/config"
 
 # Trash
 alias trash-empty="rm -rf ~/.local/share/Trash/*"

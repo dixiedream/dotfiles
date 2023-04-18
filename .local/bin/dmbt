@@ -15,9 +15,10 @@
 # Thanks to x70b1 (https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/system-bluetooth-bluetoothctl)
 #
 # Depends on:
-#   Arch repositories: dmenu, bluez-utils (contains bluetoothctl)
+#   Arch repositories: dmenu/bemenu, bluez-utils (contains bluetoothctl)
 
 # Constants
+launcher=$LAUNCHER
 divider="---------"
 goback="Back"
 
@@ -226,7 +227,7 @@ device_menu() {
     trusted=$(device_trusted "$mac")
     options="$connected\n$paired\n$trusted\n$divider\n$goback\nExit"
 
-    # Open dmenu menu, read chosen option
+    # Open launcher menu, read chosen option
     chosen="$(echo -e "$options" | run_dmenu "$device_name")"
 
     # Match chosen option to command
@@ -304,7 +305,7 @@ original_args=("$@")
 # dmenu command to pipe into. Extra arguments to dmenu-bluetooth are passed through to dmenu. This
 # allows the user to set fonts, sizes, colours, etc.
 run_dmenu() {
-    dmenu "${original_args[@]}" -i -p "$1"
+    $LAUNCHER "${original_args[@]}" -i -p "$1"
 }
 
 case "$1" in
