@@ -1,0 +1,6 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - default
+    selectedRangeBgColor:
+      - default
