@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 usage() {
     echo "    $(tput bold)menu calc$(tput sgr0)
-    A calculator for use with Rofi or dmenu(2)
+    A calculator for use with bemenu or dmenu(2)
     Basic usage:
     = 4+2
     = (4+2)/(4+3)
@@ -22,10 +22,10 @@ case $1 in
 esac
 
 # Path to menu application
-if [[ -n $(command -v dmenu) ]]; then
-    menu="$(command -v dmenu)"
+if [[ -n $(command -v $LAUNCHER) ]]; then
+    menu="$(command -v $LAUNCHER)"
 else
-    echo >&2 "Dmenu not found"
+    echo >&2 "$LAUNCHER not found"
     exit
 fi
 

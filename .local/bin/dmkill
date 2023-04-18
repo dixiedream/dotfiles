@@ -1,12 +1,12 @@
-#!/usr/bin/env sh 
+#!/usr/bin/env sh
 #
 # Script name: dmkill
 # Description: Search for a process to kill.
-# Dependencies: dmenu
+# Dependencies: dmenu/bemenu
 
 # Running ps to get running processes and display in dmenu.
 selected="$(ps --user "$(id -u)" -F | \
-            dmenu -i -l 20 -p "Search for process to kill:" "$@" | \
+            $LAUNCHER -i -l 20 -p "Search for process to kill:" "$@" | \
             awk '{print $2" "$11}')";
 
 # Nested 'if' statements.  The outer 'if' statement is what to do
@@ -15,7 +15,7 @@ if [[ -n $selected ]]; then
 
     # Piping No/Yes into dmenu as a safety measure, in case you
     # select a process that you don't actually want killed.
-    answer="$(echo -e "No\nYes" | dmenu -i -p "Kill $selected?" "$@")"
+    answer="$(echo -e "No\nYes" | $LAUNCHER -i -p "Kill $selected?" "$@")"
 
     if [[ $answer == "Yes" ]]; then
         selpid="$(awk '{print $1}' <<< "$selected")";
