@@ -4,6 +4,8 @@
 # Provides you with mounted partitions, select one to unmount.
 # Drives mounted at /, /boot and /home will not be options to unmount.
 
+launcher=$LAUNCHER
+
 unmountusb() {
 	[ -z "$drives" ] && exit
 	chosen="$(echo "$drives" | $LAUNCHER -i -p "Unmount which drive?")" || exit 1

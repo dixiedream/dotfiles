@@ -59,3 +59,4 @@ x-scheme-handler/tg=userapp-Telegram Desktop-0MVNN1.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-KUOHA1.desktop;userapp-Telegram Desktop-DNADL1.desktop;userapp-Telegram Desktop-0MVNN1.desktop;
+application/vnd.microsoft.portable-executable=winetricks.desktop;
