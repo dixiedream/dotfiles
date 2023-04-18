@@ -4,13 +4,13 @@ toggle=${1:-on}
 
 if [ "$toggle" = "on" ] ;
 then
-    xset s off -dpms && \
+    # xset s off -dpms && \
     notify-send "Presentation Mode" "Set to ON" && \
     sleep 2 && \
     dunstctl close-all && \
     dunstctl set-paused true
 else
-    xset s on dpms && \
+    # xset s on dpms && \
     dunstctl set-paused false && \
     notify-send "Presentation Mode" "Set to OFF"
 fi

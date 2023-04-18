@@ -1,0 +1,20 @@
+# General stuff
+term = xterm-256color
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
+shell-integration-features = no-cursor
+theme = tokyonight-storm
+window-decoration = false
+
+# Keybindings
+keybind = alt+c=copy_to_clipboard
+keybind = alt+v=paste_from_clipboard
+keybind = alt+shift+equal=reset_font_size
+keybind = alt+shift+k=increase_font_size:1
+keybind = alt+shift+j=decrease_font_size:1
+keybind = control+shift+enter=new_window
+keybind = alt+u=scroll_page_up
+keybind = alt+d=scroll_page_down
+keybind = alt+k=scroll_page_lines:-1
+keybind = alt+j=scroll_page_lines:1

@@ -18,6 +18,7 @@
 #   Arch repositories: dmenu/bemenu, bluez-utils (contains bluetoothctl)
 
 # Constants
+launcher=$LAUNCHER
 divider="---------"
 goback="Back"
 
