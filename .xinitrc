@@ -11,7 +11,8 @@ fi
 
 setbg &
 
-autostart="dunst xcompmgr unclutter dwm_status"
+# autostart="dunst xcompmgr unclutter dwm_status"
+autostart="dunst xcompmgr unclutter dwmblocks"
 for program in $autostart; do
   pidof -s "$program" || "$program" &
 done >/dev/null 2>&1

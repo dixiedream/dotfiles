@@ -6,7 +6,7 @@
 #
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 
 export EDITOR="nvim"
 export TERMINAL="st"
