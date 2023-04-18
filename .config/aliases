@@ -74,6 +74,9 @@ streamDownload() {
     ffmpeg -i "$1" -c copy -bsf:a aac_adtstoasc "$filename".mp4
 }
 
+# Sway
+alias sway-config="$EDITOR ~/.config/sway/config"
+
 # Trash
 alias trash-empty="rm -rf ~/.local/share/Trash/*"
 
