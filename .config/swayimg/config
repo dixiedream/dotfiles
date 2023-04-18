@@ -1,0 +1,31 @@
+[general]
+overlay = no
+
+[viewer]
+window = #000000
+
+[gallery]
+window = #000000
+
+[info]
+# Show on startup (yes/no)
+show = no
+
+[keys.viewer]
+n = next_file
+p = prev_file
+Space = next_file
+d = exec [ "$(printf "No\\nYes" | bemenu -i -p "Really delete %?")" = "Yes" ] && rm "%" && notify-send "% deleted"
+Shift+Delete = exec [ "$(printf "No\\nYes" | bemenu -i -p "Really delete %?")" = "Yes" ] && rm "%" && notify-send "% deleted"
+w = exec setbg "%"
+
+[keys.gallery]
+w = exec setbg "%"
+h = step_left
+l = step_right
+k = step_up
+j = step_down
+d = exec [ "$(printf "No\\nYes" | bemenu -i -p "Really delete %?")" = "Yes" ] && rm "%" && notify-send "% deleted"
+Shift+Delete = exec [ "$(printf "No\\nYes" | bemenu -i -p "Really delete %?")" = "Yes" ] && rm "%" && notify-send "% deleted"
+
+# vim: filetype=dosini
