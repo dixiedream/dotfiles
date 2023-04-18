@@ -1,0 +1,17 @@
+#!/bin/bash
+
+maxCapacity=0
+for battery in /sys/class/power_supply/BAT?*; do
+  case "$(cat "$battery/status" 2>&1)" in
+  	"Full") status="" ;;
+  	"Discharging") isDischarging="yes" && status="" ;;
+  	"Charging") status="plug " ;;
+  	"Not charging") status="X" ;;
+  	"Unknown") status="~" ;;
+  	*) exit 1 ;;
+  esac
+  capacity="$(cat "$battery/capacity" 2>&1)"
+  [ "$maxCapacity" -le "$capacity" ] && maxCapacity=$capacity
+  [ "$isDischarging" = "yes" ] && [ "$maxCapacity" -le 18 ] && unset isDischarging && dunstify -h string:x-dunst-stack-tag:low-battery -u CRITICAL "Help" "Low battery!"
+  printf "B %s%s%%" $status $capacity
+done

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+printf "%s > %s " "$(date '+%A %d %B')" "$(date '+%H:%M')"

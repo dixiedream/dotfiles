@@ -1,0 +1,9 @@
+#!/bin/bash
+
+logfile=/dev/shm/netlog
+[ -f "$logfile" ] || echo "0 0" > "$logfile"
+read -r rxprev txprev < "$logfile"
+rxcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/rx_bytes)))"
+txcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/tx_bytes)))"
+printf "D %s U %s" $(bc <<< "scale=2; ($rxcurrent-$rxprev) / 10^6") $(bc <<< "scale=2; ($txcurrent-$txprev) / 10^6")
+echo "$rxcurrent $txcurrent" > "$logfile"

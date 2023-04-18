@@ -1,0 +1,4 @@
+#!/bin/bash
+
+test -f /sys/class/thermal/thermal_zone0/temp || return 0
+printf "T %s°C" $(head -c 2 /sys/class/thermal/thermal_zone0/temp)

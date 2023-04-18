@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}' | sed "s/\..*//")"
+printf "CPU %s%%" $color $cpu

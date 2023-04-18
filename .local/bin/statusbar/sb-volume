@@ -1,0 +1,6 @@
+#!/bin/bash
+
+volstat="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+echo "$volstat" | grep -q "MUTED" && printf "Muted\\n" && exit
+vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep '[0-9]' | awk '{ print $2*100 }')"
+printf "V %s%%" "$vol"
