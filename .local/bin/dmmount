@@ -5,6 +5,8 @@
 # be prompted to give a mountpoint from already existsing directories. If you
 # input a novel directory, it will prompt you to create that directory.
 
+launcher=$LAUNCHER
+
 getmount() { \
 	[ -z "$chosen" ] && exit 1
         # shellcheck disable=SC2086

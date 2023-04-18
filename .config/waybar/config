@@ -1,0 +1,59 @@
+{
+  "layer": "top",
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["idle_inhibitor", "network", "wireplumber", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock", "tray"],
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "On ",
+            "deactivated": "Off "
+        }
+    },
+    "network": {
+        "interval": 60,
+        "format": "U {bandwidthUpBytes} D {bandwidthDownBytes}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}\n{ifname} via {gwaddr}",
+        "tooltip-format-ethernet": "{ipaddr}\n{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "wireplumber": {
+      "format": "V {volume}%",
+      "format-muted": "Mute"
+    },
+    "cpu": {
+        "format": "CPU {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "M {}%"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "B {capacity}%",
+        "format-charging": "B ~{capacity}%",
+        "format-plugged": "Plugged",
+        "format-alt": "{time}",
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "T {temperatureC}°C",
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "timezone": "Europe/Rome",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%Y-%m-%d %H:%M}"
+    }
+}
