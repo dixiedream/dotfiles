@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
 free -m | awk 'NR==2{printf "%sM\n", $3 }'

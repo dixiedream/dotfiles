@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 volstat="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
 echo "$volstat" | grep -q "MUTED" && printf "Muted\\n" && exit

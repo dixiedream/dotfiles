@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 logfile=/dev/shm/netlog
 [ -f "$logfile" ] || echo "0 0" > "$logfile"
