@@ -2,6 +2,7 @@
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
+set cursorpreviewfmt "\033[7m" # Fix for ugly underscore in version >= 29
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 
