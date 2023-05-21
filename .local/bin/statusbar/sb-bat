@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 maxCapacity=0
 for battery in /sys/class/power_supply/BAT?*; do
