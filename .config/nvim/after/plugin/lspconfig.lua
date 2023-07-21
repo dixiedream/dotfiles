@@ -43,13 +43,6 @@ nvim_lsp.lua_ls.setup {
   on_attach = on_attach
 }
 
--- PHP
-nvim_lsp.intelephense.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  filetypes = { 'php' }
-}
-
 -- Rust
 nvim_lsp.rust_analyzer.setup {
   capabilities = capabilities,

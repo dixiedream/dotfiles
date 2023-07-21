@@ -5,7 +5,7 @@ telescope.setup {
     }
 }
 
-telescope.load_extension('fzf')
+-- telescope.load_extension('fzf')
 
 local builtin = require("telescope.builtin")
 

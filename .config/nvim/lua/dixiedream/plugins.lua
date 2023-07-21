@@ -1,80 +1,48 @@
-local fn = vim.fn
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    }
-    print "Installing packer close and reopen Neovim..."
-    vim.cmd [[packadd packer.nvim]]
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+vim.opt.rtp:prepend(lazypath)
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    return
-end
+local plugins = {
+   -- Colorscheme
+   -- use 'shaunsingh/nord.nvim',
+   'folke/tokyonight.nvim',
+   -- Status bar
+   'nvim-lualine/lualine.nvim',
+   'lewis6991/impatient.nvim',
 
--- Have packer use a popup window
-packer.init {
-    display = {
-        open_fn = function()
-            return require("packer.util").float { border = "rounded" }
-        end,
-    },
-}
+   -- Dev stuff (telescope, lsp, highlighting, autocompletion)
+   'windwp/nvim-autopairs',
+   'nvim-lua/plenary.nvim',
+   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+   { 'nvim-telescope/telescope.nvim', tag = '0.1.2', dependencies = 'nvim-lua/plenary.nvim'},
+   --
+   'neovim/nvim-lspconfig',
+   --
+   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+   --
+   'hrsh7th/nvim-cmp',
+   'hrsh7th/cmp-nvim-lsp',
+   'hrsh7th/cmp-buffer',
+   'hrsh7th/cmp-path',
+   --
+   'L3MON4D3/LuaSnip',
+   'saadparwaiz1/cmp_luasnip',
+   --
+   'numToStr/Comment.nvim',
+   --
+   { 'ThePrimeagen/harpoon', dependencies = 'nvim-lua/plenary.nvim' },
+ }
 
--- Install your plugins here
-return packer.startup(function(use)
-    use "wbthomason/packer.nvim" -- Have packer manage itself
-    -- Colorscheme
-    -- use 'shaunsingh/nord.nvim'
-    use 'folke/tokyonight.nvim'
-    -- Status bar
-    use 'nvim-lualine/lualine.nvim'
-    use 'lewis6991/impatient.nvim'
-
-    -- Dev stuff (telescope, lsp, highlighting, autocompletion)
-    use 'windwp/nvim-autopairs'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    --
-    use 'neovim/nvim-lspconfig'
-    --
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    --
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    --
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
-    --
-    use 'numToStr/Comment.nvim'
-    --
-    use 'ThePrimeagen/harpoon'
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+local opts = {}
+require("lazy").setup(plugins, opts)
