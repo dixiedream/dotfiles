@@ -19,7 +19,6 @@ local plugins = {
    'folke/tokyonight.nvim',
    -- Status bar
    'nvim-lualine/lualine.nvim',
-   'lewis6991/impatient.nvim',
 
    -- Dev stuff (telescope, lsp, highlighting, autocompletion)
    'windwp/nvim-autopairs',
