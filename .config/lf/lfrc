@@ -107,4 +107,5 @@ map gh cd # go home
 map gc cd ~/.config
 map gs cd ~/src
 map gm cd /media
+map gn cd /mnt
 map gr cd /run/media

@@ -9,7 +9,7 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="brave"
+export BROWSER="firefox"
 export LAUNCHER="dmenu"
 
 # Colorful less
