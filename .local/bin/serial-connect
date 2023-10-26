@@ -1,0 +1,6 @@
+#!/bin/sh
+
+filename=$(date +%Y%m%d)
+baudRate=${1:-115200}
+
+screen -L $filename /dev/ttyUSB0 $baudRate
