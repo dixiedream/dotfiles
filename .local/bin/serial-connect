@@ -3,4 +3,4 @@
 filename=$(date +%Y%m%d)
 baudRate=${1:-115200}
 
-screen -L $filename /dev/ttyUSB0 $baudRate
+sudo screen -L -Logfile "./$filename" /dev/ttyUSB0 $baudRate

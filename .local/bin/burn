@@ -3,6 +3,6 @@
 img=$1
 device=$2
 
-sudo cp $img $device
+sudo cp -iv $img $device
 
 notify-send "Bootable USB" "$img burned to $device"
