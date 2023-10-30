@@ -1,0 +1,9 @@
+#!/bin/sh
+
+device=$1
+dumpName=${2:-dump}
+
+sudo dd if=$device conv=sync,noerror bs=64K | gzip -c > "./$dumpName.img.gz"
+sudo fdisk -l $device > "./$dumpName.info"
+
+notify-send "Dump device" "Dump saved to $dumpName.img.gz"
