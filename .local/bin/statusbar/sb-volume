@@ -1,5 +1,11 @@
 #!/bin/sh
 
+case $BLOCK_BUTTON in
+	1) notify-send "CPU usage" "$(ps axch -o cmd,%cpu --sort=-%cpu | head)" ;;
+  2) st lf ;;
+	3) st -e htop ;;
+esac
+
 volstat="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
 echo "$volstat" | grep -q "MUTED" && printf "Muted\\n" && exit
 vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep '[0-9]' | awk '{ print $2*100 }')"
