@@ -1,0 +1,109 @@
+################################################################################
+# General options
+################################################################################
+[general]
+
+# Initial scale (optimal/fit/width/height/fill/real)
+scale = optimal
+
+# Start in full screen mode (yes/no)
+fullscreen = no
+
+# Anti-aliasing (yes/no)
+antialiasing = no
+
+# Background for transparent images (none/grid/RGB, e.g. #112233)
+transparency = none
+
+# Window position (parent or absolute coordinates, e.g. 100,200)
+position = parent
+# Window size (parent, image, or absolute size, e.g. 800,600)
+size = parent
+# Window background mode/color (none/RGB, e.g. #112233)
+background = none
+
+# Run slideshow at startup (yes/no)
+slideshow = no
+# Slideshow image display time (seconds)
+slideshow_time = 3
+
+################################################################################
+# Image list configuration
+################################################################################
+[list]
+# Default order (none/alpha/random)
+order = alpha
+# Looping list of images (yes/no)
+loop = yes
+# Read directories recursively (yes/no)
+recursive = no
+# Open all files in the start directory (yes/no)
+all = yes
+
+################################################################################
+# Font configuration
+################################################################################
+[font]
+# Font name
+name = monospace
+# Font size (in pt)
+size = 14
+# Font color
+color = #cccccc
+# Drop shadow (none/RGB, e.g. #112233)
+shadow = #000000
+
+################################################################################
+# Image meta info scheme (format, size, EXIF, etc)
+################################################################################
+[info]
+# Mode on startup (off/brief/full)
+mode = off
+# Display scheme for the "full" mode: position = content
+full.topleft = name,format,filesize,imagesize,exif
+full.topright = index
+full.bottomleft = scale,frame
+full.bottomright = status
+# Display scheme for the "brief" mode: position = content
+brief.topleft = index
+brief.topright = none
+brief.bottomleft = none
+brief.bottomright = status
+
+################################################################################
+# Key binding section: key = action [parameters]
+# Use the `xkbcli` tool to get key name: `xkbcli interactive-wayland`
+################################################################################
+[keys]
+F1 = help
+Prior = prev_file
+Next = next_file
+n = next_file
+p = prev_file
+space = next_file
+d = exec [ "$(printf "No\\nYes" | bemenu -i -p "Really delete %?")" = "Yes" ] && rm "%" && notify-send "% deleted."
+f = fullscreen
+Left = step_left 10
+Right = step_right 10
+Up = step_up 10
+Down = step_down 10
+equal = zoom +10
+plus = zoom +10
+minus = zoom -10
+w = exec setbg %
+W = zoom height
+z = zoom fit
+Z = zoom fill
+0 = zoom real
+BackSpace = zoom optimal
+bracketleft = rotate_left
+bracketright = rotate_right
+m = flip_vertical
+M = flip_horizontal
+a = antialiasing
+r = reload
+i = info
+Escape = exit
+q = exit
+
+# vim: filetype=dosini
