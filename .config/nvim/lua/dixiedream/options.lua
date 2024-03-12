@@ -50,3 +50,8 @@ vim.cmd "set wildignore+=**/node_modules/*"
 vim.cmd "set wildignore+=**/android/*"
 vim.cmd "set wildignore+=**/ios/*"
 vim.cmd "set wildignore+=**/.git/*"
+
+vim.diagnostic.config({
+  -- Disable inline diagnostic
+  virtual_text = false
+})
