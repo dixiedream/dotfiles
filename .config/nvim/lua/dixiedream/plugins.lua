@@ -242,5 +242,9 @@ local plugins = {
   },
 }
 
-local opts = {}
+local opts = {
+  rocks = {
+    enabled = false
+  }
+}
 require("lazy").setup(plugins, opts)
