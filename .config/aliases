@@ -80,9 +80,19 @@ alias \
     visudo="sudo EDITOR=$EDITOR visudo"
 
 # QEMU KVM
-alias \
-    virtOn="sudo systemctl start libvirtd && sudo virsh net-start default" \
-    virtOff="sudo systemctl stop libvirtd && sudo virsh net-destroy default"
+virtOn() {
+ for drv in qemu interface network nodedev nwfilter secret storage; do
+    sudo systemctl start virt${drv}d.service;
+  done
+  sudo virsh net-start default
+  sudo virsh net-autostart default
+}
+virtOff() {
+ for drv in qemu interface network nodedev nwfilter secret storage; do
+    sudo systemctl stop virt${drv}d.service;
+  done
+  sudo virsh net-destroy default
+}
 
 # Xorg
 alias xorgreload="xrdb -load $HOME/.config/Xresources"
