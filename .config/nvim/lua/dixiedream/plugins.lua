@@ -100,7 +100,7 @@ local plugins = {
         },
       }
 
-      nvim_lsp.tsserver.setup {}
+      nvim_lsp.ts_ls.setup {}
       nvim_lsp.volar.setup {
         filetypes = { 'vue' },
         init_options = {
