@@ -91,6 +91,7 @@ virtOff() {
  for drv in qemu interface network nodedev nwfilter secret storage; do
     sudo systemctl stop virt${drv}d.service;
   done
+  sudo virsh net-autostart default --disable
   sudo virsh net-destroy default
 }
 
