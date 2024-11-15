@@ -2,7 +2,14 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
     "modules-center": [],
-    "modules-right": ["network", "wireplumber", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "network", "wireplumber", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock", "tray"],
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "On ",
+            "deactivated": "Off "
+        }
+    },
     "network": {
         "interval": 60,
         "format": "U {bandwidthUpBytes} D {bandwidthDownBytes}",
