@@ -37,7 +37,7 @@ alias \
 # Docker
 alias \
     dockeron="sudo systemctl start docker" \
-    dockeroff="sudo systemctl stop docker && sudo systemctl stop docker.socket" \
+    dockeroff="sudo systemctl stop docker && sudo systemctl stop docker.socket && sudo iptables -F && sudo iptables -P FORWARD ACCEPT" \
     dc="docker compose"
 
 # Git
