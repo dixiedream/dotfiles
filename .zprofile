@@ -47,7 +47,6 @@ export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export npm_config_prefix="$HOME/.local"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
 export QT_QPA_PLATFORMTHEME="gtk3"	# Have QT use gtk3 theme.
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
