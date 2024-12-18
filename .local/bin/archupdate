@@ -1,6 +1,8 @@
 #!/bin/sh
 if [ -x "$(command -v "pacman")" ]; then
     sudo pacman -Syu
-else
+elif [ -x "$(command -v "apt")" ]; then
     sudo apt update && sudo apt full-upgrade
+else
+    brew upgrade
 fi
