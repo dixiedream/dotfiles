@@ -1,0 +1,12 @@
+[[on-window-detected]]
+if.app-id="com.mitchellh.ghostty"
+run= [
+  "layout tiling",
+]
+
+keybind = alt+u=scroll_page_up
+keybind = alt+d=scroll_page_down
+keybind = alt+shift+k=increase_font_size
+keybind = alt+shift+j=decrease_font_size
+keybind = alt+c=copy_to_clipboard
+keybind = alt+v=paste_from_clipboard
