@@ -1,2 +1,3 @@
 theme = tokyonight-storm
 window-decoration = false
+cursor-style = block
