@@ -1,3 +1,7 @@
+auto-update = off
+cursor-style = block
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 theme = tokyonight-storm
 window-decoration = false
-cursor-style = block
