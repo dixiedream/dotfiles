@@ -1,7 +1,7 @@
 # Common alias file
 alias \
-    bton="sudo systemctl start bluetooth" \
-    btoff="sudo systemctl stop bluetooth"
+    bton="sudo systemctl start bluetooth && systemctl start --user mpris-proxy" \
+    btoff="systemctl stop --user mpris-proxy && sudo systemctl stop bluetooth"
 
 # Copying and moving
 alias \
