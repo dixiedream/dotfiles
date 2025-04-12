@@ -14,7 +14,7 @@ cmd open ${{
       text/*|application/json|inode/x-empty) $EDITOR $fx;;
 	    image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
 	    image/svg+xml) display -- $f ;;
-	    image/*) setsid -f swayimg $f 2>/dev/null ;;
+	    image/*) setsid -f swayimg $fx 2>/dev/null ;;
 	    audio/*) mpv --no-audio-display $fx ;;
 	    video/*) setsid -f mpv $fx -quiet >/dev/null 2>&1 ;;
       application/java-archive) java -jar $f ;;
