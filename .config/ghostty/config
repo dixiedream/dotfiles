@@ -1,4 +1,5 @@
 # General stuff
+term = xterm-256color
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
