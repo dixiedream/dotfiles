@@ -21,7 +21,7 @@ cmd open ${{
 	    		lf -remote "send toggle"
 	    	done &
 	    	;;
-	    audio/*) mpv --audio-display=no $fx ;;
+	    audio/*) mpv --no-audio-display $fx ;;
 	    video/*) setsid -f mpv $fx -quiet >/dev/null 2>&1 ;;
       application/java-archive) java -jar $f ;;
 	    application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
