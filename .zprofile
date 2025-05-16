@@ -8,7 +8,7 @@
 export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 
 export EDITOR="nvim"
-export TERMINAL="ghostty"
+export TERMINAL="foot"
 export BROWSER="firefox"
 export LAUNCHER="bemenu"
 
