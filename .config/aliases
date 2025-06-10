@@ -59,6 +59,9 @@ alias \
 # Handbrake alias
 alias handbrake="ghb"
 
+# Neofetch nostalgia
+alias neofetch="screenfetch"
+
 # Pacman & AUR
 alias \
     u="archupdate" \
