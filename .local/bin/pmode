@@ -6,6 +6,7 @@ if [ "$toggle" = "on" ] ;
 then
     xset s off -dpms && \
     notify-send "Presentation Mode" "Set to ON" && \
+    sleep 2 && \
     dunstctl close-all && \
     dunstctl set-paused true
 else
