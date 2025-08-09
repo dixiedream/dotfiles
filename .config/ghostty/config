@@ -18,4 +18,4 @@ keybind = alt+u=scroll_page_up
 keybind = alt+d=scroll_page_down
 keybind = alt+k=scroll_page_lines:-1
 keybind = alt+j=scroll_page_lines:1
-
+keybind = alt+f=toggle_fullscreen
