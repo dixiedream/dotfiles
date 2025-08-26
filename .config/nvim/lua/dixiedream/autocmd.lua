@@ -1,22 +1,29 @@
-local augroup = vim.api.nvim_create_augroup
-DixiedreamGroup = augroup('ThePrimeagen', {})
+local augroup = vim.api.nvim_create_augroup('Dixiedream', {})
 
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup('HighlightYank', {})
 
 autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    vim.hl.on_yank({
+      higroup = 'IncSearch',
+      timeout = 40,
+    })
+  end,
 })
 
-autocmd({"BufWritePre"}, {
-    group = DixiedreamGroup,
-    pattern = "*",
-    command = "%s/\\s\\+$//e",
+autocmd({ "BufWritePre" }, {
+  group = augroup,
+  pattern = "*",
+  command = "%s/\\s\\+$//e",
 })
+
+-- Auto-resize splits when window is resized
+autocmd("VimResized", {
+  group = augroup,
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+
