@@ -54,9 +54,13 @@ export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 # Start graphical server on tty1 if not already running.
-if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  export XDG_CURRENT_DESKTOP="Hyprland"
-  export XDG_SESSION_TYPE="wayland"
-  export XDG_SESSION_DESKTOP="Hyprland"
-  exec Hyprland
+# if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+#   export XDG_CURRENT_DESKTOP="Hyprland"
+#   export XDG_SESSION_TYPE="wayland"
+#   export XDG_SESSION_DESKTOP="Hyprland"
+#   exec Hyprland
+# fi
+
+if uwsm check may-start; then
+  exec uwsm start hyprland.desktop
 fi
