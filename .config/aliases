@@ -16,9 +16,6 @@ alias \
     ansible-vault-edit="ansible-vault edit --vault-password-file ~/.config/ansible/vault_key" \
     ansible-vault-decrypt="ansible-vault decrypt --vault-password-file ~/.config/ansible/vault_key"
 
-# Dig
-alias dig="resolvectl query"
-
 # Debian stuff
 alias \
     poweroff="systemctl poweroff" \
