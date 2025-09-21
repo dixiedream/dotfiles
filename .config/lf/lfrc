@@ -30,6 +30,10 @@ cmd open ${{
     esac
 }}
 
+cmd diff ${{
+  $EDITOR -d $fx
+}}
+
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
