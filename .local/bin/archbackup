@@ -1,14 +1,20 @@
 #!/bin/sh
-if [ -x "$(command -v "pacman")" ]; then
-    # Save every package installed
-    pacman -Qqen > ~/.config/pkglist.txt
+output=$XDG_CACHE_HOME/archbackup.txt
 
-    # Save every AUR installed package
-    pacman -Qqem > ~/.config/aurpkglist.txt
+printf "Archbackup - $(date)\n\n" > $output
+if [ -x "$(command -v "pacman")" ]; then
+    echo "=== PACMAN ===================" >> $output
+    pacman -Qqen >> $output
+    printf "\n=== AUR ======================\n" >> $output
+    pacman -Qqem >> $output
 else
-    apt list --installed | cut -d'/' -f1 > ~/.config/pkglist.txt
+    echo "=== APT ======================" >> $output
+    apt list --installed | cut -d'/' -f1 >> $output
 
     if [ -x "$(command -v "dconf")" ]; then
-      dconf dump / > ~/.config/dconf.txt
+      printf "\n=== DCONF ====================\n" >> $output
+      dconf dump / >> $output
     fi
 fi
+
+$EDITOR $output
