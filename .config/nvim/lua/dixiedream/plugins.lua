@@ -89,17 +89,19 @@ local plugins = {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     config = function()
-      vim.lsp.config('gopls', {})
+      vim.lsp.enable('gopls')
       vim.lsp.config('html', {
         filetypes = { 'html' }
       })
+      vim.lsp.enable('html')
       vim.lsp.config('lua_ls', {
         settings = {
           Lua = { diagnostics = { globals = { 'vim' }, }, },
         },
       })
+      vim.lsp.enable('lua_ls')
 
-      vim.lsp.config('ts_ls', {})
+      vim.lsp.enable('ts_ls')
       vim.lsp.config('volar', {
         filetypes = { 'vue' },
         init_options = {
@@ -108,6 +110,7 @@ local plugins = {
           }
         }
       })
+      vim.lsp.enable("volar")
 
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
