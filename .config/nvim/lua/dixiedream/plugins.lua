@@ -89,26 +89,25 @@ local plugins = {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     config = function()
-      local nvim_lsp = require('lspconfig')
-      nvim_lsp.gopls.setup {}
-      nvim_lsp.html.setup {
+      vim.lsp.config('gopls', {})
+      vim.lsp.config('html', {
         filetypes = { 'html' }
-      }
-      nvim_lsp.lua_ls.setup {
+      })
+      vim.lsp.config('lua_ls', {
         settings = {
           Lua = { diagnostics = { globals = { 'vim' }, }, },
         },
-      }
+      })
 
-      nvim_lsp.ts_ls.setup {}
-      nvim_lsp.volar.setup {
+      vim.lsp.config('ts_ls', {})
+      vim.lsp.config('volar', {
         filetypes = { 'vue' },
         init_options = {
           typescript = {
             tsdk = '/home/ale/.local/lib/node_modules/typescript/lib'
           }
         }
-      }
+      })
 
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
