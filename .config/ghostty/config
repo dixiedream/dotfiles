@@ -4,7 +4,7 @@ font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
 shell-integration-features = no-cursor
-theme = tokyonight-storm
+theme = Tokyonight Storm
 window-decoration = false
 
 # Keybindings
