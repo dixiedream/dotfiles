@@ -102,7 +102,7 @@ local plugins = {
       vim.lsp.enable('lua_ls')
 
       vim.lsp.enable('ts_ls')
-      vim.lsp.config('volar', {
+      vim.lsp.config('vue_ls', {
         filetypes = { 'vue' },
         init_options = {
           typescript = {
@@ -110,7 +110,7 @@ local plugins = {
           }
         }
       })
-      vim.lsp.enable("volar")
+      vim.lsp.enable("vue_ls")
 
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
