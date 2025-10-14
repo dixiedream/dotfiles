@@ -1,0 +1,137 @@
+#!/bin/sh
+# POSIX sh script: backup $HOME into a compressed tar.gz and optionally encrypt it
+# Encryption methods supported: gpg (symmetric) or openssl (AES-256-CBC)
+# Usage: backup-home-encrypt.sh [-d DEST_DIR] [-E] [-m METHOD]
+#   -d DEST_DIR   destination directory for the archive (default: $HOME/backups)
+#   -E            enable encryption (will prompt for passphrase)
+#   -m METHOD     encryption method: gpg or openssl (default: gpg)
+# Example: ./backup-home-encrypt.sh -d /backups -E -m gpg
+
+set -eu
+
+DEST_DIR="$HOME/backups"
+ENCRYPT=0
+METHOD="gpg"
+
+while getopts "d:Em:" opt; do
+  case "$opt" in
+    d) DEST_DIR=$OPTARG ;;
+    E) ENCRYPT=1 ;;
+    m) METHOD=$OPTARG ;;
+    *) printf 'Usage: %s [-d DEST_DIR] [-E] [-m METHOD]\n' "$0" >&2; exit 2 ;;
+  esac
+done
+shift $((OPTIND -1))
+
+HOME_DIR=${HOME:-"/home/${USER:-$(id -un)}"}
+TS=$(date +%Y%m%d-%H%M%S)
+ARCHIVE_NAME="home-backup-${TS}.tar.gz"
+ARCHIVE_PATH="${DEST_DIR%/}/${ARCHIVE_NAME}"
+
+mkdir -p "$DEST_DIR"
+
+# Create exclude list
+EXCLUDE_FILE=$(mktemp)
+trap 'rm -f "$EXCLUDE_FILE"' EXIT
+
+# XDG caches and common caches
+printf '%s\n' \
+  "$HOME_DIR/.cache" \
+  "${XDG_CACHE_HOME:-$HOME_DIR/.cache}" \
+  "$HOME_DIR/.npm" \
+  "$HOME_DIR/.npm/_cacache" \
+  "$HOME_DIR/.yarn" \
+  "$HOME_DIR/.pnpm-store" \
+  "$HOME_DIR/.cache/pip" \
+  "$HOME_DIR/.cache/go-build" \
+  "$HOME_DIR/.cargo/registry" \
+  "$HOME_DIR/.cache/fontconfig" \
+  "$HOME_DIR/.cache/mozilla" >> "$EXCLUDE_FILE"
+
+# Desktop caches and trash
+printf '%s\n' \
+  "$HOME_DIR/.thumbnails" \
+  "$HOME_DIR/.dbus" \
+  "$HOME_DIR/.cache/keyrings" \
+  "$HOME_DIR/.local/share/Trash" >> "$EXCLUDE_FILE"
+
+# node_modules anywhere
+printf '%s\n' \
+  "**/node_modules" \
+  "node_modules" >> "$EXCLUDE_FILE"
+
+# Additional temp patterns
+printf '%s\n' \
+  "$HOME_DIR/tmp" \
+  "$HOME_DIR/.cache/*" >> "$EXCLUDE_FILE"
+
+# Create compressed archive (paths inside archive are relative to home)
+tar -C "$HOME_DIR" --exclude-from="$EXCLUDE_FILE" -czf "$ARCHIVE_PATH" .
+
+echo "Archive created: $ARCHIVE_PATH"
+echo "Preview of archive contents (first 20 entries):"
+tar -tzf "$ARCHIVE_PATH" | sed -n '1,20p'
+
+# If encryption not requested, finish
+if [ "$ENCRYPT" -ne 1 ]; then
+  du -h "$ARCHIVE_PATH" | awk '{print "Size: "$1}'
+  exit 0
+fi
+
+# Encryption chosen
+case "$METHOD" in
+  gpg)
+    # Use symmetric encryption with AES256; gpg will prompt for passphrase securely
+    if ! command -v gpg >/dev/null 2>&1; then
+      printf 'gpg not found in PATH. Install GnuPG or choose openssl with -m openssl\n' >&2
+      exit 3
+    fi
+    ENC_PATH="${ARCHIVE_PATH}.gpg"
+    # --symmetric prompts for passphrase interactively and stores with chosen cipher
+    gpg --symmetric --cipher-algo AES256 --output "$ENC_PATH" "$ARCHIVE_PATH"
+    rm -f "$ARCHIVE_PATH"
+    echo "Encrypted archive created: $ENC_PATH"
+    du -h "$ENC_PATH" | awk '{print "Size: "$1}'
+    ;;
+
+  openssl)
+    if ! command -v openssl >/dev/null 2>&1; then
+      printf 'openssl not found in PATH. Install OpenSSL or choose gpg with -m gpg\n' >&2
+      exit 3
+    fi
+    ENC_PATH="${ARCHIVE_PATH}.enc"
+    # Read passphrase securely from terminal (POSIX compliant)
+    printf 'Enter encryption passphrase: '
+    # disable echo
+    stty -echo
+    if ! IFS= read -r PASS1; then PASS1=; fi
+    stty echo
+    printf '\n'
+    printf 'Confirm passphrase: '
+    stty -echo
+    if ! IFS= read -r PASS2; then PASS2=; fi
+    stty echo
+    printf '\n'
+    if [ "$PASS1" != "$PASS2" ]; then
+      printf 'Passphrases do not match. Aborting.\n' >&2
+      rm -f "$ARCHIVE_PATH"
+      exit 4
+    fi
+    # Use PBKDF2 and a strong iteration count; use AES-256-CBC
+    # Use openssl enc with -pbkdf2 which is available in modern OpenSSL
+    # Supply passphrase via stdin to avoid exposing it on the command line if fd support exists
+    printf '%s' "$PASS1" | openssl enc -aes-256-cbc -salt -pbkdf2 -iter 100000 -pass stdin -out "$ENC_PATH" -in "$ARCHIVE_PATH"
+    # wipe variables from shell
+    PASS1= PASS2=
+    rm -f "$ARCHIVE_PATH"
+    echo "Encrypted archive created: $ENC_PATH"
+    du -h "$ENC_PATH" | awk '{print "Size: "$1}'
+    ;;
+
+  *)
+    printf 'Unknown encryption method: %s\n' "$METHOD" >&2
+    exit 2
+    ;;
+esac
+
+exit 0

@@ -37,3 +37,6 @@ keymap("n", "<leader>y", "\"+y", opts)
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", "\"_dP")
+
+-- Making open file executable
+keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
