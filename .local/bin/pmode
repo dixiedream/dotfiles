@@ -2,15 +2,24 @@
 
 toggle=${1:-on}
 
+# Swayidle toggle
+function toggle {
+	if pgrep "hypridle" > /dev/null; then
+		pkill hypridle
+  else
+    app2unit -s b -- hypridle
+  fi
+}
+
 if [ "$toggle" = "on" ] ;
 then
-    # xset s off -dpms && \
-    notify-send "Presentation Mode" "Set to ON" && \
-    sleep 2 && \
-    dunstctl close-all && \
-    dunstctl set-paused true
+    toggle;
+    notify-send "Presentation Mode" "Set to ON";
+    sleep 2;
+    dunstctl close-all;
+    dunstctl set-paused true;
 else
-    # xset s on dpms && \
-    dunstctl set-paused false && \
-    notify-send "Presentation Mode" "Set to OFF"
+    toggle;
+    dunstctl set-paused false;
+    notify-send "Presentation Mode" "Set to OFF";
 fi
