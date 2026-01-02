@@ -58,7 +58,7 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 #   export XDG_CURRENT_DESKTOP="Hyprland"
 #   export XDG_SESSION_TYPE="wayland"
 #   export XDG_SESSION_DESKTOP="Hyprland"
-#   exec Hyprland
+#   exec start-hyprland
 # fi
 
 if uwsm check may-start; then
