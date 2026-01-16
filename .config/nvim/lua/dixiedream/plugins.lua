@@ -111,6 +111,7 @@ local plugins = {
         }
       })
       vim.lsp.enable("vue_ls")
+      vim.lsp.enable("zls")
 
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -206,7 +207,7 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { "bash", "c", "css", "dockerfile", "go", "graphql", "javascript", "lua", "python", "typescript", "vue", "markdown" },
+      ensure_installed = { "bash", "c", "css", "dockerfile", "go", "graphql", "javascript", "lua", "python", "typescript", "vue", "markdown", "zig" },
       sync_install = false,
       highlight = {
         enable = true,
