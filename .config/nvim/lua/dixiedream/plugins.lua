@@ -201,18 +201,19 @@ local plugins = {
   --
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
     opts = {
       ensure_installed = { "bash", "c", "css", "dockerfile", "go", "graphql", "javascript", "lua", "python", "typescript", "vue", "markdown", "zig" },
-      sync_install = false,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false
-      }
     },
     config = function(_, opts)
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
+      require('nvim-treesitter').install(opts.ensure_installed)
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
     end
   },
   --
