@@ -27,26 +27,26 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_SESSION_TYPE="x11"
+export XDG_SESSION_TYPE="tty"
 
 # GoLang stuff
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 
 # App specs
+export PIPEWIRE_LATENCY="128/48000"
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME}/android"
 export AWT_TOOLKIT=MToolkit
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export GTK_THEME="Nordic"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc-2.0"
 export HISTFILE="${XDG_DATA_HOME}/history"
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export LESSHISTFILE="-"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export npm_config_prefix="$HOME/.local"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
-export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export QT_QPA_PLATFORMTHEME="gtk3"	# Have QT use gtk3 theme.
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
