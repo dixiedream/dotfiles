@@ -30,7 +30,8 @@ vim.pack.add({
   { src = gh('numToStr/Comment.nvim') },
   {
     src = gh('nvim-treesitter/nvim-treesitter'),
-    version = 'main'
+    version = 'main',
+    build = ':TSUpdate'
   },
   { src = gh('windwp/nvim-autopairs') },
   { src = gh('nvim-telescope/telescope-fzf-native.nvim') },
@@ -74,8 +75,10 @@ do
     'zig',
   }
   require('nvim-treesitter').install(parsers)
+  local group = vim.api.nvim_create_augroup("TreeSitterConfig", { clear = true })
   vim.api.nvim_create_autocmd('FileType', {
     pattern = { '<filetype>' },
+    group = group,
     callback = function() vim.treesitter.start() end,
   })
 end
@@ -178,7 +181,13 @@ do
       map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
       map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
       map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-      map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+      map('<leader>ca', function()
+        vim.lsp.buf.code_action({
+          filter = function(action)
+            return action.disabled == nil
+          end,
+        })
+      end, '[C]ode [A]ction')
       map('K', vim.lsp.buf.hover, 'Hover Documentation')
       map('<leader>f', function()
         vim.lsp.buf.format({ async = true })
