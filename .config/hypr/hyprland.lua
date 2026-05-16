@@ -46,7 +46,7 @@ hl.config({
   },
   ecosystem = {
     no_update_news = true,
-    no_update_nag = true
+    no_donation_nag = true
   },
   animations = {
     enabled = false,
