@@ -13,14 +13,16 @@ twoscreen() { # If multi-monitor is selected and there are two screens.
         external=$(echo "$screens" | $launcher -i -p "Optimize resolution for:")
         internal=$(echo "$screens" | grep -v "$external")
 
-        hyprctl keyword monitor "$external,preferred,auto,1"
-        hyprctl keyword monitor "$internal,preferred,auto,1,mirror,$external"
+        hyprctl reload
+        hyprctl eval "hl.monitor({ output = '$external', mode = 'preferred', position = 'auto', scale = 1 })"
+        hyprctl eval "hl.monitor({ output = '$internal', mode = 'preferred', position = 'auto', scale = 1, mirror = '$external' })"
     else
         primary=$(echo "$screens" | $launcher -i -p "Select primary display:")
         secondary=$(echo "$screens" | grep -v "$primary")
         direction=$(printf "left\\nright" | $launcher -i -p "What side of $primary should $secondary be on?")
-        hyprctl keyword monitor "$primary,preferred,auto,1"
-        hyprctl keyword monitor "$secondary,preferred,auto-$direction,1"
+        hyprctl reload
+        hyprctl eval "hl.monitor({ output = '$primary', mode = 'preferred', position = 'auto', scale = 1 })"
+        hyprctl eval "hl.monitor({ output = '$secondary', mode = 'preferred', position = 'auto-$direction', scale = 1 })"
     fi
    }
 
@@ -29,11 +31,13 @@ morescreen() { # If multi-monitor is selected and there are more than two screen
  	secondary=$(echo "$screens" | grep -v "$primary" | $launcher -i -p "Select secondary display:")
  	direction=$(printf "left\\nright" | $launcher -i -p "What side of $primary should $secondary be on?")
  	tertiary=$(echo "$screens" | grep -v "$primary" | grep -v "$secondary" | $launcher -i -p "Select third display:")
- 	# echo 'wlr-randr --output "$primary" --preferred --output "$secondary" --"$direction"-of "$primary"
-  # --preferred --output "$tertiary" --"$(printf "left\\nright" | grep -v "$direction")"-of "$primary" --preferred'
+  hyprctl reload
   hyprctl keyword monitor "$primary,preferred,auto,1"
+  hyprctl eval "hl.monitor({ output = '$primary', mode = 'preferred', position = 'auto', scale = 1 })"
   hyprctl keyword monitor "$secondary,preferred,auto-$direction,1"
+  hyprctl eval "hl.monitor({ output = '$secondary', mode = 'preferred', position = 'auto-$direction', scale = 1 })"
   hyprctl keyword monitor "$tertiary,preferred,auto-$(printf "left\\nright" | grep -v "$direction"),1"
+  hyprctl eval "hl.monitor({ output = '$tertiary', mode = 'preferred', position = 'auto-$(printf "left\\nright" | grep -v "$direction")', scale = 1 })"
 }
 
 multimon() { # Multi-monitor handler.
@@ -43,9 +47,11 @@ multimon() { # Multi-monitor handler.
  	esac ;}
 
 onescreen() { # If only one output available or chosen.
-  disableOthers=$(echo "$allposs" | grep -v "\b$1" | cut -d ' ' -f2 | awk '{print $0, ",disable"}' | paste -sd ' ' -)
-  hyprctl keyword monitor "$1,preferred,auto,1"
-  hyprctl keyword monitor "$disableOthers"
+  disableOthers=$(echo "$allposs" | grep -v "\b$1" | cut -d ' ' -f2 | paste -sd ' ' -)
+  echo "$disableOthers"
+  hyprctl reload
+  hyprctl eval "hl.monitor({ output = '$1', mode = 'preferred', position = 'auto', scale = 1 })"
+  hyprctl eval "hl.monitor({ output = '$disableOthers', disabled = true })"
 }
 
 postrun() { # Stuff to run to clean up.
