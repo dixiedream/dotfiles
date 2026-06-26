@@ -28,12 +28,11 @@ hl.env("HYPRCURSOR_SIZE", "24")
 ---- LOOK AND FEEL ----
 -----------------------
 hl.config({
-  general = {
-    gaps_in          = 1,
-    gaps_out         = 1,
-    border_size      = 0,
-    resize_on_border = true, -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-    layout           = "master",
+  animations = {
+    enabled = false,
+  },
+  cursor = {
+    inactive_timeout = 5
   },
   decoration = {
     rounding = 0,
@@ -44,31 +43,21 @@ hl.config({
       enabled = false,
     },
   },
+  dwindle = {
+    preserve_split = true, -- You probably want this
+  },
   ecosystem = {
     no_update_news = true,
     no_donation_nag = true
   },
-  animations = {
-    enabled = false,
+  general = {
+    gaps_in          = 1,
+    gaps_out         = 1,
+    border_size      = 0,
+    resize_on_border = true, -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
+    layout           = "master",
   },
-  misc = {
-    disable_autoreload = true,
-    disable_hyprland_logo = true,
-    disable_splash_rendering = true,
-    force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
-    vrr = 3
-  },
-  dwindle = {
-    preserve_split = true, -- You probably want this
-  },
-  master = {
-    new_status = "master",
-  },
-  scrolling = {
-    fullscreen_on_one_column = true,
-  },
-  cursor = {
-    inactive_timeout = 5
+  gestures = {
   },
   input = {
     kb_layout    = "it",
@@ -79,7 +68,18 @@ hl.config({
       natural_scroll = false,
     },
   },
-  gestures = {
+  master = {
+    new_status = "master",
+  },
+  misc = {
+    disable_autoreload = true,
+    disable_hyprland_logo = true,
+    disable_splash_rendering = true,
+    force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
+    vrr = 3
+  },
+  scrolling = {
+    fullscreen_on_one_column = true,
   }
 })
 
