@@ -1,12 +1,13 @@
 -- Text overlay configuration
-swayimg.text.set_size(16) -- font size in pixels
+swayimg.text.size = 16 -- font size in pixels
 
 -- Image viewer mode
-swayimg.text.hide() -- start without infos
+swayimg.text.visible = false
+-- swayimg.text.visible(false) -- start without infos
 
 -- Common functions
 local next = function()
-  swayimg.viewer.switch_image("next")
+  swayimg.viewer.open("next")
 end
 
 local setAsWallpaper = function(mode)
