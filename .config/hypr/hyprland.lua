@@ -111,6 +111,8 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + Tab", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + CTRL + Return", hl.dsp.layout("swapwithmaster"))
 hl.bind(mainMod .. " + Space", hl.dsp.window.float())
+hl.bind("ALT + SHIFT + L", hl.dsp.layout("mfact +0.2"))
+hl.bind("ALT + SHIFT + H", hl.dsp.layout("mfact -0.2"))
 
 -- Move focus
 hl.bind(mainMod .. " + j", hl.dsp.window.cycle_next())
