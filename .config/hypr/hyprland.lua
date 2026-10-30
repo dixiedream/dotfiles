@@ -152,12 +152,8 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("switch:[Lid Switch]", hl.dsp.exec_cmd("app2unit -- hyprlock"), { locked = true })
 
 -- Resize
-hl.bind("ALT + SHIFT", hl.dsp.submap("resize"))
-hl.define_submap("resize", function()
-  hl.bind("L", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
-  hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
-  hl.bind("escape", hl.dsp.submap("reset"))
-end)
+hl.bind("ALT + SHIFT + L", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
+hl.bind("ALT + SHIFT + H", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
