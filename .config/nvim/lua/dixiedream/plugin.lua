@@ -28,11 +28,6 @@ vim.pack.add({
   { src = gh('folke/tokyonight.nvim') },
   { src = gh('nvim-lualine/lualine.nvim') },
   { src = gh('numToStr/Comment.nvim') },
-  {
-    src = gh('nvim-treesitter/nvim-treesitter'),
-    version = 'main',
-    build = ':TSUpdate'
-  },
   { src = gh('windwp/nvim-autopairs') },
   { src = gh('nvim-telescope/telescope-fzf-native.nvim') },
   {
@@ -58,34 +53,8 @@ require('lualine').setup({
 
 require('Comment').setup({})
 
-do
-  local parsers = {
-    'bash',
-    'c',
-    'css',
-    'dockerfile',
-    'go',
-    'graphql',
-    'javascript',
-    'lua',
-    'python',
-    'typescript',
-    'vue',
-    'markdown',
-    'zig',
-  }
-  require('nvim-treesitter').install(parsers)
-  local group = vim.api.nvim_create_augroup("TreeSitterConfig", { clear = true })
-  vim.api.nvim_create_autocmd('FileType', {
-    pattern = { '<filetype>' },
-    group = group,
-    callback = function() vim.treesitter.start() end,
-  })
-end
-
 local autopairs = require('nvim-autopairs')
 autopairs.setup({
-  check_ts = true,
   ts_config = {
     lua = { 'string', 'source' },
     javascript = { 'string', 'template_string' },
@@ -162,7 +131,7 @@ do
     },
   })
   vim.lsp.enable('lua_ls')
-  vim.lsp.enable('ts_ls')
+  vim.lsp.enable('tsc')
   vim.lsp.enable('intelephense')
 
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
