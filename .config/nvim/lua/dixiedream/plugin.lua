@@ -7,6 +7,26 @@ vim.api.nvim_create_user_command('PackUpdate', function()
   vim.pack.update()
 end, { desc = 'Run vim.pack.update()' })
 
+vim.api.nvim_create_user_command('PackSync', function()
+  local orphans = vim.iter(vim.pack.get())
+    :filter(function(p) return not p.active end)
+    :map(function(p) return p.spec.name end)
+    :totable()
+
+  if #orphans == 0 then
+    vim.notify('PackSync: no inactive plugins (remove from vim.pack.add, then :restart)', vim.log.levels.INFO)
+    return
+  end
+
+  local msg = 'Remove inactive plugins?\n\n' .. table.concat(orphans, '\n')
+  if vim.fn.confirm(msg, '&Yes\n&No', 2) ~= 1 then
+    return
+  end
+
+  vim.pack.del(orphans)
+  vim.notify('PackSync: removed ' .. table.concat(orphans, ', '), vim.log.levels.INFO)
+end, { desc = 'Remove plugins no longer in vim.pack.add (run :restart first)' })
+
 local gh = function(repo)
   return 'https://github.com/' .. repo
 end
@@ -27,7 +47,7 @@ vim.pack.add({
   gh('nvim-lua/plenary.nvim'),
   { src = gh('folke/tokyonight.nvim') },
   { src = gh('nvim-lualine/lualine.nvim') },
-  { src = gh('numToStr/Comment.nvim') },
+  { src = gh('faergeek/Comment.nvim'), version = 'nvim-0.12-compatibility' },
   { src = gh('windwp/nvim-autopairs') },
   { src = gh('nvim-telescope/telescope-fzf-native.nvim') },
   {
@@ -51,7 +71,15 @@ require('lualine').setup({
   },
 })
 
-require('Comment').setup({})
+require('Comment').setup({
+  pre_hook = function(ctx)
+    local ok, parser = pcall(vim.treesitter.get_parser, 0)
+    if not ok or not parser then
+      local ft = require('Comment.ft')
+      return ft.get(vim.bo.filetype, ctx.ctype) or vim.bo.commentstring
+    end
+  end,
+})
 
 local autopairs = require('nvim-autopairs')
 autopairs.setup({
@@ -78,7 +106,7 @@ do
   vim.keymap.set('n', '<Leader>pf', builtin.find_files, opts)
   vim.keymap.set('n', '<Leader>E', builtin.diagnostics, opts)
   vim.keymap.set('n', '<C-p>', builtin.git_files, opts)
-  vim.keymap.set('n', '<leader>ps', function()
+  vim.keymap.set('n', '<Leader>ps', function()
     builtin.grep_string({ search = vim.fn.input('Grep > ') })
   end)
 end
@@ -101,13 +129,6 @@ do
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-    }, {
-      { name = 'buffer' },
-    }),
-  })
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' },
     }, {
       { name = 'buffer' },
     }),
@@ -140,7 +161,7 @@ do
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
   vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+    group = vim.api.nvim_create_augroup('dixiedream-lsp-attach', { clear = true }),
     callback = function(event)
       vim.bo[event.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
       local map = function(keys, func, desc)
